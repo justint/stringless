@@ -1,0 +1,10 @@
+cmake_minimum_required(VERSION 2.8)
+set(BOOST_ROOT /usr/include/boost)
+set(Boost_USE_STATIC_LIBS ON)
+SET (CMAKE_VERBOSE_MAKEFILE 1)
+find_package(Boost COMPONENTS)
+include_directories(${Boost_INCLUDE_DIR})
+link_directories(${Boost_LIBRARY_DIR})
+
+add_executable (welcome welcome.cc)
+target_link_libraries( welcome ${Boost_LIBRARIES} rt)
