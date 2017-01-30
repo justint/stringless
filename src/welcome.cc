@@ -1,7 +1,7 @@
 // cs180_shared_memory_test
 // 
 // Practice with shared memory in linux environment, using Boost
-// Run with arg '1' (without quotes) to remove shared memory
+// Run with arg '1' (without quotes) to remove shared memory, 2 to read it
 
 #include <iostream>
 
@@ -14,13 +14,28 @@ int main(int argc, char**argv) {
     
     using namespace boost::interprocess;
 
-    if (atoi(argv[1]) == 1)
-    {
-        shared_memory_object::remove("shared_memory");
-        std::cout << "Successfully removed shared memory" << std::endl;
+    if (argc > 1){
+        if (atoi(argv[1]) == 1) // Deletion of shared memory
+        {
+            if (shared_memory_object::remove("shared_memory"))
+                std::cout << "Successfully removed shared memory" << std::endl;
+            else std::cout << "Shared memory already deleted or does not exist" <<
+                    std::endl;
+        }
+        else if (atoi(argv[1]) == 2) // Reading shared memory
+        {
+            shared_memory_object shm_obj (open_only, "shared_memory", read_only);
+            mapped_region region(shm_obj, read_only);
+
+            char *mem = static_cast<char*>(region.get_address());
+            for (auto i = 0; i < region.get_size(); ++i)
+            {
+                std::cout << *mem++ << std::endl;
+            }
+        }
     }
     else {
-        const offset_t truncate_length = 100;
+        const offset_t truncate_length = 10;
 
         shared_memory_object shm_obj
                     (create_only,
@@ -40,8 +55,24 @@ int main(int argc, char**argv) {
         std::cout << region.get_address() << std::endl;
         std::cout << region.get_size() << std::endl;
 
-        // Write all memory to 1(?)
-        std::memset(region.get_address(), 1234, region.get_size());
+        // Set all memory to 1 (works!)
+        //std::memset(region.get_address(), 1, region.get_size());
+        
+        // Incremental writing test (works!)
+        /*
+        int i;
+        for (i = 0; i < region.get_size(); ++i)
+        {
+            std::memset(region.get_address() + i, i, 1);
+        }
+        */
+        
+        // String writing test (works!)
+        /*
+        char test[] = "Sample frame data";
+        std::memcpy(region.get_address(), test, region.get_size());
+         */
+        
     }
     
     return 0;
