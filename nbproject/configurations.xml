@@ -40,7 +40,7 @@ Contributor(s):
 -->
 <configurationDescriptor version="100">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
-    <df root="." name="1">
+    <df root="." name="0">
       <df name="src">
         <in>welcome.cc</in>
       </df>
@@ -54,6 +54,7 @@ Contributor(s):
       <itemPath>build/Release/Makefile</itemPath>
     </logicalFolder>
     <itemPath>.gitignore</itemPath>
+    <itemPath>README.md</itemPath>
   </logicalFolder>
   <sourceFolderFilter>^(nbproject|build)$</sourceFolderFilter>
   <sourceRootList>
@@ -88,7 +89,7 @@ Contributor(s):
               <pElem>/usr/include/boost/move/detail</pElem>
               <pElem>/usr/include/boost</pElem>
               <pElem>/usr/include/boost/intrusive/detail</pElem>
-              <pElem>build/Debug</pElem>
+              <pElem>build/Debug/src</pElem>
             </incDir>
           </ccTool>
         </makeTool>
@@ -137,9 +138,40 @@ Contributor(s):
       </makefileType>
       <item path=".gitignore" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="README.md" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="src/welcome.cc" ex="false" tool="1" flavor2="9">
         <ccTool flags="0">
         </ccTool>
+      </item>
+    </conf>
+    <conf name="Delete_Shared_Mem" type="0">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>build/Debug</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath>build/Debug/src/welcome</executablePath>
+          <ccTool>
+            <incDir>
+              <pElem>build/Debug/src</pElem>
+            </incDir>
+          </ccTool>
+        </makeTool>
+        <preBuild>
+          <preBuildCommandWorkingDir>build/Debug</preBuildCommandWorkingDir>
+          <preBuildCommand>${CMAKE} -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=${IDE_CC} -DCMAKE_CXX_COMPILER=${IDE_CXX} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ../.. </preBuildCommand>
+          <preBuildFirst>true</preBuildFirst>
+        </preBuild>
+      </makefileType>
+      <item path="src/welcome.cc" ex="false" tool="1" flavor2="0">
       </item>
     </conf>
   </confs>

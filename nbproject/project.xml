@@ -63,6 +63,10 @@ Contributor(s):
                     <name>Release</name>
                     <type>0</type>
                 </confElem>
+                <confElem>
+                    <name>Delete_Shared_Mem</name>
+                    <type>0</type>
+                </confElem>
             </confList>
             <formatting>
                 <project-formatting-style>false</project-formatting-style>
