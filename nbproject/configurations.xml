@@ -42,8 +42,26 @@ Contributor(s):
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="." name="0">
       <df name="src">
-        <in>welcome.cc</in>
-        <in>welcome_c.cc</in>
+        <df name="maya">
+          <in>Reader.cc</in>
+          <in>Reader.h</in>
+        </df>
+        <df name="mem_test">
+          <in>welcome.cc</in>
+          <in>welcome_c.cc</in>
+        </df>
+        <in>CMakeLists.txt</in>
+        <in>FrameData.cc</in>
+        <in>FrameData.h</in>
+        <in>MemoryManager.cc</in>
+        <in>MemoryManager.h</in>
+        <in>Mutex.cc</in>
+        <in>Mutex.h</in>
+        <in>OpenFacer.cc</in>
+        <in>OpenFacer.h</in>
+        <in>Stringless.cc</in>
+        <in>Writer.cc</in>
+        <in>Writer.h</in>
       </df>
     </df>
     <logicalFolder name="ExternalFiles"
@@ -71,6 +89,7 @@ Contributor(s):
       </toolsSet>
       <flagsDictionary>
         <element flagsID="0" commonFlags="-mtune=generic -march=x86-64"/>
+        <element flagsID="1" commonFlags="-std=c++14"/>
       </flagsDictionary>
       <codeAssistance>
       </codeAssistance>
@@ -87,7 +106,44 @@ Contributor(s):
           <preBuildFirst>true</preBuildFirst>
         </preBuild>
       </makefileType>
-      <item path="src/welcome.cc" ex="false" tool="1" flavor2="11">
+      <item path="src/FrameData.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
+        </ccTool>
+      </item>
+      <item path="src/MemoryManager.cc" ex="false" tool="1" flavor2="11">
+        <ccTool>
+          <incDir>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/Mutex.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
+        </ccTool>
+      </item>
+      <item path="src/OpenFacer.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
+        </ccTool>
+      </item>
+      <item path="src/Stringless.cc" ex="false" tool="1" flavor2="11">
+        <ccTool>
+          <incDir>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/Writer.cc" ex="false" tool="1" flavor2="11">
+        <ccTool>
+          <incDir>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/maya/Reader.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
+        </ccTool>
+      </item>
+      <item path="src/mem_test/welcome.cc" ex="false" tool="1" flavor2="11">
         <ccTool flags="0">
           <incDir>
             <pElem>/usr/include/boost/interprocess</pElem>
@@ -102,10 +158,10 @@ Contributor(s):
           </incDir>
         </ccTool>
       </item>
-      <item path="src/welcome_c.cc" ex="false" tool="1" flavor2="0">
-        <ccTool>
+      <item path="src/mem_test/welcome_c.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
           <incDir>
-            <pElem>build/Debug/src</pElem>
+            <pElem>build/Debug/src/mem_test</pElem>
           </incDir>
         </ccTool>
       </item>
@@ -146,11 +202,39 @@ Contributor(s):
       </item>
       <item path="README.md" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/welcome.cc" ex="false" tool="1" flavor2="9">
+      <item path="src/CMakeLists.txt" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/FrameData.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/FrameData.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/MemoryManager.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/MemoryManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Mutex.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/Mutex.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/OpenFacer.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/OpenFacer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Stringless.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/Writer.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/Writer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/maya/Reader.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/maya/Reader.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/mem_test/welcome.cc" ex="false" tool="1" flavor2="9">
         <ccTool flags="0">
         </ccTool>
       </item>
-      <item path="src/welcome_c.cc" ex="false" tool="1" flavor2="9">
+      <item path="src/mem_test/welcome_c.cc" ex="false" tool="1" flavor2="9">
         <ccTool flags="0">
         </ccTool>
       </item>
@@ -163,6 +247,7 @@ Contributor(s):
       </toolsSet>
       <flagsDictionary>
         <element flagsID="0" commonFlags="-mtune=generic -march=x86-64"/>
+        <element flagsID="1" commonFlags="-std=c++14"/>
       </flagsDictionary>
       <codeAssistance>
       </codeAssistance>
@@ -179,7 +264,35 @@ Contributor(s):
           <preBuildFirst>true</preBuildFirst>
         </preBuild>
       </makefileType>
-      <item path="src/welcome.cc" ex="false" tool="1" flavor2="9">
+      <item path="src/FrameData.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/FrameData.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/MemoryManager.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
+        </ccTool>
+      </item>
+      <item path="src/Mutex.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/Mutex.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/OpenFacer.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
+        </ccTool>
+      </item>
+      <item path="src/Stringless.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
+        </ccTool>
+      </item>
+      <item path="src/Writer.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
+        </ccTool>
+      </item>
+      <item path="src/maya/Reader.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/maya/Reader.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/mem_test/welcome.cc" ex="false" tool="1" flavor2="9">
         <ccTool flags="0">
           <incDir>
             <pElem>/usr/include/boost/interprocess</pElem>
@@ -194,10 +307,10 @@ Contributor(s):
           </incDir>
         </ccTool>
       </item>
-      <item path="src/welcome_c.cc" ex="false" tool="1" flavor2="9">
+      <item path="src/mem_test/welcome_c.cc" ex="false" tool="1" flavor2="9">
         <ccTool>
           <incDir>
-            <pElem>build/Debug/src</pElem>
+            <pElem>build/Debug/src/mem_test</pElem>
           </incDir>
         </ccTool>
       </item>
@@ -226,7 +339,35 @@ Contributor(s):
           <preBuildFirst>true</preBuildFirst>
         </preBuild>
       </makefileType>
-      <item path="src/welcome.cc" ex="false" tool="1" flavor2="9">
+      <item path="src/CMakeLists.txt" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/FrameData.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/FrameData.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/MemoryManager.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/MemoryManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Mutex.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/Mutex.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/OpenFacer.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/OpenFacer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/Stringless.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/Writer.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/Writer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/maya/Reader.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/maya/Reader.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/mem_test/welcome.cc" ex="false" tool="1" flavor2="9">
         <ccTool flags="0">
           <incDir>
             <pElem>/usr/include/boost/interprocess</pElem>
@@ -241,10 +382,277 @@ Contributor(s):
           </incDir>
         </ccTool>
       </item>
-      <item path="src/welcome_c.cc" ex="false" tool="1" flavor2="9">
+      <item path="src/mem_test/welcome_c.cc" ex="false" tool="1" flavor2="9">
         <ccTool>
           <incDir>
             <pElem>build/Debug/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+    </conf>
+    <conf name="Stringless_-i" type="0">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <flagsDictionary>
+        <element flagsID="0" commonFlags="-mtune=generic -march=x86-64"/>
+        <element flagsID="1" commonFlags="-std=c++14"/>
+      </flagsDictionary>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>build/Debug</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath>build/Debug/src/Stringless</executablePath>
+        </makeTool>
+        <preBuild>
+          <preBuildCommandWorkingDir>build/Debug</preBuildCommandWorkingDir>
+          <preBuildCommand>${CMAKE} -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=${IDE_CC} -DCMAKE_CXX_COMPILER=${IDE_CXX} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ../.. </preBuildCommand>
+          <preBuildFirst>true</preBuildFirst>
+        </preBuild>
+      </makefileType>
+      <item path="src/FrameData.cc" ex="false" tool="1" flavor2="11">
+        <ccTool>
+          <incDir>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/MemoryManager.cc" ex="false" tool="1" flavor2="11">
+        <ccTool>
+          <incDir>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/Mutex.cc" ex="false" tool="1" flavor2="11">
+        <ccTool>
+          <incDir>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/OpenFacer.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
+        </ccTool>
+      </item>
+      <item path="src/Stringless.cc" ex="false" tool="1" flavor2="11">
+        <ccTool>
+          <incDir>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/Writer.cc" ex="false" tool="1" flavor2="11">
+        <ccTool>
+          <incDir>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/maya/Reader.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
+        </ccTool>
+      </item>
+      <item path="src/mem_test/welcome.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>/usr/include/boost/interprocess</pElem>
+            <pElem>/usr/include/boost/interprocess/detail</pElem>
+            <pElem>src</pElem>
+            <pElem>/usr/include/boost/config</pElem>
+            <pElem>/usr/include/boost/move</pElem>
+            <pElem>/usr/include/boost/move/detail</pElem>
+            <pElem>/usr/include/boost</pElem>
+            <pElem>/usr/include/boost/intrusive/detail</pElem>
+            <pElem>build/Debug</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/mem_test/welcome_c.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>src/mem_test</pElem>
+            <pElem>build/Debug/src/mem_test</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+    </conf>
+    <conf name="Stringless_-r" type="0">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <flagsDictionary>
+        <element flagsID="0" commonFlags="-mtune=generic -march=x86-64"/>
+        <element flagsID="1" commonFlags="-std=c++14"/>
+      </flagsDictionary>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>build/Debug</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath>build/Debug/src/Stringless</executablePath>
+        </makeTool>
+        <preBuild>
+          <preBuildCommandWorkingDir>build/Debug</preBuildCommandWorkingDir>
+          <preBuildCommand>${CMAKE} -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=${IDE_CC} -DCMAKE_CXX_COMPILER=${IDE_CXX} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ../.. </preBuildCommand>
+          <preBuildFirst>true</preBuildFirst>
+        </preBuild>
+      </makefileType>
+      <item path="src/FrameData.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
+        </ccTool>
+      </item>
+      <item path="src/MemoryManager.cc" ex="false" tool="1" flavor2="11">
+        <ccTool>
+          <incDir>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/Mutex.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
+        </ccTool>
+      </item>
+      <item path="src/OpenFacer.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
+        </ccTool>
+      </item>
+      <item path="src/Stringless.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>src</pElem>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/Writer.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/maya/Reader.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
+        </ccTool>
+      </item>
+      <item path="src/mem_test/welcome.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>/usr/include/boost/interprocess</pElem>
+            <pElem>/usr/include/boost/interprocess/detail</pElem>
+            <pElem>src</pElem>
+            <pElem>/usr/include/boost/config</pElem>
+            <pElem>/usr/include/boost/move</pElem>
+            <pElem>/usr/include/boost/move/detail</pElem>
+            <pElem>/usr/include/boost</pElem>
+            <pElem>/usr/include/boost/intrusive/detail</pElem>
+            <pElem>build/Debug</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/mem_test/welcome_c.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>src/mem_test</pElem>
+            <pElem>build/Debug/src/mem_test</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+    </conf>
+    <conf name="Stringless_-h" type="0">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <flagsDictionary>
+        <element flagsID="0" commonFlags="-mtune=generic -march=x86-64"/>
+        <element flagsID="1" commonFlags="-std=c++14"/>
+      </flagsDictionary>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>build/Debug</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath>build/Debug/src/Stringless</executablePath>
+        </makeTool>
+        <preBuild>
+          <preBuildCommandWorkingDir>build/Debug</preBuildCommandWorkingDir>
+          <preBuildCommand>${CMAKE} -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=${IDE_CC} -DCMAKE_CXX_COMPILER=${IDE_CXX} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ../.. </preBuildCommand>
+          <preBuildFirst>true</preBuildFirst>
+        </preBuild>
+      </makefileType>
+      <item path="src/FrameData.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
+        </ccTool>
+      </item>
+      <item path="src/MemoryManager.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>src</pElem>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/Mutex.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
+        </ccTool>
+      </item>
+      <item path="src/OpenFacer.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
+        </ccTool>
+      </item>
+      <item path="src/Stringless.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>src</pElem>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/Writer.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/maya/Reader.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
+        </ccTool>
+      </item>
+      <item path="src/mem_test/welcome.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>/usr/include/boost/interprocess</pElem>
+            <pElem>/usr/include/boost/interprocess/detail</pElem>
+            <pElem>src</pElem>
+            <pElem>/usr/include/boost/config</pElem>
+            <pElem>/usr/include/boost/move</pElem>
+            <pElem>/usr/include/boost/move/detail</pElem>
+            <pElem>/usr/include/boost</pElem>
+            <pElem>/usr/include/boost/intrusive/detail</pElem>
+            <pElem>build/Debug</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/mem_test/welcome_c.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>src/mem_test</pElem>
+            <pElem>build/Debug/src/mem_test</pElem>
           </incDir>
         </ccTool>
       </item>

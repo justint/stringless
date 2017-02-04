@@ -42,7 +42,7 @@ Contributor(s):
     <type>org.netbeans.modules.cnd.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>cs180_shared_memory_test</name>
+            <name>stringless</name>
             <c-extensions/>
             <cpp-extensions>cc</cpp-extensions>
             <header-extensions>h</header-extensions>
@@ -69,6 +69,18 @@ Contributor(s):
                 </confElem>
                 <confElem>
                     <name>Read_Shared_Mem</name>
+                    <type>0</type>
+                </confElem>
+                <confElem>
+                    <name>Stringless_-i</name>
+                    <type>0</type>
+                </confElem>
+                <confElem>
+                    <name>Stringless_-r</name>
+                    <type>0</type>
+                </confElem>
+                <confElem>
+                    <name>Stringless_-h</name>
                     <type>0</type>
                 </confElem>
             </confList>

@@ -52,7 +52,13 @@ int main(int argc, char**argv) {
                 fd = shm_open(shm_name, O_RDONLY, 0777);
                 if (fd == -1) {
                     std::cout << "Failed to read shared memory: " << strerror(errno) << std::endl;
-                    return 1;
+                    if (errno != 2) { // If error isn't just that the shm doesn't exist yet
+                        return 1;
+                    }
+                    else {
+                        std::cout << "Waiting for shared memory to be initalized..." << std::endl;
+                        sleep(1);
+                    }
                 } else {
                     region *addr = 
                         (region *)mmap(NULL, sizeof(struct region), PROT_READ, MAP_SHARED, fd, 0);
