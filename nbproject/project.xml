@@ -43,8 +43,8 @@ Contributor(s):
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
             <name>stringless</name>
-            <c-extensions/>
-            <cpp-extensions>cc</cpp-extensions>
+            <c-extensions>c,m</c-extensions>
+            <cpp-extensions>cc,cpp</cpp-extensions>
             <header-extensions>h</header-extensions>
             <sourceEncoding>UTF-8</sourceEncoding>
             <sourceRootList>
@@ -64,14 +64,6 @@ Contributor(s):
                     <type>0</type>
                 </confElem>
                 <confElem>
-                    <name>Delete_Shared_Mem</name>
-                    <type>0</type>
-                </confElem>
-                <confElem>
-                    <name>Read_Shared_Mem</name>
-                    <type>0</type>
-                </confElem>
-                <confElem>
                     <name>Stringless_-i</name>
                     <type>0</type>
                 </confElem>
@@ -84,7 +76,11 @@ Contributor(s):
                     <type>0</type>
                 </confElem>
                 <confElem>
-                    <name>Stringless_-iw_-flp</name>
+                    <name>Stringless_-iw_-flp_Debug</name>
+                    <type>0</type>
+                </confElem>
+                <confElem>
+                    <name>Stringless_-iw_-flp_Release</name>
                     <type>0</type>
                 </confElem>
             </confList>

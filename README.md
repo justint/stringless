@@ -6,7 +6,7 @@ Currently Stringless is still a work in progress. I am unable to accept pull req
 
 ## Installation
 
-Stringless requires [dlib](http://dlib.net/) and [OpenCV](http://opencv.org/) to compile.
+Stringless requires [OpenCV](http://opencv.org/) to compile.
 
 1. Clone a copy of Stringless:
 
@@ -21,7 +21,11 @@ $ mkdir build
 
 $ cd build
 
-$ cmake ..
+$ cmake .. -DUSE_AVX_INSTRUCTIONS=ON
 
 $ make
 ```
+
+## Running Stringless
+
+`$ ./Stringless -iw -flp ../../ext/dlib/shape_predictor_68_face_landmarks.dat`

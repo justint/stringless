@@ -41,6 +41,524 @@ Contributor(s):
 <configurationDescriptor version="100">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="." name="0">
+      <df name="ext">
+        <df name="dlib">
+          <df name="dlib">
+            <df name="all">
+              <in>source.cpp</in>
+            </df>
+            <df name="base64">
+              <in>base64_kernel_1.cpp</in>
+            </df>
+            <df name="bigint">
+              <in>bigint_kernel_1.cpp</in>
+              <in>bigint_kernel_2.cpp</in>
+            </df>
+            <df name="bit_stream">
+              <in>bit_stream_kernel_1.cpp</in>
+            </df>
+            <df name="bsp">
+              <in>bsp.cpp</in>
+            </df>
+            <df name="cmake_utils">
+              <df name="test_for_cpp11">
+                <in>cpp11_test.cpp</in>
+              </df>
+            </df>
+            <df name="data_io">
+              <in>image_dataset_metadata.cpp</in>
+              <in>mnist.cpp</in>
+            </df>
+            <df name="dir_nav">
+              <in>dir_nav_extensions.cpp</in>
+              <in>dir_nav_kernel_1.cpp</in>
+              <in>dir_nav_kernel_2.cpp</in>
+            </df>
+            <df name="dnn">
+              <in>cpu_dlib.cpp</in>
+              <in>cublas_dlibapi.cpp</in>
+              <in>cudnn_dlibapi.cpp</in>
+              <in>curand_dlibapi.cpp</in>
+              <in>gpu_data.cpp</in>
+              <in>tensor_tools.cpp</in>
+            </df>
+            <df name="entropy_decoder">
+              <in>entropy_decoder_kernel_1.cpp</in>
+              <in>entropy_decoder_kernel_2.cpp</in>
+            </df>
+            <df name="entropy_encoder">
+              <in>entropy_encoder_kernel_1.cpp</in>
+              <in>entropy_encoder_kernel_2.cpp</in>
+            </df>
+            <df name="external">
+              <df name="cblas">
+                <in>cblas_caxpy.c</in>
+                <in>cblas_ccopy.c</in>
+                <in>cblas_cdotc_sub.c</in>
+                <in>cblas_cdotu_sub.c</in>
+                <in>cblas_cgbmv.c</in>
+                <in>cblas_cgemm.c</in>
+                <in>cblas_cgemv.c</in>
+                <in>cblas_cgerc.c</in>
+                <in>cblas_cgeru.c</in>
+                <in>cblas_chbmv.c</in>
+                <in>cblas_chemm.c</in>
+                <in>cblas_chemv.c</in>
+                <in>cblas_cher.c</in>
+                <in>cblas_cher2.c</in>
+                <in>cblas_cher2k.c</in>
+                <in>cblas_cherk.c</in>
+                <in>cblas_chpmv.c</in>
+                <in>cblas_chpr.c</in>
+                <in>cblas_chpr2.c</in>
+                <in>cblas_cscal.c</in>
+                <in>cblas_csscal.c</in>
+                <in>cblas_cswap.c</in>
+                <in>cblas_csymm.c</in>
+                <in>cblas_csyr2k.c</in>
+                <in>cblas_csyrk.c</in>
+                <in>cblas_ctbmv.c</in>
+                <in>cblas_ctbsv.c</in>
+                <in>cblas_ctpmv.c</in>
+                <in>cblas_ctpsv.c</in>
+                <in>cblas_ctrmm.c</in>
+                <in>cblas_ctrmv.c</in>
+                <in>cblas_ctrsm.c</in>
+                <in>cblas_ctrsv.c</in>
+                <in>cblas_dasum.c</in>
+                <in>cblas_daxpy.c</in>
+                <in>cblas_dcopy.c</in>
+                <in>cblas_ddot.c</in>
+                <in>cblas_dgbmv.c</in>
+                <in>cblas_dgemm.c</in>
+                <in>cblas_dgemv.c</in>
+                <in>cblas_dger.c</in>
+                <in>cblas_dnrm2.c</in>
+                <in>cblas_drot.c</in>
+                <in>cblas_drotg.c</in>
+                <in>cblas_drotm.c</in>
+                <in>cblas_drotmg.c</in>
+                <in>cblas_dsbmv.c</in>
+                <in>cblas_dscal.c</in>
+                <in>cblas_dsdot.c</in>
+                <in>cblas_dspmv.c</in>
+                <in>cblas_dspr.c</in>
+                <in>cblas_dspr2.c</in>
+                <in>cblas_dswap.c</in>
+                <in>cblas_dsymm.c</in>
+                <in>cblas_dsymv.c</in>
+                <in>cblas_dsyr.c</in>
+                <in>cblas_dsyr2.c</in>
+                <in>cblas_dsyr2k.c</in>
+                <in>cblas_dsyrk.c</in>
+                <in>cblas_dtbmv.c</in>
+                <in>cblas_dtbsv.c</in>
+                <in>cblas_dtpmv.c</in>
+                <in>cblas_dtpsv.c</in>
+                <in>cblas_dtrmm.c</in>
+                <in>cblas_dtrmv.c</in>
+                <in>cblas_dtrsm.c</in>
+                <in>cblas_dtrsv.c</in>
+                <in>cblas_dzasum.c</in>
+                <in>cblas_dznrm2.c</in>
+                <in>cblas_icamax.c</in>
+                <in>cblas_idamax.c</in>
+                <in>cblas_isamax.c</in>
+                <in>cblas_izamax.c</in>
+                <in>cblas_sasum.c</in>
+                <in>cblas_saxpy.c</in>
+                <in>cblas_scasum.c</in>
+                <in>cblas_scnrm2.c</in>
+                <in>cblas_scopy.c</in>
+                <in>cblas_sdot.c</in>
+                <in>cblas_sdsdot.c</in>
+                <in>cblas_sgbmv.c</in>
+                <in>cblas_sgemm.c</in>
+                <in>cblas_sgemv.c</in>
+                <in>cblas_sger.c</in>
+                <in>cblas_snrm2.c</in>
+                <in>cblas_srot.c</in>
+                <in>cblas_srotg.c</in>
+                <in>cblas_srotm.c</in>
+                <in>cblas_srotmg.c</in>
+                <in>cblas_ssbmv.c</in>
+                <in>cblas_sscal.c</in>
+                <in>cblas_sspmv.c</in>
+                <in>cblas_sspr.c</in>
+                <in>cblas_sspr2.c</in>
+                <in>cblas_sswap.c</in>
+                <in>cblas_ssymm.c</in>
+                <in>cblas_ssymv.c</in>
+                <in>cblas_ssyr.c</in>
+                <in>cblas_ssyr2.c</in>
+                <in>cblas_ssyr2k.c</in>
+                <in>cblas_ssyrk.c</in>
+                <in>cblas_stbmv.c</in>
+                <in>cblas_stbsv.c</in>
+                <in>cblas_stpmv.c</in>
+                <in>cblas_stpsv.c</in>
+                <in>cblas_strmm.c</in>
+                <in>cblas_strmv.c</in>
+                <in>cblas_strsm.c</in>
+                <in>cblas_strsv.c</in>
+                <in>cblas_xerbla.c</in>
+                <in>cblas_zaxpy.c</in>
+                <in>cblas_zcopy.c</in>
+                <in>cblas_zdotc_sub.c</in>
+                <in>cblas_zdotu_sub.c</in>
+                <in>cblas_zdscal.c</in>
+                <in>cblas_zgbmv.c</in>
+                <in>cblas_zgemm.c</in>
+                <in>cblas_zgemv.c</in>
+                <in>cblas_zgerc.c</in>
+                <in>cblas_zgeru.c</in>
+                <in>cblas_zhbmv.c</in>
+                <in>cblas_zhemm.c</in>
+                <in>cblas_zhemv.c</in>
+                <in>cblas_zher.c</in>
+                <in>cblas_zher2.c</in>
+                <in>cblas_zher2k.c</in>
+                <in>cblas_zherk.c</in>
+                <in>cblas_zhpmv.c</in>
+                <in>cblas_zhpr.c</in>
+                <in>cblas_zhpr2.c</in>
+                <in>cblas_zscal.c</in>
+                <in>cblas_zswap.c</in>
+                <in>cblas_zsymm.c</in>
+                <in>cblas_zsyr2k.c</in>
+                <in>cblas_zsyrk.c</in>
+                <in>cblas_ztbmv.c</in>
+                <in>cblas_ztbsv.c</in>
+                <in>cblas_ztpmv.c</in>
+                <in>cblas_ztpsv.c</in>
+                <in>cblas_ztrmm.c</in>
+                <in>cblas_ztrmv.c</in>
+                <in>cblas_ztrsm.c</in>
+                <in>cblas_ztrsv.c</in>
+              </df>
+              <df name="libjpeg">
+                <in>jcapimin.cpp</in>
+                <in>jcapistd.cpp</in>
+                <in>jccoefct.cpp</in>
+                <in>jccolor.cpp</in>
+                <in>jcdctmgr.cpp</in>
+                <in>jchuff.cpp</in>
+                <in>jcinit.cpp</in>
+                <in>jcmainct.cpp</in>
+                <in>jcmarker.cpp</in>
+                <in>jcmaster.cpp</in>
+                <in>jcomapi.cpp</in>
+                <in>jcparam.cpp</in>
+                <in>jcphuff.cpp</in>
+                <in>jcprepct.cpp</in>
+                <in>jcsample.cpp</in>
+                <in>jdapimin.cpp</in>
+                <in>jdapistd.cpp</in>
+                <in>jdatadst.cpp</in>
+                <in>jdatasrc.cpp</in>
+                <in>jdcoefct.cpp</in>
+                <in>jdcolor.cpp</in>
+                <in>jddctmgr.cpp</in>
+                <in>jdhuff.cpp</in>
+                <in>jdinput.cpp</in>
+                <in>jdmainct.cpp</in>
+                <in>jdmarker.cpp</in>
+                <in>jdmaster.cpp</in>
+                <in>jdmerge.cpp</in>
+                <in>jdphuff.cpp</in>
+                <in>jdpostct.cpp</in>
+                <in>jdsample.cpp</in>
+                <in>jerror.cpp</in>
+                <in>jfdctflt.cpp</in>
+                <in>jfdctfst.cpp</in>
+                <in>jfdctint.cpp</in>
+                <in>jidctflt.cpp</in>
+                <in>jidctfst.cpp</in>
+                <in>jidctint.cpp</in>
+                <in>jidctred.cpp</in>
+                <in>jmemmgr.cpp</in>
+                <in>jmemnobs.cpp</in>
+                <in>jquant1.cpp</in>
+                <in>jquant2.cpp</in>
+                <in>jutils.cpp</in>
+              </df>
+              <df name="libpng">
+                <df name="arm">
+                  <in>arm_init.c</in>
+                  <in>filter_neon_intrinsics.c</in>
+                </df>
+                <in>png.c</in>
+                <in>pngerror.c</in>
+                <in>pngget.c</in>
+                <in>pngmem.c</in>
+                <in>pngpread.c</in>
+                <in>pngread.c</in>
+                <in>pngrio.c</in>
+                <in>pngrtran.c</in>
+                <in>pngrutil.c</in>
+                <in>pngset.c</in>
+                <in>pngtrans.c</in>
+                <in>pngwio.c</in>
+                <in>pngwrite.c</in>
+                <in>pngwtran.c</in>
+                <in>pngwutil.c</in>
+              </df>
+              <df name="zlib">
+                <in>adler32.c</in>
+                <in>compress.c</in>
+                <in>crc32.c</in>
+                <in>deflate.c</in>
+                <in>gzclose.c</in>
+                <in>gzlib.c</in>
+                <in>gzread.c</in>
+                <in>gzwrite.c</in>
+                <in>infback.c</in>
+                <in>inffast.c</in>
+                <in>inflate.c</in>
+                <in>inftrees.c</in>
+                <in>trees.c</in>
+                <in>uncompr.c</in>
+                <in>zutil.c</in>
+              </df>
+            </df>
+            <df name="gui_core">
+              <in>gui_core_kernel_1.cpp</in>
+              <in>gui_core_kernel_2.cpp</in>
+            </df>
+            <df name="gui_widgets">
+              <in>base_widgets.cpp</in>
+              <in>canvas_drawing.cpp</in>
+              <in>drawable.cpp</in>
+              <in>fonts.cpp</in>
+              <in>style.cpp</in>
+              <in>widgets.cpp</in>
+            </df>
+            <df name="http_client">
+              <in>http_client.cpp</in>
+            </df>
+            <df name="image_loader">
+              <in>jpeg_loader.cpp</in>
+              <in>png_loader.cpp</in>
+            </df>
+            <df name="image_saver">
+              <in>save_jpeg.cpp</in>
+              <in>save_png.cpp</in>
+            </df>
+            <df name="linker">
+              <in>linker_kernel_1.cpp</in>
+            </df>
+            <df name="logger">
+              <in>extra_logger_headers.cpp</in>
+              <in>logger_config_file.cpp</in>
+              <in>logger_kernel_1.cpp</in>
+            </df>
+            <df name="matlab">
+              <in>example.m</in>
+              <in>example_mex_callback.cpp</in>
+              <in>example_mex_class.cpp</in>
+              <in>example_mex_function.cpp</in>
+              <in>example_mex_struct.cpp</in>
+              <in>mex_wrapper.cpp</in>
+              <in>subprocess_stream.cpp</in>
+            </df>
+            <df name="md5">
+              <in>md5_kernel_1.cpp</in>
+            </df>
+            <df name="misc_api">
+              <in>misc_api_kernel_1.cpp</in>
+              <in>misc_api_kernel_2.cpp</in>
+            </df>
+            <df name="server">
+              <in>server_http.cpp</in>
+              <in>server_iostream.cpp</in>
+              <in>server_kernel.cpp</in>
+            </df>
+            <df name="sockets">
+              <in>sockets_extensions.cpp</in>
+              <in>sockets_kernel_1.cpp</in>
+              <in>sockets_kernel_2.cpp</in>
+            </df>
+            <df name="sockstreambuf">
+              <in>sockstreambuf.cpp</in>
+              <in>sockstreambuf_unbuffered.cpp</in>
+            </df>
+            <df name="test">
+              <df name="blas_bindings">
+                <in>blas_bindings_dot.cpp</in>
+                <in>blas_bindings_gemm.cpp</in>
+                <in>blas_bindings_gemv.cpp</in>
+                <in>blas_bindings_ger.cpp</in>
+                <in>blas_bindings_scal_axpy.cpp</in>
+                <in>vector.cpp</in>
+              </df>
+              <df name="gui">
+                <in>main.cpp</in>
+              </df>
+              <in>active_learning.cpp</in>
+              <in>any.cpp</in>
+              <in>any_function.cpp</in>
+              <in>array.cpp</in>
+              <in>array2d.cpp</in>
+              <in>assignment_learning.cpp</in>
+              <in>base64.cpp</in>
+              <in>bayes_nets.cpp</in>
+              <in>bigint.cpp</in>
+              <in>binary_search_tree_kernel_1a.cpp</in>
+              <in>binary_search_tree_kernel_2a.cpp</in>
+              <in>binary_search_tree_mm1.cpp</in>
+              <in>binary_search_tree_mm2.cpp</in>
+              <in>bridge.cpp</in>
+              <in>bsp.cpp</in>
+              <in>byte_orderer.cpp</in>
+              <in>cca.cpp</in>
+              <in>clustering.cpp</in>
+              <in>cmd_line_parser.cpp</in>
+              <in>cmd_line_parser_wchar_t.cpp</in>
+              <in>compress_stream.cpp</in>
+              <in>conditioning_class.cpp</in>
+              <in>conditioning_class_c.cpp</in>
+              <in>config_reader.cpp</in>
+              <in>correlation_tracker.cpp</in>
+              <in>crc32.cpp</in>
+              <in>create_iris_datafile.cpp</in>
+              <in>cublas.cpp</in>
+              <in>data_io.cpp</in>
+              <in>directed_graph.cpp</in>
+              <in>discriminant_pca.cpp</in>
+              <in>disjoint_subsets.cpp</in>
+              <in>dnn.cpp</in>
+              <in>ekm_and_lisf.cpp</in>
+              <in>elastic_net.cpp</in>
+              <in>empirical_kernel_map.cpp</in>
+              <in>entropy_coder.cpp</in>
+              <in>entropy_encoder_model.cpp</in>
+              <in>example.cpp</in>
+              <in>example_args.cpp</in>
+              <in>face.cpp</in>
+              <in>fft.cpp</in>
+              <in>fhog.cpp</in>
+              <in>filtering.cpp</in>
+              <in>find_max_factor_graph_nmplp.cpp</in>
+              <in>find_max_factor_graph_viterbi.cpp</in>
+              <in>find_optimal_parameters.cpp</in>
+              <in>geometry.cpp</in>
+              <in>graph.cpp</in>
+              <in>graph_cuts.cpp</in>
+              <in>graph_labeler.cpp</in>
+              <in>hash.cpp</in>
+              <in>hash_map.cpp</in>
+              <in>hash_set.cpp</in>
+              <in>hash_table.cpp</in>
+              <in>hog_image.cpp</in>
+              <in>image.cpp</in>
+              <in>iosockstream.cpp</in>
+              <in>is_same_object.cpp</in>
+              <in>kcentroid.cpp</in>
+              <in>kernel_matrix.cpp</in>
+              <in>kmeans.cpp</in>
+              <in>learning_to_track.cpp</in>
+              <in>least_squares.cpp</in>
+              <in>linear_manifold_regularizer.cpp</in>
+              <in>lspi.cpp</in>
+              <in>lz77_buffer.cpp</in>
+              <in>main.cpp</in>
+              <in>map.cpp</in>
+              <in>matrix.cpp</in>
+              <in>matrix2.cpp</in>
+              <in>matrix3.cpp</in>
+              <in>matrix4.cpp</in>
+              <in>matrix_chol.cpp</in>
+              <in>matrix_eig.cpp</in>
+              <in>matrix_lu.cpp</in>
+              <in>matrix_qr.cpp</in>
+              <in>max_cost_assignment.cpp</in>
+              <in>max_sum_submatrix.cpp</in>
+              <in>md5.cpp</in>
+              <in>member_function_pointer.cpp</in>
+              <in>metaprogramming.cpp</in>
+              <in>mpc.cpp</in>
+              <in>multithreaded_object.cpp</in>
+              <in>numerical_integration.cpp</in>
+              <in>object_detector.cpp</in>
+              <in>oca.cpp</in>
+              <in>one_vs_all_trainer.cpp</in>
+              <in>one_vs_one_trainer.cpp</in>
+              <in>opt_qp_solver.cpp</in>
+              <in>optimization.cpp</in>
+              <in>optimization_test_functions.cpp</in>
+              <in>parallel_for.cpp</in>
+              <in>parse.cpp</in>
+              <in>pipe.cpp</in>
+              <in>pixel.cpp</in>
+              <in>probabilistic.cpp</in>
+              <in>pyramid_down.cpp</in>
+              <in>queue.cpp</in>
+              <in>rand.cpp</in>
+              <in>ranking.cpp</in>
+              <in>read_write_mutex.cpp</in>
+              <in>reference_counter.cpp</in>
+              <in>rls.cpp</in>
+              <in>sammon.cpp</in>
+              <in>scan_image.cpp</in>
+              <in>sequence.cpp</in>
+              <in>sequence_labeler.cpp</in>
+              <in>sequence_segmenter.cpp</in>
+              <in>serialize.cpp</in>
+              <in>set.cpp</in>
+              <in>sldf.cpp</in>
+              <in>sliding_buffer.cpp</in>
+              <in>smart_pointers.cpp</in>
+              <in>sockets.cpp</in>
+              <in>sockets2.cpp</in>
+              <in>sockstreambuf.cpp</in>
+              <in>sparse_vector.cpp</in>
+              <in>stack.cpp</in>
+              <in>static_map.cpp</in>
+              <in>static_set.cpp</in>
+              <in>statistics.cpp</in>
+              <in>std_vector_c.cpp</in>
+              <in>string.cpp</in>
+              <in>svm.cpp</in>
+              <in>svm_c_linear.cpp</in>
+              <in>svm_c_linear_dcd.cpp</in>
+              <in>svm_multiclass_linear.cpp</in>
+              <in>svm_struct.cpp</in>
+              <in>svr_linear_trainer.cpp</in>
+              <in>symmetric_matrix_cache.cpp</in>
+              <in>tester.cpp</in>
+              <in>thread_pool.cpp</in>
+              <in>threads.cpp</in>
+              <in>timer.cpp</in>
+              <in>tokenizer.cpp</in>
+              <in>trust_region.cpp</in>
+              <in>tuple.cpp</in>
+              <in>type_safe_union.cpp</in>
+              <in>vectorstream.cpp</in>
+            </df>
+            <df name="threads">
+              <in>async.cpp</in>
+              <in>multithreaded_object_extension.cpp</in>
+              <in>thread_pool_extension.cpp</in>
+              <in>threaded_object_extension.cpp</in>
+              <in>threads_kernel_1.cpp</in>
+              <in>threads_kernel_2.cpp</in>
+              <in>threads_kernel_shared.cpp</in>
+            </df>
+            <df name="timer">
+              <in>timer.cpp</in>
+            </df>
+            <df name="tokenizer">
+              <in>tokenizer_kernel_1.cpp</in>
+            </df>
+            <df name="unicode">
+              <in>unicode.cpp</in>
+            </df>
+            <in>all_console.cpp</in>
+            <in>all_gui.cpp</in>
+            <in>stack_trace.cpp</in>
+          </df>
+        </df>
+      </df>
       <df name="mem_test">
         <in>welcome.cc</in>
         <in>welcome_c.cc</in>
@@ -51,6 +569,8 @@ Contributor(s):
           <in>Reader.h</in>
         </df>
         <in>CMakeLists.txt</in>
+        <in>FaceDetector.cc</in>
+        <in>FaceDetector.h</in>
         <in>FrameData.cc</in>
         <in>FrameData.h</in>
         <in>MemoryManager.cc</in>
@@ -105,6 +625,10 @@ Contributor(s):
         </preBuild>
       </makefileType>
       <item path="LICENSE" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/FaceDetector.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/FaceDetector.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/FrameData.cc" ex="false" tool="1" flavor2="11">
         <ccTool flags="0">
@@ -177,104 +701,9 @@ Contributor(s):
       </item>
       <item path="src/CMakeLists.txt" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/FrameData.cc" ex="false" tool="1" flavor2="0">
+      <item path="src/FaceDetector.cc" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="src/FrameData.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/MemoryManager.cc" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/MemoryManager.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/Mutex.cc" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/Mutex.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/Stringless.cc" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/Writer.cc" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/Writer.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/maya/Reader.cc" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/maya/Reader.h" ex="false" tool="3" flavor2="0">
-      </item>
-    </conf>
-    <conf name="Delete_Shared_Mem" type="0">
-      <toolsSet>
-        <compilerSet>default</compilerSet>
-        <dependencyChecking>false</dependencyChecking>
-        <rebuildPropChanged>false</rebuildPropChanged>
-      </toolsSet>
-      <flagsDictionary>
-        <element flagsID="0" commonFlags="-std=c++14"/>
-      </flagsDictionary>
-      <codeAssistance>
-      </codeAssistance>
-      <makefileType>
-        <makeTool>
-          <buildCommandWorkingDir>build/Debug</buildCommandWorkingDir>
-          <buildCommand>${MAKE} -f Makefile</buildCommand>
-          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
-          <executablePath>build/Debug/src/welcome</executablePath>
-        </makeTool>
-        <preBuild>
-          <preBuildCommandWorkingDir>build/Debug</preBuildCommandWorkingDir>
-          <preBuildCommand>${CMAKE} -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=${IDE_CC} -DCMAKE_CXX_COMPILER=${IDE_CXX} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ../.. </preBuildCommand>
-          <preBuildFirst>true</preBuildFirst>
-        </preBuild>
-      </makefileType>
-      <item path="LICENSE" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/FrameData.cc" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/FrameData.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/MemoryManager.cc" ex="false" tool="1" flavor2="11">
-        <ccTool flags="0">
-        </ccTool>
-      </item>
-      <item path="src/Mutex.cc" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/Mutex.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/Stringless.cc" ex="false" tool="1" flavor2="11">
-        <ccTool flags="0">
-        </ccTool>
-      </item>
-      <item path="src/Writer.cc" ex="false" tool="1" flavor2="11">
-        <ccTool flags="0">
-        </ccTool>
-      </item>
-      <item path="src/maya/Reader.cc" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/maya/Reader.h" ex="false" tool="3" flavor2="0">
-      </item>
-    </conf>
-    <conf name="Read_Shared_Mem" type="0">
-      <toolsSet>
-        <compilerSet>default</compilerSet>
-        <dependencyChecking>false</dependencyChecking>
-        <rebuildPropChanged>false</rebuildPropChanged>
-      </toolsSet>
-      <codeAssistance>
-      </codeAssistance>
-      <makefileType>
-        <makeTool>
-          <buildCommandWorkingDir>build/Debug</buildCommandWorkingDir>
-          <buildCommand>${MAKE} -f Makefile</buildCommand>
-          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
-          <executablePath>build/Debug/src/welcome</executablePath>
-        </makeTool>
-        <preBuild>
-          <preBuildCommandWorkingDir>build/Debug</preBuildCommandWorkingDir>
-          <preBuildCommand>${CMAKE} -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=${IDE_CC} -DCMAKE_CXX_COMPILER=${IDE_CXX} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ../.. </preBuildCommand>
-          <preBuildFirst>true</preBuildFirst>
-        </preBuild>
-      </makefileType>
-      <item path="LICENSE" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/CMakeLists.txt" ex="false" tool="3" flavor2="0">
+      <item path="src/FaceDetector.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/FrameData.cc" ex="false" tool="1" flavor2="0">
       </item>
@@ -324,6 +753,10 @@ Contributor(s):
         </preBuild>
       </makefileType>
       <item path="LICENSE" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/FaceDetector.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/FaceDetector.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/FrameData.cc" ex="false" tool="1" flavor2="11">
         <ccTool>
@@ -389,6 +822,10 @@ Contributor(s):
         </preBuild>
       </makefileType>
       <item path="LICENSE" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/FaceDetector.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/FaceDetector.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/FrameData.cc" ex="false" tool="1" flavor2="11">
         <ccTool flags="0">
@@ -467,6 +904,10 @@ Contributor(s):
       </makefileType>
       <item path="LICENSE" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="src/FaceDetector.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/FaceDetector.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="src/FrameData.cc" ex="false" tool="1" flavor2="11">
         <ccTool flags="1">
         </ccTool>
@@ -503,14 +944,15 @@ Contributor(s):
         </ccTool>
       </item>
     </conf>
-    <conf name="Stringless_-iw_-flp" type="0">
+    <conf name="Stringless_-iw_-flp_Debug" type="0">
       <toolsSet>
         <compilerSet>default</compilerSet>
         <dependencyChecking>false</dependencyChecking>
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <flagsDictionary>
-        <element flagsID="0" commonFlags="-std=c++14"/>
+        <element flagsID="0" commonFlags="-mavx -std=gnu++11"/>
+        <element flagsID="1" commonFlags="-std=c++14"/>
       </flagsDictionary>
       <codeAssistance>
       </codeAssistance>
@@ -523,49 +965,910 @@ Contributor(s):
         </makeTool>
         <preBuild>
           <preBuildCommandWorkingDir>build/Debug</preBuildCommandWorkingDir>
-          <preBuildCommand>${CMAKE} -G "Unix Makefiles" -DUSE_SSE4_INSTRUCTIONS=ON -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=${IDE_CC} -DCMAKE_CXX_COMPILER=${IDE_CXX} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON WITH_GTK=ON ../.. </preBuildCommand>
+          <preBuildCommand>${CMAKE} -G "Unix Makefiles" -DUSE_SSE4_INSTRUCTIONS=ON -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=${IDE_CC} -DCMAKE_CXX_COMPILER=${IDE_CXX} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ../.. </preBuildCommand>
           <preBuildFirst>true</preBuildFirst>
         </preBuild>
       </makefileType>
-      <item path="src/FrameData.cc" ex="false" tool="1" flavor2="11">
-        <ccTool>
-          <incDir>
-            <pElem>build/Debug/src</pElem>
-          </incDir>
+      <item path="ext/dlib/dlib/base64/base64_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
         </ccTool>
       </item>
-      <item path="src/MemoryManager.cc" ex="false" tool="1" flavor2="11">
-        <ccTool>
-          <incDir>
-            <pElem>build/Debug/src</pElem>
-          </incDir>
+      <item path="ext/dlib/dlib/bigint/bigint_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
         </ccTool>
       </item>
-      <item path="src/Mutex.cc" ex="false" tool="1" flavor2="11">
-        <ccTool>
-          <incDir>
-            <pElem>build/Debug/src</pElem>
-          </incDir>
+      <item path="ext/dlib/dlib/bigint/bigint_kernel_2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
         </ccTool>
       </item>
-      <item path="src/Stringless.cc" ex="false" tool="1" flavor2="11">
-        <ccTool>
-          <incDir>
-            <pElem>/usr/local/include</pElem>
-            <pElem>/usr/local/include/opencv</pElem>
-            <pElem>build/Debug/src</pElem>
-          </incDir>
+      <item path="ext/dlib/dlib/bit_stream/bit_stream_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
         </ccTool>
       </item>
-      <item path="src/Writer.cc" ex="false" tool="1" flavor2="11">
+      <item path="ext/dlib/dlib/bsp/bsp.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/data_io/image_dataset_metadata.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/data_io/mnist.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/dir_nav/dir_nav_extensions.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/dir_nav/dir_nav_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/dir_nav/dir_nav_kernel_2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/dnn/cpu_dlib.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/dnn/tensor_tools.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/entropy_decoder/entropy_decoder_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/entropy_decoder/entropy_decoder_kernel_2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/entropy_encoder/entropy_encoder_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/entropy_encoder/entropy_encoder_kernel_2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/gui_core/gui_core_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/gui_core/gui_core_kernel_2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/gui_widgets/base_widgets.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/gui_widgets/canvas_drawing.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/gui_widgets/drawable.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/gui_widgets/fonts.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/gui_widgets/style.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/gui_widgets/widgets.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/image_loader/jpeg_loader.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/image_loader/png_loader.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/image_saver/save_jpeg.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/image_saver/save_png.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/linker/linker_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/logger/extra_logger_headers.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/logger/logger_config_file.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/logger/logger_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/md5/md5_kernel_1.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/misc_api/misc_api_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/misc_api/misc_api_kernel_2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/server/server_http.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/server/server_iostream.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/server/server_kernel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/sockets/sockets_extensions.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/sockets/sockets_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/sockets/sockets_kernel_2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/sockstreambuf/sockstreambuf.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/sockstreambuf/sockstreambuf_unbuffered.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/stack_trace.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/threads/async.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/threads/multithreaded_object_extension.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/threads/thread_pool_extension.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/threads/threaded_object_extension.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/threads/threads_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/threads/threads_kernel_2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/threads/threads_kernel_shared.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/timer/timer.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/tokenizer/tokenizer_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/unicode/unicode.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <folder path="0/ext">
         <ccTool>
           <incDir>
+            <pElem>ext/dlib</pElem>
+            <pElem>build/Debug/dlib_build</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DLIB_JPEG_SUPPORT</Elem>
+            <Elem>DLIB_PNG_SUPPORT</Elem>
+            <Elem>ENABLE_ASSERTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <item path="src/FaceDetector.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
+        </ccTool>
+      </item>
+      <item path="src/FrameData.cc" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>ext/dlib</pElem>
             <pElem>build/Debug/src</pElem>
           </incDir>
+          <preprocessorList>
+            <Elem>DLIB_JPEG_SUPPORT</Elem>
+            <Elem>DLIB_PNG_SUPPORT</Elem>
+            <Elem>ENABLE_ASSERTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="src/MemoryManager.cc" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>ext/dlib</pElem>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DLIB_JPEG_SUPPORT</Elem>
+            <Elem>DLIB_PNG_SUPPORT</Elem>
+            <Elem>ENABLE_ASSERTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="src/Mutex.cc" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>ext/dlib</pElem>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DLIB_JPEG_SUPPORT</Elem>
+            <Elem>DLIB_PNG_SUPPORT</Elem>
+            <Elem>ENABLE_ASSERTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="src/Stringless.cc" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>ext/dlib</pElem>
+            <pElem>/usr/include/opencv</pElem>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DLIB_JPEG_SUPPORT</Elem>
+            <Elem>DLIB_PNG_SUPPORT</Elem>
+            <Elem>ENABLE_ASSERTS</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="src/Writer.cc" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>ext/dlib</pElem>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DLIB_JPEG_SUPPORT</Elem>
+            <Elem>DLIB_PNG_SUPPORT</Elem>
+            <Elem>ENABLE_ASSERTS</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
       <item path="src/maya/Reader.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
+        </ccTool>
+      </item>
+    </conf>
+    <conf name="Stringless_-iw_-flp_Release" type="0">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <flagsDictionary>
+        <element flagsID="0" commonFlags="-O2 -mavx -std=gnu++11"/>
+        <element flagsID="1" commonFlags="-std=c++14"/>
+      </flagsDictionary>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>build/Debug</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath>build/Debug/src/Stringless</executablePath>
+        </makeTool>
+        <preBuild>
+          <preBuildCommandWorkingDir>build/Debug</preBuildCommandWorkingDir>
+          <preBuildCommand>${CMAKE} -G "Unix Makefiles" -DUSE_AVX_INSTRUCTIONS=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=${IDE_CC} -DCMAKE_CXX_COMPILER=${IDE_CXX} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ../..</preBuildCommand>
+          <preBuildFirst>true</preBuildFirst>
+        </preBuild>
+      </makefileType>
+      <item path="ext/dlib/dlib/base64/base64_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
         <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/bigint/bigint_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/bigint/bigint_kernel_2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/bit_stream/bit_stream_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/bsp/bsp.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/data_io/image_dataset_metadata.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/data_io/mnist.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/dir_nav/dir_nav_extensions.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/dir_nav/dir_nav_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/dir_nav/dir_nav_kernel_2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/dnn/cpu_dlib.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/dnn/tensor_tools.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/entropy_decoder/entropy_decoder_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/entropy_decoder/entropy_decoder_kernel_2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/entropy_encoder/entropy_encoder_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/entropy_encoder/entropy_encoder_kernel_2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/gui_core/gui_core_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/gui_core/gui_core_kernel_2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/gui_widgets/base_widgets.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/gui_widgets/canvas_drawing.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/gui_widgets/drawable.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/gui_widgets/fonts.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/gui_widgets/style.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/gui_widgets/widgets.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/image_loader/jpeg_loader.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/image_loader/png_loader.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/image_saver/save_jpeg.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/image_saver/save_png.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/linker/linker_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/logger/extra_logger_headers.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/logger/logger_config_file.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/logger/logger_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/md5/md5_kernel_1.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/misc_api/misc_api_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/misc_api/misc_api_kernel_2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/server/server_http.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/server/server_iostream.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/server/server_kernel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/sockets/sockets_extensions.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/sockets/sockets_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/sockets/sockets_kernel_2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/sockstreambuf/sockstreambuf.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/sockstreambuf/sockstreambuf_unbuffered.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/stack_trace.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/threads/async.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/threads/multithreaded_object_extension.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/threads/thread_pool_extension.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/threads/threaded_object_extension.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/threads/threads_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/threads/threads_kernel_2.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/threads/threads_kernel_shared.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/timer/timer.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/tokenizer/tokenizer_kernel_1.cpp"
+            ex="false"
+            tool="1"
+            flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="ext/dlib/dlib/unicode/unicode.cpp" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <folder path="0/ext">
+        <ccTool>
+          <incDir>
+            <pElem>ext/dlib</pElem>
+            <pElem>build/Debug/dlib_build</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DLIB_JPEG_SUPPORT</Elem>
+            <Elem>DLIB_PNG_SUPPORT</Elem>
+            <Elem>NDEBUG</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <item path="src/FaceDetector.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
+        </ccTool>
+      </item>
+      <item path="src/FrameData.cc" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>ext/dlib</pElem>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DLIB_JPEG_SUPPORT</Elem>
+            <Elem>DLIB_PNG_SUPPORT</Elem>
+            <Elem>NDEBUG</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="src/MemoryManager.cc" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>ext/dlib</pElem>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DLIB_JPEG_SUPPORT</Elem>
+            <Elem>DLIB_PNG_SUPPORT</Elem>
+            <Elem>NDEBUG</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="src/Mutex.cc" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>ext/dlib</pElem>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DLIB_JPEG_SUPPORT</Elem>
+            <Elem>DLIB_PNG_SUPPORT</Elem>
+            <Elem>NDEBUG</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="src/Stringless.cc" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>ext/dlib</pElem>
+            <pElem>/usr/include/opencv</pElem>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DLIB_JPEG_SUPPORT</Elem>
+            <Elem>DLIB_PNG_SUPPORT</Elem>
+            <Elem>NDEBUG</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="src/Writer.cc" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>ext/dlib</pElem>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DLIB_JPEG_SUPPORT</Elem>
+            <Elem>DLIB_PNG_SUPPORT</Elem>
+            <Elem>NDEBUG</Elem>
+          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="src/maya/Reader.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
         </ccTool>
       </item>
     </conf>

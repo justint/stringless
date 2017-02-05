@@ -3,6 +3,8 @@ cmake_minimum_required(VERSION 3.6)
 
 project (stringless)
 
+include (ext/dlib/dlib/cmake)
+
 find_package(OpenCV REQUIRED)
 #include_directories(${OpenCV_INCLUDE_DIRS})
 

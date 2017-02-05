@@ -90,6 +90,9 @@ int Writer::start() {
     
     dlib::image_window win;
     
+    const int downsample_ratio = 2;
+    const int frame_skip = 2;
+    
     int frame_count = 0;
     int frame_count_enter = 0, frame_count_exit;
     int frames_per_second;
@@ -109,22 +112,41 @@ int Writer::start() {
         
         cv::Mat frame;
         camera >> frame;
-        //cv::cvtColor(frame, edges, CV_BGR2GRAY);
-        dlib::cv_image<dlib::bgr_pixel> cimg(frame);
+        
+        cv::Size size = frame.size();
+        cv::Mat resized_frame;
+        
+        cv::resize(frame, resized_frame, cv::Size(), 1.0/downsample_ratio, 1.0/downsample_ratio);
+        
+        dlib::cv_image<dlib::bgr_pixel> cimg(resized_frame);
         
         // Detect the faces
         std::vector<dlib::rectangle> faces = detector(cimg);
-        
+ 
         // Find the pose of each face
         std::vector<dlib::full_object_detection> shapes;
         for (unsigned long i = 0; i < faces.size(); ++i)
-            shapes.push_back(sp(cimg, faces[i]));
+        {
+            dlib::rectangle r(
+                        (long)(faces[i].left() * 1.0/downsample_ratio),
+                        (long)(faces[i].top() * 1.0/downsample_ratio),
+                        (long)(faces[i].right() * 1.0/downsample_ratio),
+                        (long)(faces[i].bottom() * 1.0/downsample_ratio)
+            ); 
+            dlib::full_object_detection shape = sp(cimg, faces[i]);
+            //std::cout << "number of parts: "<< shape.num_parts() << std::endl;
+            //std::cout << "pixel position of first part:  " << shape.part(0) << std::endl;
+            //std::cout << "pixel position of second part: " << shape.part(1) << std::endl;
+            shapes.push_back(shape);
+        }
+        
+        std::cout << " Frame rate: " << frames_per_second << " Frame count: " << frame_count << "      \r";
+        ++frame_count;
         
         win.clear_overlay();
         win.set_image(cimg);
         win.add_overlay(dlib::render_face_detections(shapes));
         
-        //cv::Canny(edges, edges, 0, 30, 3);
         /*
         if (!frame.empty()) {
             cv::imshow("edges", edges);
@@ -132,8 +154,7 @@ int Writer::start() {
         }
         */
         //cv::waitKey(16); // 60 fps maximum
-        std::cout << " Frame rate: " << frames_per_second 
-                << " Frame count: " << frame_count << "   \r";
+
     }
     
     return 0;
