@@ -53,8 +53,6 @@ Contributor(s):
         <in>MemoryManager.h</in>
         <in>Mutex.cc</in>
         <in>Mutex.h</in>
-        <in>OpenFacer.cc</in>
-        <in>OpenFacer.h</in>
         <in>Stringless.cc</in>
         <in>Writer.cc</in>
         <in>Writer.h</in>
@@ -69,6 +67,7 @@ Contributor(s):
       <itemPath>build/Release/Makefile</itemPath>
     </logicalFolder>
     <itemPath>.gitignore</itemPath>
+    <itemPath>LICENSE</itemPath>
     <itemPath>README.md</itemPath>
   </logicalFolder>
   <sourceFolderFilter>^(nbproject|build)$</sourceFolderFilter>
@@ -101,6 +100,8 @@ Contributor(s):
           <preBuildFirst>true</preBuildFirst>
         </preBuild>
       </makefileType>
+      <item path="LICENSE" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="src/FrameData.cc" ex="false" tool="1" flavor2="11">
         <ccTool flags="0">
         </ccTool>
@@ -113,10 +114,6 @@ Contributor(s):
         </ccTool>
       </item>
       <item path="src/Mutex.cc" ex="false" tool="1" flavor2="11">
-        <ccTool flags="0">
-        </ccTool>
-      </item>
-      <item path="src/OpenFacer.cc" ex="false" tool="1" flavor2="11">
         <ccTool flags="0">
         </ccTool>
       </item>
@@ -170,6 +167,8 @@ Contributor(s):
       </makefileType>
       <item path=".gitignore" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="LICENSE" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="README.md" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/CMakeLists.txt" ex="false" tool="3" flavor2="0">
@@ -185,10 +184,6 @@ Contributor(s):
       <item path="src/Mutex.cc" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/Mutex.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/OpenFacer.cc" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/OpenFacer.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/Stringless.cc" ex="false" tool="1" flavor2="0">
       </item>
@@ -225,6 +220,8 @@ Contributor(s):
           <preBuildFirst>true</preBuildFirst>
         </preBuild>
       </makefileType>
+      <item path="LICENSE" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="src/FrameData.cc" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/FrameData.h" ex="false" tool="3" flavor2="0">
@@ -236,10 +233,6 @@ Contributor(s):
       <item path="src/Mutex.cc" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/Mutex.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/OpenFacer.cc" ex="false" tool="1" flavor2="11">
-        <ccTool flags="0">
-        </ccTool>
       </item>
       <item path="src/Stringless.cc" ex="false" tool="1" flavor2="11">
         <ccTool flags="0">
@@ -275,6 +268,8 @@ Contributor(s):
           <preBuildFirst>true</preBuildFirst>
         </preBuild>
       </makefileType>
+      <item path="LICENSE" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="src/CMakeLists.txt" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/FrameData.cc" ex="false" tool="1" flavor2="0">
@@ -288,10 +283,6 @@ Contributor(s):
       <item path="src/Mutex.cc" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/Mutex.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="src/OpenFacer.cc" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="src/OpenFacer.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/Stringless.cc" ex="false" tool="1" flavor2="0">
       </item>
@@ -328,6 +319,8 @@ Contributor(s):
           <preBuildFirst>true</preBuildFirst>
         </preBuild>
       </makefileType>
+      <item path="LICENSE" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="src/FrameData.cc" ex="false" tool="1" flavor2="11">
         <ccTool>
           <incDir>
@@ -347,10 +340,6 @@ Contributor(s):
           <incDir>
             <pElem>build/Debug/src</pElem>
           </incDir>
-        </ccTool>
-      </item>
-      <item path="src/OpenFacer.cc" ex="false" tool="1" flavor2="11">
-        <ccTool flags="0">
         </ccTool>
       </item>
       <item path="src/Stringless.cc" ex="false" tool="1" flavor2="11">
@@ -395,8 +384,10 @@ Contributor(s):
           <preBuildCommand>${CMAKE} -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=${IDE_CC} -DCMAKE_CXX_COMPILER=${IDE_CXX} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ../.. </preBuildCommand>
         </preBuild>
       </makefileType>
+      <item path="LICENSE" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="src/FrameData.cc" ex="false" tool="1" flavor2="11">
-        <ccTool>
+        <ccTool flags="0">
           <incDir>
             <pElem>/usr/local/include</pElem>
             <pElem>/usr/local/include/opencv</pElem>
@@ -405,7 +396,7 @@ Contributor(s):
         </ccTool>
       </item>
       <item path="src/MemoryManager.cc" ex="false" tool="1" flavor2="11">
-        <ccTool>
+        <ccTool flags="0">
           <incDir>
             <pElem>/usr/local/include</pElem>
             <pElem>/usr/local/include/opencv</pElem>
@@ -422,12 +413,8 @@ Contributor(s):
           </incDir>
         </ccTool>
       </item>
-      <item path="src/OpenFacer.cc" ex="false" tool="1" flavor2="11">
-        <ccTool flags="0">
-        </ccTool>
-      </item>
       <item path="src/Stringless.cc" ex="false" tool="1" flavor2="11">
-        <ccTool>
+        <ccTool flags="0">
           <incDir>
             <pElem>/usr/local/include</pElem>
             <pElem>/usr/local/include/opencv</pElem>
@@ -436,7 +423,7 @@ Contributor(s):
         </ccTool>
       </item>
       <item path="src/Writer.cc" ex="false" tool="1" flavor2="11">
-        <ccTool>
+        <ccTool flags="0">
           <incDir>
             <pElem>/usr/local/include</pElem>
             <pElem>/usr/local/include/opencv</pElem>
@@ -474,6 +461,8 @@ Contributor(s):
           <preBuildFirst>true</preBuildFirst>
         </preBuild>
       </makefileType>
+      <item path="LICENSE" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="src/FrameData.cc" ex="false" tool="1" flavor2="11">
         <ccTool flags="1">
         </ccTool>
@@ -487,10 +476,6 @@ Contributor(s):
         </ccTool>
       </item>
       <item path="src/Mutex.cc" ex="false" tool="1" flavor2="11">
-        <ccTool flags="1">
-        </ccTool>
-      </item>
-      <item path="src/OpenFacer.cc" ex="false" tool="1" flavor2="11">
         <ccTool flags="1">
         </ccTool>
       </item>

@@ -1,4 +1,27 @@
+# Stringless
 
-Important links:
-[Boost shared memory](http://www.boost.org/doc/libs/1_54_0/doc/html/interprocess/sharedmemorybetweenprocesses.html)
-[Boost synchronization](http://www.boost.org/doc/libs/1_58_0/doc/html/thread/synchronization.html)
+Stringless is a real-time, markerless, single-camera facial motion capture system. By using [dlib](http://dlib.net/) facial landmark detection, Stringless captures facial motion data and sends it to an Autodesk Maya plug-in, where a user can map the motion capture data to a rigged face model.
+
+Currently Stringless is still a work in progress. I am unable to accept pull requests at this time but issues for bugs + feature requests are welcome.
+
+## Installation
+
+Stringless requires [dlib](http://dlib.net/) and [OpenCV](http://opencv.org/) to compile.
+
+1. Clone a copy of Stringless:
+
+`$ git clone https://github.com/octop1/stringless.git`
+
+2. Make a build directory and compile:
+
+```
+$ cd stringless
+
+$ mkdir build
+
+$ cd build
+
+$ cmake ..
+
+$ make
+```

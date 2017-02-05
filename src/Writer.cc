@@ -1,6 +1,13 @@
+/*
+ * Copyright Justin Tennant <justin.tennant@sjsu.edu> 2017.
+ * Distributed under the Boost Software License, Version 1.0.
+ *    (See accompanying file LICENSE or copy at
+ *          http://www.boost.org/LICENSE_1_0.txt)
+ */
+
 /* 
  * File:   Writer.cc
- * Author: jtennant
+ * Author: Justin Tennant <justin.tennant@sjsu.edu>
  * 
  * Created on February 2, 2017, 11:31 AM
  */
@@ -32,9 +39,9 @@ Writer::~Writer() {
 /*
  * Initializes the shared memory writing process.
  * 
- * With the given address from construction, the Writer will use its OpenFacer
- * instance to draw facial landmark data from two camera frame captures at a
- * time and write them both to the shared memory.
+ * With the given address from construction, the Writer will use dlib to draw
+ * facial landmark data from two camera frame captures at a time and write them 
+ * both to the shared memory.
  * 
  * This process (should) be stopped using the stop() call. Currently
  * threading hasn't been implemented so stop() logically should never be reached
