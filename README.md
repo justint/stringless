@@ -10,22 +10,22 @@ Stringless requires [OpenCV](http://opencv.org/) to compile.
 
 1. Clone a copy of Stringless:
 
-`$ git clone https://github.com/octop1/stringless.git`
+    `$ git clone https://github.com/octop1/stringless.git`
 
 2. Make a build directory and compile:
 
-```
-$ cd stringless
+    ```
+    $ cd stringless
 
-$ mkdir build
+    $ mkdir build
 
-$ cd build
+    $ cd build
 
-$ cmake .. -DUSE_AVX_INSTRUCTIONS=ON
+    $ cmake .. -DUSE_AVX_INSTRUCTIONS=ON
 
-$ make
-```
+    $ make
+    ```
 
 ## Running Stringless
 
-`$ ./Stringless -iw -flp ../../ext/dlib/shape_predictor_68_face_landmarks.dat`
+`$ src/Stringless -iw -flp ../ext/dlib/shape_predictor_68_face_landmarks.dat`
