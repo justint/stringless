@@ -22,7 +22,9 @@ namespace Stringless {
 
 class Writer {
 public:
-    Writer(FrameData *data_address);
+    Writer(FrameData *data_address, 
+           int camera_number, 
+           char *face_landmarks_location);
     Writer(const Writer& orig);
     virtual ~Writer();
     
@@ -31,6 +33,8 @@ public:
 private:
     FrameData *data_address;
     Mutex mutex;
+    int camera_number;
+    char *face_landmarks_location;
 };
 
 } // namespace Stringless

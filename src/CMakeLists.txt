@@ -6,4 +6,4 @@ add_library (Mutex STATIC Mutex.cc)
 
 add_executable (Stringless Stringless.cc)
 
-target_link_libraries(Stringless MemoryManager Writer FrameData Mutex ${OpenCV_LIBS} rt pthread)
+target_link_libraries(Stringless MemoryManager Writer FrameData Mutex ${OpenCV_LIBS} dlib rt pthread)

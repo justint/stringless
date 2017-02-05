@@ -14,6 +14,18 @@
 
 #include "Writer.h"
 
+#include <chrono>
+#include <iostream>
+#include <string>
+
+#include "dlib/image_processing/frontal_face_detector.h"
+#include "dlib/image_processing/render_face_detections.h"
+#include "dlib/image_processing.h"
+#include "dlib/gui_widgets.h"
+#include "dlib/opencv.h"
+#include "opencv2/opencv.hpp"
+#include "opencv2/highgui/highgui.hpp"
+
 namespace Stringless {
 /*
  * Constructs the Writer, for writing into shared memory.
@@ -22,18 +34,25 @@ namespace Stringless {
  * will be written to, the second argument is the camera to be selected for 
  * grabbing frames and then processed in OpenFace.
  */
-Writer::Writer(FrameData *data_address) {
+Writer::Writer(FrameData *data_address, 
+               int camera_number, 
+               char *face_landmarks_location) {
     this->data_address = data_address;
+    this->camera_number = camera_number;
+    this->face_landmarks_location = face_landmarks_location;
     this->mutex.init();
 }
 
 Writer::Writer(const Writer& orig) {
     data_address = orig.data_address;
+    camera_number = orig.camera_number;
+    face_landmarks_location = orig.face_landmarks_location;
     mutex = orig.mutex;
 }
 
 Writer::~Writer() {
     delete data_address;
+    delete face_landmarks_location;
 }
 
 /*
@@ -47,9 +66,77 @@ Writer::~Writer() {
  * threading hasn't been implemented so stop() logically should never be reached
  * (process control should enter start() and continue to run until halted by the
  * OS).
+ * 
+ * Returns 0 if successful, -1 if camera opening fails.
  */
 int Writer::start() {
     
+    cv::VideoCapture camera(camera_number);
+    if (!camera.isOpened())
+    {
+        std::cerr << "Writer is unable to connect to camera " << camera_number
+                << std::endl;
+        return -1;
+    }
+    
+    //cv::Mat edges;
+    //cv::namedWindow("edges", 1);
+    
+    std::cout << "Initializing face detection..." << std::endl;
+    
+    dlib::frontal_face_detector detector = dlib::get_frontal_face_detector();
+    dlib::shape_predictor sp;
+    dlib::deserialize(face_landmarks_location) >> sp;
+    
+    dlib::image_window win;
+    
+    int frame_count = 0;
+    int frame_count_enter = 0, frame_count_exit;
+    int frames_per_second;
+    
+    auto start = std::chrono::steady_clock::now();
+    while(!win.is_closed())
+    {
+        auto diff = std::chrono::steady_clock::now() - start;
+        frame_count_exit = frame_count;
+        if (std::chrono::duration_cast<std::chrono::milliseconds>(diff).count() >= 1000)
+        {
+            frames_per_second = frame_count_exit - frame_count_enter;
+            frame_count_enter = frame_count_exit;
+            start = std::chrono::steady_clock::now();
+            
+        }
+        
+        cv::Mat frame;
+        camera >> frame;
+        //cv::cvtColor(frame, edges, CV_BGR2GRAY);
+        dlib::cv_image<dlib::bgr_pixel> cimg(frame);
+        
+        // Detect the faces
+        std::vector<dlib::rectangle> faces = detector(cimg);
+        
+        // Find the pose of each face
+        std::vector<dlib::full_object_detection> shapes;
+        for (unsigned long i = 0; i < faces.size(); ++i)
+            shapes.push_back(sp(cimg, faces[i]));
+        
+        win.clear_overlay();
+        win.set_image(cimg);
+        win.add_overlay(dlib::render_face_detections(shapes));
+        
+        //cv::Canny(edges, edges, 0, 30, 3);
+        /*
+        if (!frame.empty()) {
+            cv::imshow("edges", edges);
+            ++frame_count;
+        }
+        */
+        //cv::waitKey(16); // 60 fps maximum
+        std::cout << " Frame rate: " << frames_per_second 
+                << " Frame count: " << frame_count << "   \r";
+    }
+    
+    return 0;
 }
 
 /*

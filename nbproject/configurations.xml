@@ -41,6 +41,10 @@ Contributor(s):
 <configurationDescriptor version="100">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="." name="0">
+      <df name="mem_test">
+        <in>welcome.cc</in>
+        <in>welcome_c.cc</in>
+      </df>
       <df name="src">
         <df name="maya">
           <in>Reader.cc</in>
@@ -496,6 +500,72 @@ Contributor(s):
       </item>
       <item path="src/maya/Reader.cc" ex="false" tool="1" flavor2="11">
         <ccTool flags="1">
+        </ccTool>
+      </item>
+    </conf>
+    <conf name="Stringless_-iw_-flp" type="0">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>false</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <flagsDictionary>
+        <element flagsID="0" commonFlags="-std=c++14"/>
+      </flagsDictionary>
+      <codeAssistance>
+      </codeAssistance>
+      <makefileType>
+        <makeTool>
+          <buildCommandWorkingDir>build/Debug</buildCommandWorkingDir>
+          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
+          <executablePath>build/Debug/src/Stringless</executablePath>
+        </makeTool>
+        <preBuild>
+          <preBuildCommandWorkingDir>build/Debug</preBuildCommandWorkingDir>
+          <preBuildCommand>${CMAKE} -G "Unix Makefiles" -DUSE_SSE4_INSTRUCTIONS=ON -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=${IDE_CC} -DCMAKE_CXX_COMPILER=${IDE_CXX} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON WITH_GTK=ON ../.. </preBuildCommand>
+          <preBuildFirst>true</preBuildFirst>
+        </preBuild>
+      </makefileType>
+      <item path="src/FrameData.cc" ex="false" tool="1" flavor2="11">
+        <ccTool>
+          <incDir>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/MemoryManager.cc" ex="false" tool="1" flavor2="11">
+        <ccTool>
+          <incDir>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/Mutex.cc" ex="false" tool="1" flavor2="11">
+        <ccTool>
+          <incDir>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/Stringless.cc" ex="false" tool="1" flavor2="11">
+        <ccTool>
+          <incDir>
+            <pElem>/usr/local/include</pElem>
+            <pElem>/usr/local/include/opencv</pElem>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/Writer.cc" ex="false" tool="1" flavor2="11">
+        <ccTool>
+          <incDir>
+            <pElem>build/Debug/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/maya/Reader.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="0">
         </ccTool>
       </item>
     </conf>

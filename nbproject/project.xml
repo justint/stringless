@@ -83,6 +83,10 @@ Contributor(s):
                     <name>Stringless_-h</name>
                     <type>0</type>
                 </confElem>
+                <confElem>
+                    <name>Stringless_-iw_-flp</name>
+                    <type>0</type>
+                </confElem>
             </confList>
             <formatting>
                 <project-formatting-style>false</project-formatting-style>
