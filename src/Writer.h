@@ -18,6 +18,9 @@ public:
     Writer(FrameData *data_address);
     Writer(const Writer& orig);
     virtual ~Writer();
+    
+    int start();
+    int stop();
 private:
     FrameData *data_address;
     Mutex mutex;

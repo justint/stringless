@@ -37,7 +37,7 @@ int main(int argc, char** argv) {
     
     Stringless::MemoryManager memory_manager(shared_memory_name, 
                                              shared_memory_size);
-    
+
     if (arg_list.at(0).compare(argv[1]) == 0 || 
             arg_list.at(1).compare(argv[1]) == 0) // If arg is -i or -iw
     {
@@ -48,6 +48,8 @@ int main(int argc, char** argv) {
 
         // Construct memory writer with address to memory
         Stringless::Writer writer(memory_manager.address());
+        
+        
 
     } else { // If arg is -r
         memory_manager.remove();
