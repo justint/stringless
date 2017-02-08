@@ -25,8 +25,11 @@ namespace Stringless {
 
 class MemoryManager {
 public:
+    enum operation_type { read, write };
+    
     MemoryManager(const std::string shared_memory_name, 
-                  const size_t shared_memory_size);
+                  const size_t shared_memory_size,
+                  const operation_type ot);
     MemoryManager(const MemoryManager& orig);
     virtual ~MemoryManager();
     
@@ -34,11 +37,13 @@ public:
     FrameData *address();
     int remove();
     
+    int get_file_descriptor() const;
+    
 private:
     int file_descriptor;
     off_t shared_memory_size;
-    char shared_memory_name[1024];
-    
+    char shared_memory_name[1024];    
+    operation_type ot;
 };
 
 } // namespace Stringless

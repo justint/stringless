@@ -13,16 +13,3 @@
  */
 
 #include "FrameData.h"
-
-namespace Stringless {
-
-FrameData::FrameData() {
-}
-
-FrameData::FrameData(const FrameData& orig) {
-}
-
-FrameData::~FrameData() {
-}
-
-} // namespace Stringless

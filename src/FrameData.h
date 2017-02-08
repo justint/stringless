@@ -15,15 +15,13 @@
 #ifndef FRAMEDATA_H
 #define FRAMEDATA_H
 
+#include <vector>
+
 namespace Stringless {
 
 struct FrameData {
-    FrameData();
-    FrameData(const FrameData& orig);
-    virtual ~FrameData();
-    
-    int length;
-    char *buffer;
+    //std::pair<long, long> points[68];  
+    int test;
 };
 
 } // namespace Stringless

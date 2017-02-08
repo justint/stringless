@@ -33,10 +33,11 @@ namespace Stringless {
  * passing of memory address, and deletion.
  */
 MemoryManager::MemoryManager(std::string shared_memory_name, 
-                             size_t shared_memory_size) 
+                             size_t shared_memory_size, operation_type ot) 
+                             : shared_memory_size(shared_memory_size),
+                               ot(ot)
 {
     strcpy(this->shared_memory_name, shared_memory_name.c_str());
-    this->shared_memory_size = shared_memory_size;
 }
 
 MemoryManager::MemoryManager(const MemoryManager& orig) {
@@ -45,9 +46,7 @@ MemoryManager::MemoryManager(const MemoryManager& orig) {
     shared_memory_size = orig.shared_memory_size;
 }
 
-MemoryManager::~MemoryManager() {
-    remove();
-}
+MemoryManager::~MemoryManager() { }
 
 /*
  * Initializes the shared memory. 
@@ -56,10 +55,14 @@ MemoryManager::~MemoryManager() {
  * which specifies the exact type of error.
  */
 int MemoryManager::init() { 
+    
     // Create shared memory with read/write permissions
     // See Linux man page for open (https://linux.die.net/man/2/open) for mode
     // symbolic constant definitions
-    file_descriptor = shm_open(shared_memory_name, O_CREAT | O_RDWR, S_IRWXU);
+    if (ot == write)
+        file_descriptor = shm_open(shared_memory_name, O_CREAT | O_RDWR, S_IRWXU);
+    else if (ot == read)
+        file_descriptor = shm_open(shared_memory_name, O_RDONLY, S_IRWXU);
     
     if (file_descriptor == -1) // Memory opening error
     {
@@ -70,13 +73,16 @@ int MemoryManager::init() {
         return errno;
     }
     
-    int err;
-    // Size the shared memory
-    err = ftruncate(file_descriptor, shared_memory_size);
-    if (err) { 
-        std::cout << "MemoryManager " << this->shared_memory_name << 
-            " failed to truncate shared memory with error: " << 
-            strerror(errno) << std::endl;
+    int err = 0;
+    if (ot == write)
+    {
+        // Size the shared memory
+        err = ftruncate(file_descriptor, shared_memory_size);
+        if (err) { 
+            std::cout << "MemoryManager " << this->shared_memory_name << 
+                " failed to truncate shared memory with error: " << 
+                strerror(errno) << std::endl;
+        }
     }
     return err;
 }
@@ -87,12 +93,20 @@ int MemoryManager::init() {
 FrameData * MemoryManager::address() {
     FrameData *frame_data;
     
-    frame_data = (FrameData *)mmap(NULL, 
-                                   shared_memory_size, 
-                                   PROT_READ | PROT_WRITE,
-                                   MAP_SHARED,
-                                   file_descriptor,
-                                   0);
+    if (ot == write)
+        frame_data = (FrameData *)mmap(NULL, 
+                                       shared_memory_size, 
+                                       PROT_WRITE,
+                                       MAP_SHARED,
+                                       file_descriptor,
+                                       0);
+    else if (ot == read)
+        frame_data = (FrameData *)mmap(NULL, 
+                                       shared_memory_size, 
+                                       PROT_READ,
+                                       MAP_SHARED,
+                                       file_descriptor,
+                                       0);
     
     if (frame_data == (void *) -1) {
         std::cout << "MemoryManager " << this->shared_memory_name << 
@@ -111,6 +125,10 @@ int MemoryManager::remove() {
         std::cout << "MemoryManager " << this->shared_memory_name << 
             " successfully removed shared memory" << std::endl;
     }
+    return file_descriptor;
+}
+
+int MemoryManager::get_file_descriptor() const {
     return file_descriptor;
 }
 

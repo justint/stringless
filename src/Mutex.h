@@ -15,20 +15,26 @@
 #ifndef MUTEX_H
 #define MUTEX_H
 
+#include <pthread.h>
+
 namespace Stringless {
 
 class Mutex {
 public:
-    Mutex();
-    Mutex(const Mutex& orig);
-    virtual ~Mutex();
+    Mutex() {};
+    Mutex(const Mutex& orig) {
+        _mutex = orig._mutex;
+        attr = orig.attr;
+    };
+    virtual ~Mutex() {};
     
     void init();
     void lock();
     void unlock();
     
 private:
-    int err;
+    pthread_mutex_t _mutex;
+    pthread_mutexattr_t attr;
 };
 
 } // namespace Stringless

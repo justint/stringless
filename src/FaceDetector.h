@@ -15,14 +15,24 @@
 #ifndef FACEDETECTOR_H
 #define FACEDETECTOR_H
 
+#include "Writer.h"
+
+namespace Stringless {
+
 class FaceDetector {
 public:
-    FaceDetector();
+    FaceDetector(int camera_number, char *face_landmarks_location);
     FaceDetector(const FaceDetector& orig);
     virtual ~FaceDetector();
+    
+    int start(Writer &writer);
 private:
+    int camera_number;
+    char *face_landmarks_location;
 
 };
+
+} // namespace Stringless
 
 #endif /* FACEDETECTOR_H */
 

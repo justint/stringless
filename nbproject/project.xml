@@ -83,6 +83,10 @@ Contributor(s):
                     <name>Stringless_-iw_-flp_Release</name>
                     <type>0</type>
                 </confElem>
+                <confElem>
+                    <name>Reader</name>
+                    <type>0</type>
+                </confElem>
             </confList>
             <formatting>
                 <project-formatting-style>false</project-formatting-style>

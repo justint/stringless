@@ -16,17 +16,25 @@
 
 namespace Stringless {
 
-Mutex::Mutex() {
-}
-
-Mutex::Mutex(const Mutex& orig) {
-}
-
-Mutex::~Mutex() {
-}
-
 void Mutex::init() {
+    int err = pthread_mutexattr_init(&attr);
+    if (err) throw err;
     
+    err = pthread_mutexattr_setpshared(&attr, PTHREAD_PROCESS_SHARED);
+    if (err) throw err;
+    
+    err = pthread_mutex_init(&_mutex, &attr);
+    if (err) throw err;
+}
+
+void Mutex::lock() {
+    int err = pthread_mutex_lock(&_mutex);
+    if (err) throw err;
+}
+
+void Mutex::unlock() {
+    int err = pthread_mutex_unlock(&_mutex);
+    if (err) throw err;
 }
 
 } // namespace Stringless
