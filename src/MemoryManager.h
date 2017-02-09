@@ -34,7 +34,7 @@ public:
     virtual ~MemoryManager();
     
     int init();
-    FrameData *address();
+    void * address();
     int remove();
     
     int get_file_descriptor() const;

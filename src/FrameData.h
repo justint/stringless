@@ -18,10 +18,15 @@
 #include <vector>
 
 namespace Stringless {
+    
+struct PointPair {
+    long x;
+    long y;
+};
 
 struct FrameData {
-    //std::pair<long, long> points[68];  
-    int test;
+    PointPair points[68];
+    int fps;
 };
 
 } // namespace Stringless

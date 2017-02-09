@@ -41,9 +41,9 @@ MemoryManager::MemoryManager(std::string shared_memory_name,
 }
 
 MemoryManager::MemoryManager(const MemoryManager& orig) {
-    file_descriptor = orig.file_descriptor;
+    file_descriptor     = orig.file_descriptor;
     *shared_memory_name = *orig.shared_memory_name;
-    shared_memory_size = orig.shared_memory_size;
+    shared_memory_size  = orig.shared_memory_size;
 }
 
 MemoryManager::~MemoryManager() { }
@@ -90,8 +90,8 @@ int MemoryManager::init() {
 /*
  * Returns a pointer to the shared memory, if it exists.
  */
-FrameData * MemoryManager::address() {
-    FrameData *frame_data;
+void * MemoryManager::address() {
+    void * frame_data;
     
     if (ot == write)
         frame_data = (FrameData *)mmap(NULL, 

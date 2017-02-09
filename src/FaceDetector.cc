@@ -122,18 +122,13 @@ int FaceDetector::start(Writer &writer) {
             //dlib::full_object_detection shape = sp(cimg, r);
             
             // Push data points into frame data
-            /*
             for(int i = 0; i < points; ++i)
             {
-                frame_data.points[i] = std::make_pair(shape.part(i).x(), 
-                                                      shape.part(i).y());
+                frame_data.points[i].x = shape.part(i).x();
+                frame_data.points[i].y = shape.part(i).y();
             }
-            */
+            frame_data.fps = frames_per_second;
             
-            frame_data.test = frame_count;
-            //std::cout << "number of parts: "<< shape.num_parts() << std::endl;
-            //std::cout << "pixel position of first part:  " << shape.part(0) << std::endl;
-            //std::cout << "pixel position of second part: " << shape.part(1) << std::endl;
             shapes.push_back(shape);
         }
         

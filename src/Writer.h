@@ -22,17 +22,22 @@ namespace Stringless {
 
 class Writer {
 public:
-    Writer(FrameData *data_address);
+    Writer(void * data_address);
     Writer(const Writer& orig);
     virtual ~Writer();
     
-    int write(FrameData frame_data);
+    int write(FrameData &incoming_frame_data);
 private:
-    FrameData *data_address;
+    void * data_address;
     Mutex mutex;
     
+    bool initial_write;
+    FrameData *frame_data;
+    
     FrameData first_frame;
-    bool second_frame;
+    FrameData second_frame;
+    bool is_second_frame;
+    
 };
 
 } // namespace Stringless

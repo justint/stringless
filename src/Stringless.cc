@@ -52,7 +52,7 @@ int main(int argc, char** argv) {
     
     const std::string shared_memory_name = "/stringless";
     // Set shared memory size to two frames
-    const size_t shared_memory_size = sizeof(struct Stringless::FrameData) * 3;
+    const size_t shared_memory_size = sizeof(struct Stringless::FrameData) * 2;
     // Select camera 0 for frame capturing
     const int camera_number = 0;
     
