@@ -90,7 +90,7 @@ int main (int argc, char** argv) {
         
         std::this_thread::sleep_for(std::chrono::milliseconds(1000 / incoming_data[0].fps));
         
-        std::cout << "fps: " << frames_per_second << " frame 0 point 0 x: " << incoming_data[0].points[0].x << " frame 0 point 0 y: " << incoming_data[0].points[0].y << "      \r";
+        std::cout << "fps: " << frames_per_second << " frame 0 point 0 x: " << incoming_data[0].points[0].x << " y: " << incoming_data[0].points[0].y << "      \r";
         ++frame_count;
     }
     

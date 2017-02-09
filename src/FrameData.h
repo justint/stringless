@@ -15,13 +15,11 @@
 #ifndef FRAMEDATA_H
 #define FRAMEDATA_H
 
-#include <vector>
-
 namespace Stringless {
     
 struct PointPair {
-    long x;
-    long y;
+    double x;
+    double y;
 };
 
 struct FrameData {

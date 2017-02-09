@@ -124,8 +124,8 @@ int FaceDetector::start(Writer &writer) {
             // Push data points into frame data
             for(int i = 0; i < points; ++i)
             {
-                frame_data.points[i].x = shape.part(i).x();
-                frame_data.points[i].y = shape.part(i).y();
+                frame_data.points[i].x = (double)shape.part(i).x() / (double)cimg.nr();
+                frame_data.points[i].y = (double)shape.part(i).y() / (double)cimg.nc();
             }
             frame_data.fps = frames_per_second;
             
