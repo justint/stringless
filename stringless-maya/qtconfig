@@ -1,0 +1,28 @@
+include(userconfig)
+TEMPLATE = lib
+CONFIG += qt warn_on plugin
+
+LIBS		+= -L$${MAYA_LOCATION}/lib -lOpenMaya -lFoundation
+DEFINES		+= Bits64_ UNIX _BOOL LINUX FUNCPROTO \
+			_GNU_SOURCE LINUX_64 
+INCLUDEPATH	+= .. $${MAYA_LOCATION}/include /usr/X11R6/include
+TARGET_EXT	= so
+QMAKE_CC	= gcc
+QMAKE_CXX	= g++
+
+_CFLAGS_WARN_ON	= -Wno-deprecated -Wno-multichar -Wno-comment \
+			-Wno-sign-compare -Wno-reorder
+QMAKE_CFLAGS_WARN_ON += $${_CFLAGS_WARN_ON}
+QMAKE_CXXFLAGS_WARN_ON += $${_CFLAGS_WARN_ON}
+
+_CFLAGS		= -fno-strict-aliasing \
+			-funsigned-char -fno-gnu-keywords
+QMAKE_CFLAGS	+= $${_CFLAGS}
+QMAKE_CXXFLAGS	+= $${_CFLAGS}
+
+_CFLAGS_THREAD		= -pthread
+QMAKE_CFLAGS_THREAD	+= $${_CFLAGS_THREAD}
+QMAKE_CXXFLAGS_THREAD	+= $${_CFLAGS_THREAD}
+
+QMAKE_LFLAGS_SHLIB	= -Wl,-Bsymbolic
+QMAKE_LINK		= $${QMAKE_CXX}
