@@ -16,8 +16,34 @@
 #define STRINGLESS_H
 
 #include <QtCore/QPointer>
-#include <QtGui/QPushButton>
+#include <QtGui/QDialog>
+#include <QtGui/QDialogButtonBox>
+#include <QtGui/QLineEdit>
+#include <QtGui/QSlider>
+
 #include <maya/MPxCommand.h>
+
+class StringlessDialog : public QWidget {
+    Q_OBJECT
+    public:
+        StringlessDialog(QWidget* parent = 0);
+
+        
+    signals:
+        void dialogDismissed();
+        void objectCreated(const QString& objectName);
+    public slots:
+        void accept();
+        //void fieldChanged(const QString& newValue);
+        //void sliderChanged(int newValue);
+            
+    private:
+        QDialogButtonBox    *fButtonBox;
+        double              fcurValue;
+        QLineEdit           *fField;
+        QPointer<QWidget>   fForm;
+        QSlider             *fSlider;
+};
 
 class Stringless : public MPxCommand
 {
@@ -27,7 +53,7 @@ public:
 
 	MStatus			doIt(const MArgList& args);
 
-	static QPointer<QPushButton>    	button;
+	static QPointer<StringlessDialog>    	stringlessWindow;
 	static const MString			commandName;
 };
 

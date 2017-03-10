@@ -5,7 +5,7 @@ CONFIG += qt warn_on plugin
 LIBS		+= -L$${MAYA_LOCATION}/lib -lOpenMaya -lFoundation
 DEFINES		+= Bits64_ UNIX _BOOL LINUX FUNCPROTO \
 			_GNU_SOURCE LINUX_64 
-INCLUDEPATH	+= .. $${MAYA_LOCATION}/include /usr/X11R6/include
+INCLUDEPATH	+= .. $${MAYA_LOCATION}/include /usr/X11R6/include /usr/include/QtDesigner /home/jtennant/Qt/5.8/gcc_64
 TARGET_EXT	= so
 QMAKE_CC	= gcc
 QMAKE_CXX	= g++

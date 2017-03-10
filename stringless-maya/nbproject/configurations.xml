@@ -41,6 +41,12 @@ Contributor(s):
 <configurationDescriptor version="100">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="." name="0">
+      <df name="build">
+        <df name="Debug">
+          <in>moc_stringless.cpp</in>
+          <in>qrc_stringless.cpp</in>
+        </df>
+      </df>
       <df name="src">
         <in>stringless.cc</in>
         <in>stringless.h</in>
@@ -54,6 +60,7 @@ Contributor(s):
       <itemPath>build/Debug/Makefile</itemPath>
     </logicalFolder>
     <itemPath>stringless.pro</itemPath>
+    <itemPath>stringless.qrc</itemPath>
     <itemPath>userconfig</itemPath>
   </logicalFolder>
   <sourceFolderFilter>^(nbproject|build)$</sourceFolderFilter>
@@ -83,12 +90,16 @@ Contributor(s):
             <incDir>
               <pElem>../../../Downloads/Qt-4_8_6_forMaya2016/Qt/qt-adsk-4.8.6/mkspecs/linux-g++</pElem>
               <pElem>.</pElem>
+              <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtDesigner</pElem>
               <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtCore</pElem>
               <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtGui</pElem>
+              <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtXml</pElem>
               <pElem>/usr/local/Trolltech/Qt-4.8.6/include</pElem>
               <pElem>..</pElem>
               <pElem>/usr/autodesk/maya2016.5/include</pElem>
               <pElem>/usr/X11R6/include</pElem>
+              <pElem>/usr/include/QtDesigner</pElem>
+              <pElem>../../../Qt/5.8/gcc_64</pElem>
               <pElem>build/Debug</pElem>
             </incDir>
             <preprocessorList>
@@ -96,11 +107,13 @@ Contributor(s):
               <Elem>FUNCPROTO</Elem>
               <Elem>LINUX</Elem>
               <Elem>LINUX_64</Elem>
+              <Elem>QDESIGNER_EXPORT_WIDGETS</Elem>
               <Elem>QT_CORE_LIB</Elem>
               <Elem>QT_GUI_LIB</Elem>
               <Elem>QT_NO_DEBUG</Elem>
               <Elem>QT_PLUGIN</Elem>
               <Elem>QT_SHARED</Elem>
+              <Elem>QT_XML_LIB</Elem>
               <Elem>UNIX</Elem>
               <Elem>_BOOL</Elem>
               <Elem>_GNU_SOURCE</Elem>
@@ -114,6 +127,14 @@ Contributor(s):
           <preBuildFirst>true</preBuildFirst>
         </preBuild>
       </makefileType>
+      <item path="build/Debug/moc_stringless.cpp" ex="false" tool="1" flavor2="11">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="build/Debug/qrc_stringless.cpp" ex="false" tool="1" flavor2="0">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
       <item path="src/stringless.cc" ex="false" tool="1" flavor2="0">
         <ccTool flags="0">
         </ccTool>
@@ -158,6 +179,8 @@ Contributor(s):
       <item path="src/stringless.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="stringless.pro" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="stringless.qrc" ex="false" tool="3" flavor2="0">
       </item>
       <item path="userconfig" ex="false" tool="3" flavor2="0">
       </item>
