@@ -45,7 +45,7 @@ Contributor(s):
             <name>stringless-maya</name>
             <c-extensions/>
             <cpp-extensions>cc,cpp</cpp-extensions>
-            <header-extensions>h</header-extensions>
+            <header-extensions>h,txt</header-extensions>
             <sourceEncoding>UTF-8</sourceEncoding>
             <sourceRootList>
                 <sourceRootElem>.</sourceRootElem>

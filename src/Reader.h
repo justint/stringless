@@ -16,9 +16,8 @@
 #define READER_H
 
 
-
-#include "../FrameData.h"
-#include "../Mutex.h"
+#include "FrameData.h"
+#include "Mutex.h"
 
 namespace Stringless {
 

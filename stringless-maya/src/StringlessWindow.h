@@ -6,7 +6,7 @@
  */
 
 /* 
- * File:   stringless.h
+ * File:   StringlessWindow.h
  * Author: Justin Tennant <justin.tennant@sjsu.edu>
  *
  * Created on March 6, 2017, 12:42 AM
@@ -16,11 +16,9 @@
 #define STRINGLESS_H
 
 #include <QtCore/QPointer>
+#include <QtGui/QPushButton>
 #include <QtGui/QDialog>
-#include <QtGui/QDialogButtonBox>
-#include <QtGui/QLineEdit>
-#include <QtGui/QSlider>
-
+#include <QtGui/QLabel>
 #include <maya/MPxCommand.h>
 
 class StringlessDialog : public QWidget {
@@ -34,22 +32,21 @@ class StringlessDialog : public QWidget {
         void objectCreated(const QString& objectName);
     public slots:
         void accept();
+        void start();
         //void fieldChanged(const QString& newValue);
         //void sliderChanged(int newValue);
             
     private:
-        QDialogButtonBox    *fButtonBox;
-        double              fcurValue;
-        QLineEdit           *fField;
+        QLabel              *fLabel;
+        QPushButton         *fStartButton;
         QPointer<QWidget>   fForm;
-        QSlider             *fSlider;
 };
 
-class Stringless : public MPxCommand
+class StringlessWindow : public MPxCommand
 {
 public:
 	static void		cleanup();
-	static void*            creator()	{ return new Stringless(); }
+	static void*            creator()	{ return new StringlessWindow(); }
 
 	MStatus			doIt(const MArgList& args);
 

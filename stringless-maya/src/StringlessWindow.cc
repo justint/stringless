@@ -6,13 +6,13 @@
  */
 
 /* 
- * File:   welcome.cc
+ * File:   StringlessWindow.cc
  * Author: Justin Tennant <justin.tennant@sjsu.edu>
  *
  * Created on February 16, 2017, 4:35 PM
  */
 
-#include "stringless.h"
+#include "StringlessWindow.h"
 
 #include <QFile>
 #include <QFormBuilder>
@@ -25,6 +25,10 @@
 #include <maya/MIOStream.h>
 #include <maya/MQtUtil.h>
 #include <maya/MSimple.h>
+
+#include "FrameData.h"
+#include "MemoryManager.h"
+#include "Reader.h"
 
 
 /*
@@ -45,17 +49,16 @@ MStatus hello::doIt( const MArgList& args )
 }
 */
 
-void Stringless::cleanup() {
+void StringlessWindow::cleanup() {
     if (!stringlessWindow.isNull()) delete stringlessWindow;
 }
 
-QPointer<StringlessDialog>  Stringless::stringlessWindow;
+QPointer<StringlessDialog>  StringlessWindow::stringlessWindow;
 
-const MString               Stringless::commandName("stringless");
+const MString               StringlessWindow::commandName("stringless");
 
 StringlessDialog::StringlessDialog(QWidget* parent) : 
-QWidget(parent), fcurValue(0.0) {
-    //QString     path  = QDir(app->applicationDirPath()).absoluteFilePath("../../stringless.ui");
+QWidget(parent) {
     QUiLoader   loader;
     QFile       file(":/stringless.ui");
     
@@ -69,10 +72,14 @@ QWidget(parent), fcurValue(0.0) {
         //	Destroy the dialog when it is closed.
         fForm->setAttribute(Qt::WA_DeleteOnClose, true);
         
-        fButtonBox = fForm->findChild<QDialogButtonBox*>("buttonBox");
+        fLabel = fForm->findChild<QLabel*>("label_3");
+        fStartButton = fForm->findChild<QPushButton*>("startButton");
+        fStartButton->setEnabled(true);
         
-        connect(fButtonBox, SIGNAL(accepted()), this, SLOT(accept()));
+        fLabel->setText("Click the Start button to grab a frame");
         
+        connect(fStartButton, SIGNAL(released()), this, SLOT(start()));
+                
         fForm->show();
         
     } else {
@@ -84,8 +91,34 @@ void StringlessDialog::accept() {
     cout << "User pressed accept" << endl;
 }
 
+void StringlessDialog::start() {
+    const std::string shared_memory_name = "/stringless";
+    // Set shared memory size to two frames
+    const size_t shared_memory_size = sizeof(struct Stringless::FrameData) * 2;
 
-MStatus Stringless::doIt(const MArgList& /* args */)
+    Stringless::MemoryManager memory_manager(shared_memory_name,
+                                             shared_memory_size,
+                                             Stringless::MemoryManager::read);
+
+    if (memory_manager.init()) {
+        cout << "Memory manager failure" << endl;
+        return;
+    }
+
+    Stringless::Reader reader((Stringless::FrameData*)memory_manager.address());
+    const Stringless::FrameData *incoming_data;
+    incoming_data = reader.read();
+
+    QString labelText = "Point 0 x: ";
+    char point[10];
+    sprintf(point, "%f", incoming_data[0].points[0].x);
+    labelText.append(point);
+
+    fLabel->setText(labelText);
+}
+
+
+MStatus StringlessWindow::doIt(const MArgList& /* args */)
 {
     if (stringlessWindow.isNull()) {
         stringlessWindow = new StringlessDialog();
@@ -124,13 +157,13 @@ MStatus initializePlugin(MObject plugin)
 	}
 
 	//	Register the command.
-	st = pluginFn.registerCommand(Stringless::commandName, 
-                                      Stringless::creator);
+	st = pluginFn.registerCommand(StringlessWindow::commandName, 
+                                      StringlessWindow::creator);
 
 	if (!st) {
 		MGlobal::displayError(
 			MString("stringless - could not register '")
-			+ Stringless::commandName + "' command: "
+			+ StringlessWindow::commandName + "' command: "
 			+ st.errorString()
 		);
 		return st;
@@ -154,15 +187,15 @@ MStatus uninitializePlugin(MObject plugin)
 	}
 
 	//	Make sure that there is no UI left hanging around.
-	Stringless::cleanup();
+	StringlessWindow::cleanup();
 
 	//	Deregister the command.
-	st = pluginFn.deregisterCommand(Stringless::commandName);
+	st = pluginFn.deregisterCommand(StringlessWindow::commandName);
 
 	if (!st) {
 		MGlobal::displayError(
 			MString("stringless - could not deregister '")
-			+ Stringless::commandName + "' command: "
+			+ StringlessWindow::commandName + "' command: "
 			+ st.errorString()
 		);
 		return st;

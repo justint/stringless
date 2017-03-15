@@ -43,14 +43,25 @@ Contributor(s):
     <df root="." name="0">
       <df name="build">
         <df name="Debug">
+          <in>moc_StringlessWindow.cpp</in>
           <in>moc_stringless.cpp</in>
           <in>qrc_stringless.cpp</in>
         </df>
       </df>
       <df name="src">
-        <in>stringless.cc</in>
-        <in>stringless.h</in>
+        <in>CMakeLists.txt</in>
+        <in>FrameData.cc</in>
+        <in>FrameData.h</in>
+        <in>MemoryManager.cc</in>
+        <in>MemoryManager.h</in>
+        <in>Mutex.cc</in>
+        <in>Mutex.h</in>
+        <in>Reader.cc</in>
+        <in>Reader.h</in>
+        <in>StringlessWindow.cc</in>
+        <in>StringlessWindow.h</in>
       </df>
+      <in>CMakeLists.txt</in>
     </df>
     <itemPath>stringless.pro</itemPath>
     <itemPath>stringless.qrc</itemPath>

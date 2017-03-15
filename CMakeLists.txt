@@ -6,10 +6,14 @@ project (stringless)
 include (ext/dlib/dlib/cmake)
 
 find_package(OpenCV REQUIRED)
-#include_directories(${OpenCV_INCLUDE_DIRS})
 
 add_subdirectory (src)
-
-# mem_test is old testing code, uncomment the below line and comment everything
-# else if you want to compile it
-#add_subdirectory (mem_test)
+        
+#file(COPY ${CMAKE_BINARY_DIR}/src/libMemoryManager.so 
+#          ${CMAKE_BINARY_DIR}/src/libFrameData.so 
+#          ${CMAKE_BINARY_DIR}/src/libMutex.so 
+#          ${CMAKE_BINARY_DIR}/src/libReader.so 
+#    DESTINATION lib)
+        
+#file (COPY ${CMAKE_BINARY_DIR}/src/Stringless
+#      DESTINATION bin)

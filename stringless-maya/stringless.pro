@@ -1,8 +1,8 @@
 include(qtconfig)
 TARGET = stringless
 CONFIG += designer
-HEADERS += src/stringless.h
-SOURCES += src/stringless.cc
+HEADERS += src/StringlessWindow.h
+SOURCES += src/StringlessWindow.cc
 FORMS += stringless.ui
-LIBS += -lOpenMayaUI
+LIBS += -lOpenMayaUI -lReader -lMutex -lMemoryManager
 RESOURCES += stringless.qrc
