@@ -26,9 +26,9 @@
 #include <maya/MQtUtil.h>
 #include <maya/MSimple.h>
 
-#include "FrameData.h"
-#include "MemoryManager.h"
-#include "Reader.h"
+#include "../src/FrameData.h"
+#include "../src/MemoryManager.h"
+#include "../src/Reader.h"
 
 
 /*
