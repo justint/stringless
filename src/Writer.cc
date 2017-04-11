@@ -36,10 +36,7 @@ Writer::Writer(const Writer& orig) {
     mutex = orig.mutex;
 }
 
-Writer::~Writer() {
-    delete data_address;
-    delete frame_data;
-}
+Writer::~Writer() { }
 
 int Writer::write(FrameData &incoming_frame_data) {
     // Initialize the memory location if this is the first time writing

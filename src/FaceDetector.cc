@@ -40,9 +40,7 @@ FaceDetector::FaceDetector(const FaceDetector& orig) {
     face_landmarks_location = orig.face_landmarks_location;
 }
 
-FaceDetector::~FaceDetector() {
-    delete face_landmarks_location;
-}
+FaceDetector::~FaceDetector() { }
 
 int FaceDetector::start(Writer &writer) {
     
@@ -73,7 +71,7 @@ int FaceDetector::start(Writer &writer) {
     /* Frame count / frames per second variables */
     int frame_count = 0;
     int frame_count_enter = 0, frame_count_exit;
-    int frames_per_second;
+    int frames_per_second = 0;
     
     auto start = std::chrono::steady_clock::now();
     while(!win.is_closed())
@@ -132,7 +130,8 @@ int FaceDetector::start(Writer &writer) {
             shapes.push_back(shape);
         }
         
-        std::cout << " Frame rate: " << frames_per_second << " Frame count: " << frame_count << "      \r";
+        std::cout << " Frame rate: " << frames_per_second << " Frame count: " 
+                << frame_count << "      \r";
         ++frame_count;
         
         win.clear_overlay();
@@ -144,6 +143,7 @@ int FaceDetector::start(Writer &writer) {
 
     }
     
+    camera.release();
     return 0;
 }
 
