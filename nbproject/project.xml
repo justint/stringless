@@ -76,11 +76,11 @@ Contributor(s):
                     <type>0</type>
                 </confElem>
                 <confElem>
-                    <name>Stringless_-iw_-flp_Debug</name>
+                    <name>Stringless_--flp_Debug</name>
                     <type>0</type>
                 </confElem>
                 <confElem>
-                    <name>Stringless_-iw_-flp_Release</name>
+                    <name>Stringless_--flp_Release</name>
                     <type>0</type>
                 </confElem>
                 <confElem>

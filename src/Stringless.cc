@@ -18,73 +18,172 @@
 #include <vector>
 
 #include "dlib/gui_widgets.h"
+#include "../ext/optionparser.h"
 
 #include "FrameData.h"
 #include "MemoryManager.h"
 #include "Writer.h"
 #include "FaceDetector.h"
 
-    
-int main(int argc, char** argv) {
-    
-    std::vector<std::string> arg_list = {"-i", "-iw", "-r", "-h", "-flp"};
+struct Arg: public option::Arg
+{
+  static void printError(const char* msg1, const option::Option& opt, const char* msg2)
+  {
+    fprintf(stderr, "%s", msg1);
+    fwrite(opt.name, opt.namelen, 1, stderr);
+    fprintf(stderr, "%s", msg2);
+  }
 
-    std::string help_message = "Usage: stringless [-options]\n\nwhere options include:";
+  static option::ArgStatus Unknown(const option::Option& option, bool msg)
+  {
+    if (msg) printError("Unknown option '", option, "'\n");
+    return option::ARG_ILLEGAL;
+  }
+
+  static option::ArgStatus Flp(const option::Option& option, bool msg)
+  {
+    if (option.arg != 0 && option.arg != "" && option.arg[0] != 0)
+      return option::ARG_OK;
+
+    if (msg) printError("Option '", option, "' requires an argument\n");
+    return option::ARG_ILLEGAL;
+  }
+
+  static option::ArgStatus NonEmpty(const option::Option& option, bool msg)
+  {
+    if (option.arg != 0 && option.arg[0] != 0)
+      return option::ARG_OK;
+
+    if (msg) printError("Option '", option, "' requires a non-empty argument\n");
+    return option::ARG_ILLEGAL;
+  }
+
+  static option::ArgStatus Numeric(const option::Option& option, bool msg)
+  {
+    char* endptr = 0;
+    if (option.arg != 0 && strtol(option.arg, &endptr, 10)){};
+    if (endptr != option.arg && *endptr == 0)
+      return option::ARG_OK;
+
+    if (msg) printError("Option '", option, "' requires a numeric argument\n");
+    return option::ARG_ILLEGAL;
+  }
+};
     
-    if (argc == 0 || arg_list.at(3).compare(argv[1]) == 0 )
-    {
-        std::cout << help_message << std::endl;
-        return 0;
-    }
+enum optionIndex { UNKNOWN, 
+                   HELP, 
+                   CLEAR, 
+                   CAMERA_NUM, 
+                   FACE_LANDMARKS_PATH };
+
+const option::Descriptor usage[] =
+{
+    {UNKNOWN, 0, "", "", Arg::Unknown, 
+            "Usage: stringless [options]\n\n"
+            "Where options include:" },
+    {HELP, 0, "h", "help", Arg::None, 
+            "--help, -h   \t"
+            "Print usage and exit." },
+    {CLEAR, 0, "c", "clear", Arg::None, 
+            "--clear, -c   \t"
+            "Clears stringless memory allocation"},
+    {CAMERA_NUM, 0, "", "cn", Arg::Numeric, 
+            "--cn=<arg>  \t"
+            "Specify camera number to use for capture (0 default)."},
+    {FACE_LANDMARKS_PATH, 0, "f", "flp", Arg::Flp, 
+            "--flp=<arg>, -f <arg> \t"
+            "Path to dlib face landmarks. (required)"},
+    {UNKNOWN, 0, "", "", Arg::None, 
+            "\nExamples:\n"
+            "  stringless -f path/to/flp \n"
+            "  stringless --flp=path/to/flp --cn=1 \n"
+            "  stringless --clear \n"
+            "  stringless -c \n"
+            },
+    {0, 0, 0, 0, 0} };
     
-    
-    ////// /* BEGIN NON-HELP ARGUMENT HANDING */ //////
-    
-    // Grab the face landmarks file location from args
-    char* face_landmarks_location;
-    for (int i = 0; i < argc; ++i)
-    {
-        if (arg_list.at(4).compare(argv[i]) == 0) { // -flp <flp location>
-            face_landmarks_location = argv[i + 1];
-        }
-    }
-    
-    
+void stringless_clear(Stringless::MemoryManager* memory_manager) {
+    memory_manager->remove();
+}
+
+int main(int argc, char** argv) { 
     const std::string shared_memory_name = "/stringless";
     // Set shared memory size to two frames
     const size_t shared_memory_size = sizeof(struct Stringless::FrameData) * 2;
-    // Select camera 0 for frame capturing
-    const int camera_number = 0;
+    // Select default camera 0 for frame capturing
+    int camera_number = 0;
+
     
+    argc-=(argc>0); argv+=(argc>0); // skip program name argv[0] if present
+    option::Stats stats(usage, argc, argv);
     
+    #ifdef __GNUC__
+    // GCC supports C99 VLAs for C++ with proper constructor calls.
+    option::Option options[stats.options_max], buffer[stats.buffer_max];
+    #else
+      // use calloc() to allocate 0-initialized memory. It's not the same
+      // as properly constructed elements, but good enough.
+    option::Option* options = (option::Option*)calloc(stats.options_max, sizeof(option::Option));
+    option::Option* buffer  = (option::Option*)calloc(stats.buffer_max,  sizeof(option::Option));
+    #endif
+
+    option::Parser parse(usage, argc, argv, options, buffer);
+    
+    if (parse.error())
+        return 1;
+    
+    if (options[HELP] || argc == 0) {
+        option::printUsage(std::cout, usage);
+        return 0;
+    }
     
     Stringless::MemoryManager memory_manager(shared_memory_name, 
-                                             shared_memory_size,
-                                             Stringless::MemoryManager::write);
-
-    if (arg_list.at(0).compare(argv[1]) == 0 || 
-            arg_list.at(1).compare(argv[1]) == 0) // If arg is -i or -iw
-    {
-        if (memory_manager.init()) { 
-            // If shared memory allocation fails, MemoryManager already prints 
-            // error, we just exit properly.
-            return errno;
-        }
-
-        if (arg_list.at(1).compare(argv[1]) == 0) // If arg is -iw
-        {
-            Stringless::Writer writer(memory_manager.address());
-            Stringless::FaceDetector face_detector(camera_number,
-                                                   face_landmarks_location);
-            
-            face_detector.start(writer);
-        }
-
-    } else { // If arg is -r
-        memory_manager.remove();
-    }
-
+                                         shared_memory_size,
+                                         Stringless::MemoryManager::write);
     
+    char* face_landmarks_path;
+    
+    bool face_landmarks_option = false;
+    for (int i = 0; i < parse.optionsCount(); i++) {
+        option::Option& opt = buffer[i];
+        switch(opt.index()) {
+            case HELP:
+                // Taken care of above
+            case CLEAR:
+                stringless_clear(&memory_manager);
+                return 0;
+            case CAMERA_NUM:
+                camera_number = std::stoi(opt.arg);
+                break;
+            case FACE_LANDMARKS_PATH:
+                face_landmarks_option = true;
+                face_landmarks_path = const_cast<char*>(opt.arg);
+                break;
+            case UNKNOWN:
+                // Not possible, but I'll acknowledge the option anyways
+                break;
+        }
+    }
+    if (!face_landmarks_option) {
+        std::cout << "-f/--flp option is required and cannot be provided empty "
+                "argument, exiting..." << std::endl;
+        return 1;
+    }
+    
+    for (int i = 0; i < parse.nonOptionsCount(); ++i)
+      fprintf(stdout, "Non-option argument #%d is %s\n", i, parse.nonOption(i));
+    
+    if (memory_manager.init()) { 
+        // If shared memory allocation fails, MemoryManager already prints 
+        // error, we just exit properly.
+        return errno;
+    }
+    
+    Stringless::Writer writer(memory_manager.address());
+    Stringless::FaceDetector face_detector(camera_number,
+                                           face_landmarks_path);
+
+    face_detector.start(writer);
     return 0;
 }
 
