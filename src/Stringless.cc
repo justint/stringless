@@ -74,10 +74,11 @@ enum optionIndex { UNKNOWN,
                    HELP, 
                    CLEAR, 
                    CAMERA_NUM, 
-                   FACE_LANDMARKS_PATH };
+                   FACE_LANDMARKS_PATH,
+                   DOWNSAMPLE_RATIO,
+                   SAMPLE_RATE };
 
-const option::Descriptor usage[] =
-{
+const option::Descriptor usage[] = {
     {UNKNOWN, 0, "", "", Arg::Unknown, 
             "Usage: stringless [options]\n\n"
             "Where options include:" },
@@ -93,14 +94,24 @@ const option::Descriptor usage[] =
     {FACE_LANDMARKS_PATH, 0, "f", "flp", Arg::Flp, 
             "--flp=<arg>, -f <arg> \t"
             "Path to dlib face landmarks. (required)"},
+    {DOWNSAMPLE_RATIO, 0, "d", "dsr", Arg::Numeric,
+            "--dsr=<arg>, -d <arg> \t"
+            "Specify a downsample ratio (1/<arg>) for captured frames; default"
+            " is 1 (no downsampling), higher numbers = higher downsampling."},
+    {SAMPLE_RATE, 0, "s", "sr", Arg::Numeric,
+            "--sr=<arg>, -s <arg>  \t"
+            "Specify a sampling rate for face detection on captured frames; "
+            "default is 1 (every frame is sampled), higher numbers means more "
+            "frames skipped between each sampling." },
     {UNKNOWN, 0, "", "", Arg::None, 
             "\nExamples:\n"
             "  stringless -f path/to/flp \n"
+            "  stringless -f path/to/flp -d 2 -s 3 \n"    
             "  stringless --flp=path/to/flp --cn=1 \n"
             "  stringless --clear \n"
             "  stringless -c \n"
             },
-    {0, 0, 0, 0, 0} };
+    {0, 0, 0, 0, 0, 0} };
     
 void stringless_clear(Stringless::MemoryManager* memory_manager) {
     memory_manager->remove();
@@ -112,6 +123,10 @@ int main(int argc, char** argv) {
     const size_t shared_memory_size = sizeof(struct Stringless::FrameData) * 2;
     // Select default camera 0 for frame capturing
     int camera_number = 0;
+    // Set downsample ratio default to 1
+    int downsample_ratio = 1;
+    // Set sample rate default to 1
+    int sample_rate = 1;
 
     
     argc-=(argc>0); argv+=(argc>0); // skip program name argv[0] if present
@@ -153,11 +168,32 @@ int main(int argc, char** argv) {
                 stringless_clear(&memory_manager);
                 return 0;
             case CAMERA_NUM:
+                if (std::stoi(opt.arg) < 0) {
+                    std::cout << "Invalid camera number, exiting..." 
+                            << std::endl;
+                    return 1;
+                }
                 camera_number = std::stoi(opt.arg);
                 break;
             case FACE_LANDMARKS_PATH:
                 face_landmarks_option = true;
                 face_landmarks_path = const_cast<char*>(opt.arg);
+                break;
+            case DOWNSAMPLE_RATIO:
+                if (std::stoi(opt.arg) <= 0) {
+                    std::cout << "Invalid downsample ratio; input must be 1 or "
+                            "greater. Exiting..." << std::endl;
+                    return 1;
+                }
+                downsample_ratio = std::stoi(opt.arg);
+                break;
+            case SAMPLE_RATE:
+                if (std::stoi(opt.arg) <= 0) {
+                    std::cout << "Invalid sample rate; input must be 1 or "
+                            "greater. Exiting..." << std::endl;
+                    return 1;
+                }
+                sample_rate = std::stoi(opt.arg);
                 break;
             case UNKNOWN:
                 // Not possible, but I'll acknowledge the option anyways
@@ -180,7 +216,9 @@ int main(int argc, char** argv) {
     }
     
     Stringless::Writer writer(memory_manager.address());
-    Stringless::FaceDetector face_detector(camera_number,
+    Stringless::FaceDetector face_detector(camera_number, 
+                                           downsample_ratio,
+                                           sample_rate,
                                            face_landmarks_path);
 
     face_detector.start(writer);

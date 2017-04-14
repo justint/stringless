@@ -31,12 +31,19 @@
 
 namespace Stringless {
 
-FaceDetector::FaceDetector(int camera_number, char *face_landmarks_location) 
+FaceDetector::FaceDetector(int camera_number, 
+                 int downsample_ratio, 
+                 int sample_rate, 
+                 char *face_landmarks_location)
                         : camera_number(camera_number),
+                          downsample_ratio(downsample_ratio),
+                          sample_rate(sample_rate),
                           face_landmarks_location(face_landmarks_location) { }
 
 FaceDetector::FaceDetector(const FaceDetector& orig) {
     camera_number = orig.camera_number;
+    downsample_ratio = orig.downsample_ratio;
+    sample_rate = orig.sample_rate;
     face_landmarks_location = orig.face_landmarks_location;
 }
 
@@ -58,11 +65,12 @@ int FaceDetector::start(Writer &writer) {
     dlib::frontal_face_detector detector = dlib::get_frontal_face_detector();
     dlib::shape_predictor sp;
     dlib::deserialize(face_landmarks_location) >> sp;
+    std::vector<dlib::rectangle> faces;
+
     
     /* dlib graphical window context */
     dlib::image_window win;
     
-    const int downsample_ratio = 2;
     
     /* FrameData variable, to be passed into the writer */
     FrameData frame_data;
@@ -102,12 +110,13 @@ int FaceDetector::start(Writer &writer) {
         dlib::cv_image<dlib::bgr_pixel> cimg(resized_frame);
         
         // Detect the faces
-        std::vector<dlib::rectangle> faces = detector(cimg);
+	if (frame_count % sample_rate == 0) {
+		faces = detector(cimg);
+	}
  
         // Find the pose of each face
         std::vector<dlib::full_object_detection> shapes;
-        for (unsigned long i = 0; i < faces.size(); ++i)
-        {
+        for (unsigned long i = 0; i < faces.size(); ++i) {
             /*
             dlib::rectangle r(
                         (long)(faces[i].left() * downsample_ratio),
@@ -115,13 +124,13 @@ int FaceDetector::start(Writer &writer) {
                         (long)(faces[i].right() * downsample_ratio),
                         (long)(faces[i].bottom() * downsample_ratio)
             ); 
+            dlib::full_object_detection shape = sp(cimg, r);
             */
+            
             dlib::full_object_detection shape = sp(cimg, faces[i]);
-            //dlib::full_object_detection shape = sp(cimg, r);
             
             // Push data points into frame data
-            for(int i = 0; i < points; ++i)
-            {
+            for(int i = 0; i < points; ++i) {
                 frame_data.points[i].x = (double)shape.part(i).x() / (double)cimg.nr();
                 frame_data.points[i].y = (double)shape.part(i).y() / (double)cimg.nc();
             }
