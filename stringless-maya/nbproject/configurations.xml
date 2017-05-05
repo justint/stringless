@@ -40,17 +40,32 @@ Contributor(s):
 -->
 <configurationDescriptor version="100">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="src" displayName="src" projectFiles="true">
+      <itemPath>../src/FrameData.cc</itemPath>
+      <itemPath>../src/FrameData.h</itemPath>
+      <itemPath>../src/MemoryManager.cc</itemPath>
+      <itemPath>../src/MemoryManager.h</itemPath>
+      <itemPath>../src/Mutex.cc</itemPath>
+      <itemPath>../src/Mutex.h</itemPath>
+      <itemPath>../src/Reader.cc</itemPath>
+      <itemPath>../src/Reader.h</itemPath>
+    </logicalFolder>
     <df root="." name="0">
       <df name="build">
         <df name="Debug">
+          <in>moc_StringlessMayaDevice.cpp</in>
           <in>moc_StringlessWindow.cpp</in>
           <in>moc_stringless.cpp</in>
           <in>qrc_stringless.cpp</in>
         </df>
       </df>
       <df name="src">
-        <in>StringlessWindow.cc</in>
-        <in>StringlessWindow.h</in>
+        <in>StringlessMaya.mel</in>
+        <in>StringlessMayaCmd.cc</in>
+        <in>StringlessMayaCmd.h</in>
+        <in>StringlessMayaDevice.cc</in>
+        <in>StringlessMayaDevice.h</in>
+        <in>StringlessMayaMain.cc</in>
       </df>
     </df>
     <logicalFolder name="ExternalFiles"
@@ -77,7 +92,8 @@ Contributor(s):
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <flagsDictionary>
-        <element flagsID="0" commonFlags="-funsigned-char -O2 -fPIC"/>
+        <element flagsID="0"
+                 commonFlags="-mavx -mtune=generic -march=x86-64 -std=gnu++11 -fPIC"/>
         <element flagsID="1"
                  commonFlags="-mtune=generic -march=x86-64 -O2 -funsigned-char -fPIC"/>
       </flagsDictionary>
@@ -86,53 +102,70 @@ Contributor(s):
       <makefileType>
         <makeTool>
           <buildCommandWorkingDir>build/Debug</buildCommandWorkingDir>
-          <buildCommand>make libstringless.so</buildCommand>
+          <buildCommand>g++ -Wl,--no-undefined -fPIC -shared -o stringless.so StringlessMayaMain.o StringlessMayaCmd.o StringlessMayaDevice.o FrameData.o MemoryManager.o Mutex.o Reader.o -L/usr/autodesk/maya2016.5/lib -lOpenMaya -lOpenMayaUI -lFoundation -lrt -pthread</buildCommand>
           <cleanCommand>make clean</cleanCommand>
           <executablePath>build/Debug/src/welcome</executablePath>
         </makeTool>
         <preBuild>
           <preBuildCommandWorkingDir>build/Debug</preBuildCommandWorkingDir>
-          <preBuildCommand>/home/jtennant/Downloads/Qt-4_8_6_forMaya2016/Qt/qt-adsk-4.8.6/bin/qmake -spec /home/jtennant/Downloads/Qt-4_8_6_forMaya2016/Qt/qt-adsk-4.8.6/mkspecs/linux-g++ ../..</preBuildCommand>
+          <preBuildCommand>g++ -c -I. -I.. -I../../../src -l../../src -I/usr/autodesk/maya2016.5/include -I/usr/X11R6/include -m64 -O3 -pthread -pipe -D_BOOL -DLINUX_64 -DREQUIRE_IOSTREAM -fPIC -Wno-deprecated -fno-gnu-keywords ../../src/StringlessMayaMain.cc ../../src/StringlessMayaDevice.cc MemoryManager.cc FrameData.cc Mutex.cc Reader.cc -L../../../src -L../../src/ -Wl,-Bstatic ../../src/StringlessMayaDevice.h ../../src/StringlessMayaCmd.h </preBuildCommand>
           <preBuildFirst>true</preBuildFirst>
         </preBuild>
       </makefileType>
-      <item path="build/Debug/moc_StringlessWindow.cpp"
+      <item path="../src/FrameData.cc" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../src/MemoryManager.cc" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>../build/Debug/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="../src/Mutex.cc" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+        </ccTool>
+      </item>
+      <item path="../src/Reader.cc" ex="false" tool="1" flavor2="8">
+        <ccTool flags="0">
+          <incDir>
+            <pElem>../build/Debug/src</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="build/Debug/moc_StringlessMayaDevice.cpp"
             ex="false"
             tool="1"
             flavor2="0">
-        <ccTool flags="0">
+        <ccTool flags="1">
           <incDir>
-            <pElem>../../../Downloads/Qt-4_8_6_forMaya2016/Qt/qt-adsk-4.8.6/mkspecs/linux-g++</pElem>
-            <pElem>.</pElem>
-            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtDesigner</pElem>
+            <pElem>src</pElem>
             <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtCore</pElem>
             <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtGui</pElem>
-            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtXml</pElem>
-            <pElem>/usr/local/Trolltech/Qt-4.8.6/include</pElem>
-            <pElem>..</pElem>
-            <pElem>/usr/autodesk/maya2016.5/include</pElem>
-            <pElem>/usr/X11R6/include</pElem>
-            <pElem>/usr/include/QtDesigner</pElem>
-            <pElem>../../../Qt/5.8/gcc_64</pElem>
+            <pElem>/usr/autodesk/maya2016.5/include/maya</pElem>
+            <pElem>../src</pElem>
             <pElem>build/Debug</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include</pElem>
+            <pElem>/usr/autodesk/maya2016.5/include</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>Bits64_</Elem>
-            <Elem>FUNCPROTO</Elem>
-            <Elem>LINUX</Elem>
-            <Elem>LINUX_64</Elem>
-            <Elem>QDESIGNER_EXPORT_WIDGETS</Elem>
-            <Elem>QT_CORE_LIB</Elem>
-            <Elem>QT_GUI_LIB</Elem>
-            <Elem>QT_NO_DEBUG</Elem>
-            <Elem>QT_PLUGIN</Elem>
-            <Elem>QT_SHARED</Elem>
-            <Elem>QT_XML_LIB</Elem>
-            <Elem>UNIX</Elem>
-            <Elem>_BOOL</Elem>
-            <Elem>_GNU_SOURCE</Elem>
-            <Elem>_REENTRANT</Elem>
-          </preprocessorList>
+        </ccTool>
+      </item>
+      <item path="build/Debug/moc_StringlessWindow.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+        <ccTool flags="1">
+          <incDir>
+            <pElem>src</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtCore</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtGui</pElem>
+            <pElem>/usr/autodesk/maya2016.5/include/maya</pElem>
+            <pElem>../src</pElem>
+            <pElem>build/Debug</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include</pElem>
+            <pElem>/usr/autodesk/maya2016.5/include</pElem>
+          </incDir>
         </ccTool>
       </item>
       <item path="build/Debug/moc_stringless.cpp" ex="false" tool="1" flavor2="11">
@@ -148,80 +181,63 @@ Contributor(s):
           </incDir>
         </ccTool>
       </item>
-      <item path="build/Debug/qrc_stringless.cpp" ex="false" tool="1" flavor2="0">
-        <ccTool flags="0">
+      <item path="build/Debug/qrc_stringless.cpp" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
           <incDir>
-            <pElem>../../../Downloads/Qt-4_8_6_forMaya2016/Qt/qt-adsk-4.8.6/mkspecs/linux-g++</pElem>
-            <pElem>.</pElem>
-            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtDesigner</pElem>
             <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtCore</pElem>
-            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtGui</pElem>
-            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtXml</pElem>
             <pElem>/usr/local/Trolltech/Qt-4.8.6/include</pElem>
-            <pElem>..</pElem>
-            <pElem>/usr/autodesk/maya2016.5/include</pElem>
-            <pElem>/usr/X11R6/include</pElem>
-            <pElem>/usr/include/QtDesigner</pElem>
-            <pElem>../../../Qt/5.8/gcc_64</pElem>
             <pElem>build/Debug</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>Bits64_</Elem>
-            <Elem>FUNCPROTO</Elem>
-            <Elem>LINUX</Elem>
-            <Elem>LINUX_64</Elem>
-            <Elem>QDESIGNER_EXPORT_WIDGETS</Elem>
-            <Elem>QT_CORE_LIB</Elem>
-            <Elem>QT_GUI_LIB</Elem>
-            <Elem>QT_NO_DEBUG</Elem>
-            <Elem>QT_PLUGIN</Elem>
-            <Elem>QT_SHARED</Elem>
-            <Elem>QT_XML_LIB</Elem>
-            <Elem>UNIX</Elem>
-            <Elem>_BOOL</Elem>
-            <Elem>_GNU_SOURCE</Elem>
-            <Elem>_REENTRANT</Elem>
-          </preprocessorList>
         </ccTool>
       </item>
-      <folder path="0/src">
+      <folder path="src">
         <ccTool>
           <incDir>
-            <pElem>../../../Downloads/Qt-4_8_6_forMaya2016/Qt/qt-adsk-4.8.6/mkspecs/linux-g++</pElem>
-            <pElem>.</pElem>
-            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtDesigner</pElem>
-            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtCore</pElem>
-            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtGui</pElem>
-            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtXml</pElem>
-            <pElem>/usr/local/Trolltech/Qt-4.8.6/include</pElem>
-            <pElem>..</pElem>
-            <pElem>/usr/autodesk/maya2016.5/include</pElem>
-            <pElem>/usr/X11R6/include</pElem>
-            <pElem>/usr/include/QtDesigner</pElem>
-            <pElem>../../../Qt/5.8/gcc_64</pElem>
-            <pElem>build/Debug</pElem>
+            <pElem>../src</pElem>
           </incDir>
-          <preprocessorList>
-            <Elem>Bits64_</Elem>
-            <Elem>FUNCPROTO</Elem>
-            <Elem>LINUX</Elem>
-            <Elem>LINUX_64</Elem>
-            <Elem>QDESIGNER_EXPORT_WIDGETS</Elem>
-            <Elem>QT_CORE_LIB</Elem>
-            <Elem>QT_GUI_LIB</Elem>
-            <Elem>QT_NO_DEBUG</Elem>
-            <Elem>QT_PLUGIN</Elem>
-            <Elem>QT_SHARED</Elem>
-            <Elem>QT_XML_LIB</Elem>
-            <Elem>UNIX</Elem>
-            <Elem>_BOOL</Elem>
-            <Elem>_GNU_SOURCE</Elem>
-            <Elem>_REENTRANT</Elem>
-          </preprocessorList>
         </ccTool>
       </folder>
-      <item path="src/StringlessWindow.cc" ex="false" tool="1" flavor2="11">
-        <ccTool flags="0">
+      <item path="src/StringlessMayaCmd.cc" ex="false" tool="1" flavor2="0">
+        <ccTool flags="1">
+          <incDir>
+            <pElem>src</pElem>
+            <pElem>/usr/autodesk/maya2016.5/include/maya</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtCore</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtGui</pElem>
+            <pElem>../src</pElem>
+            <pElem>/usr/autodesk/maya2016.5/include</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include</pElem>
+            <pElem>build/Debug</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/StringlessMayaDevice.cc" ex="false" tool="1" flavor2="11">
+        <ccTool flags="1">
+          <incDir>
+            <pElem>/usr/include/QtDesigner</pElem>
+            <pElem>src</pElem>
+            <pElem>/usr/autodesk/maya2016.5/include/maya</pElem>
+            <pElem>../src</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtCore</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtGui</pElem>
+            <pElem>/usr/include/X11</pElem>
+            <pElem>/usr/autodesk/maya2016.5/include</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include</pElem>
+            <pElem>build/Debug</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="src/StringlessMayaMain.cc" ex="false" tool="1" flavor2="0">
+        <ccTool flags="1">
+          <incDir>
+            <pElem>src</pElem>
+            <pElem>/usr/autodesk/maya2016.5/include/maya</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtCore</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtGui</pElem>
+            <pElem>../src</pElem>
+            <pElem>/usr/autodesk/maya2016.5/include</pElem>
+            <pElem>build/Debug</pElem>
+          </incDir>
         </ccTool>
       </item>
     </conf>
@@ -257,11 +273,19 @@ Contributor(s):
           <preBuildFirst>true</preBuildFirst>
         </preBuild>
       </makefileType>
-      <item path="src/StringlessWindow.cc" ex="false" tool="1" flavor2="9">
+      <item path="src/StringlessMaya.mel" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/StringlessMayaCmd.cc" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="src/StringlessMayaCmd.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/StringlessMayaDevice.cc" ex="false" tool="1" flavor2="9">
         <ccTool flags="0">
         </ccTool>
       </item>
-      <item path="src/StringlessWindow.h" ex="false" tool="3" flavor2="0">
+      <item path="src/StringlessMayaDevice.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/StringlessMayaMain.cc" ex="false" tool="1" flavor2="0">
       </item>
       <item path="stringless.pro" ex="false" tool="3" flavor2="0">
       </item>

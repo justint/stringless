@@ -28,6 +28,8 @@
 
 namespace Stringless {
 
+MemoryManager::MemoryManager() { }
+
 /*
  * Constructs a Memory Manager that handles the shared memory construction,
  * passing of memory address, and deletion.

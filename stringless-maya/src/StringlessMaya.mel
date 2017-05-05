@@ -1,0 +1,45 @@
+global proc createStringlessCap(string $faceNodeName) {
+    string $deviceName = $faceNodeName+"_Device";
+    createStringlessRig($faceNodeName);
+    createStringlessDevice($deviceName);
+    createUnitConversions($faceNodeName);
+    connectNodes($faceNodeName, $deviceName);
+    StringlessMayaCmd -s true -dn $deviceName;
+}
+
+global proc createStringlessRig(string $faceNodeName) {
+    createNode transform -n ($faceNodeName + "_Face");
+            setAttr ".s" -type "double3" 0.1 0.1 0.1 ;
+    createNode joint -n ($faceNodeName + "_LeftCheek") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 -7.8499999046325684 17.850000381469727 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+}
+
+global proc createStringlessDevice(string $stringlessDeviceName) {
+    createNode StringlessMayaDevice -n ($stringlessDeviceName);
+    setAttr ".fr" 1000;
+    setAttr ".ots[0]" -type "double3" -9.625 -1.2300000190734863 0 ;
+    setAttr ".ots[1]" -type "double3" -9.625 -1.2300000190734863 0 ;
+}
+
+global proc createUnitConversions(string $faceNodeName) {
+    int $i;
+    for ($i = 0; $i < 68; ++$i) {
+        createNode unitConversion -n ($faceNodeName + "_unitConversion" + $i);
+        setAttr ".cf" 0.017453292519943295;
+    }
+}
+
+global proc connectNodes(string $faceNodeName, string $stringlessDeviceName) {
+    int $i;
+    string $StringlessFaceNames[] = {"Face", "LeftCheek"};
+
+    for ($i = 0; $i < 1; ++$i)
+    {
+        connectAttr ($stringlessDeviceName + ".ots[" + $i + "]") ($faceNodeName + "_" + $StringlessFaceNames[$i] + ".t");
+        connectAttr ($stringlessDeviceName + ".ors[" + $i + "]") ($faceNodeName + "_unitConversion" + $i + ".i");
+        connectAttr ($faceNodeName + "_unitConversion" + $i + ".o") ($faceNodeName + "_" + $StringlessFaceNames[$i] + ".r");
+    }
+}

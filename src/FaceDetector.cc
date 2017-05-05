@@ -135,6 +135,7 @@ int FaceDetector::start(Writer &writer) {
                 frame_data.points[i].y = (double)shape.part(i).y() / (double)cimg.nc();
             }
             frame_data.fps = frames_per_second;
+            frame_data.frame_number = frame_count;
             
             shapes.push_back(shape);
         }

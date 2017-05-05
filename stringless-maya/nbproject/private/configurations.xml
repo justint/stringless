@@ -43,6 +43,15 @@ Contributor(s):
     <df root="." name="0">
       <df name="build">
         <df name="Debug">
+          <in>FrameData.cc</in>
+          <in>FrameData.h</in>
+          <in>MemoryManager.cc</in>
+          <in>MemoryManager.h</in>
+          <in>Mutex.cc</in>
+          <in>Mutex.h</in>
+          <in>Reader.cc</in>
+          <in>Reader.h</in>
+          <in>moc_StringlessMayaDevice.cpp</in>
           <in>moc_StringlessWindow.cpp</in>
           <in>moc_stringless.cpp</in>
           <in>qrc_stringless.cpp</in>
@@ -50,8 +59,12 @@ Contributor(s):
       </df>
       <df name="src">
         <in>CMakeLists.txt</in>
-        <in>StringlessWindow.cc</in>
-        <in>StringlessWindow.h</in>
+        <in>StringlessMaya.mel</in>
+        <in>StringlessMayaCmd.cc</in>
+        <in>StringlessMayaCmd.h</in>
+        <in>StringlessMayaDevice.cc</in>
+        <in>StringlessMayaDevice.h</in>
+        <in>StringlessMayaMain.cc</in>
       </df>
       <in>CMakeLists.txt</in>
     </df>

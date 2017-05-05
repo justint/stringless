@@ -8,7 +8,12 @@ add_library (Reader SHARED Reader.cc)
 
 add_executable (Stringless Stringless.cc)
 
+add_definitions(-fPIC)
+
 target_link_libraries(Stringless MemoryManager FaceDetector Writer FrameData Mutex ${OpenCV_LIBS} dlib rt pthread)
 
 install(TARGETS Stringless RUNTIME DESTINATION bin)
-install(TARGETS MemoryManager FrameData Mutex Reader LIBRARY DESTINATION lib)
+install(TARGETS MemoryManager FrameData Mutex Reader 
+        ARCHIVE DESTINATION lib
+        LIBRARY DESTINATION lib
+        COMPONENT library)

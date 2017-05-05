@@ -25,6 +25,8 @@
 #include "MemoryManager.h"
 
 namespace Stringless {
+    
+Reader::Reader() { }
 
 Reader::Reader(FrameData *data_address) : data_address(data_address) {
     mutex.init();
@@ -37,7 +39,7 @@ Reader::Reader(const Reader& orig) {
 
 Reader::~Reader() { }
 
-FrameData const * const Reader::read() {
+FrameData * Reader::read() {
     FrameData *incoming_data;
     
     mutex.lock();

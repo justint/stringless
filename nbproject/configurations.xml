@@ -148,6 +148,7 @@ Contributor(s):
             <in>stack_trace.cpp</in>
           </df>
         </df>
+        <in>api_macros.h</in>
       </df>
       <df name="src">
         <in>CMakeLists.txt</in>
@@ -167,13 +168,16 @@ Contributor(s):
       <df name="stringless-maya">
         <df name="build">
           <df name="Debug">
+            <in>moc_StringlessMayaDevice.cpp</in>
             <in>moc_StringlessWindow.cpp</in>
             <in>moc_stringless.cpp</in>
             <in>qrc_stringless.cpp</in>
           </df>
         </df>
         <df name="src">
-          <in>StringlessWindow.cc</in>
+          <in>StringlessMayaCmd.cc</in>
+          <in>StringlessMayaDevice.cc</in>
+          <in>StringlessMayaMain.cc</in>
         </df>
       </df>
     </df>
@@ -225,6 +229,8 @@ Contributor(s):
           <preBuildFirst>true</preBuildFirst>
         </preBuild>
       </makefileType>
+      <item path="ext/api_macros.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="ext/dlib/dlib/base64/base64_kernel_1.cpp"
             ex="false"
             tool="1"
@@ -1373,7 +1379,7 @@ Contributor(s):
           </incDir>
         </ccTool>
       </item>
-      <item path="stringless-maya/src/StringlessWindow.cc"
+      <item path="stringless-maya/src/StringlessMayaDevice.cc"
             ex="false"
             tool="1"
             flavor2="11">
@@ -1415,6 +1421,8 @@ Contributor(s):
       <item path="LICENSE" ex="false" tool="3" flavor2="0">
       </item>
       <item path="README.md" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ext/api_macros.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/CMakeLists.txt" ex="false" tool="3" flavor2="0">
       </item>
@@ -1466,6 +1474,8 @@ Contributor(s):
           <preBuildFirst>true</preBuildFirst>
         </preBuild>
       </makefileType>
+      <item path="ext/api_macros.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="ext/dlib/dlib/base64/base64_kernel_1.cpp"
             ex="false"
             tool="1"
@@ -1625,6 +1635,8 @@ Contributor(s):
           <preBuildCommand>${CMAKE} -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_COMPILER=${IDE_CC} -DCMAKE_CXX_COMPILER=${IDE_CXX} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ../.. </preBuildCommand>
         </preBuild>
       </makefileType>
+      <item path="ext/api_macros.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="ext/dlib/dlib/bsp/bsp.cpp" ex="false" tool="1" flavor2="8">
         <ccTool flags="0">
         </ccTool>
@@ -2049,6 +2061,8 @@ Contributor(s):
       </makefileType>
       <item path="LICENSE" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="ext/api_macros.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="src/FaceDetector.cc" ex="false" tool="1" flavor2="0">
       </item>
       <item path="src/FaceDetector.h" ex="false" tool="3" flavor2="0">
@@ -2117,6 +2131,8 @@ Contributor(s):
           <preBuildFirst>true</preBuildFirst>
         </preBuild>
       </makefileType>
+      <item path="ext/api_macros.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="ext/dlib/dlib/base64/base64_kernel_1.cpp"
             ex="false"
             tool="1"
@@ -3196,7 +3212,7 @@ Contributor(s):
           </incDir>
         </ccTool>
       </item>
-      <item path="stringless-maya/src/StringlessWindow.cc"
+      <item path="stringless-maya/src/StringlessMayaDevice.cc"
             ex="false"
             tool="1"
             flavor2="11">
@@ -3211,8 +3227,11 @@ Contributor(s):
         <rebuildPropChanged>false</rebuildPropChanged>
       </toolsSet>
       <flagsDictionary>
-        <element flagsID="0" commonFlags="-O2 -fPIC -mavx -std=gnu++11"/>
-        <element flagsID="1" commonFlags="-O2 -mavx -std=gnu++11"/>
+        <element flagsID="0" commonFlags="-O2 -fPIC -mavx -fPIC -std=gnu++11"/>
+        <element flagsID="1" commonFlags="-O2 -mavx -fPIC -std=gnu++11"/>
+        <element flagsID="2" commonFlags="-O2 -mavx -std=gnu++11"/>
+        <element flagsID="3"
+                 commonFlags="-mtune=generic -march=x86-64 -O2 -funsigned-char -fPIC"/>
       </flagsDictionary>
       <codeAssistance>
       </codeAssistance>
@@ -3222,16 +3241,6 @@ Contributor(s):
           <buildCommand>${MAKE} -f Makefile</buildCommand>
           <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
           <executablePath>build/Debug/src/Stringless</executablePath>
-          <ccTool>
-            <incDir>
-              <pElem>ext/dlib</pElem>
-            </incDir>
-            <preprocessorList>
-              <Elem>DLIB_JPEG_SUPPORT</Elem>
-              <Elem>DLIB_PNG_SUPPORT</Elem>
-              <Elem>NDEBUG</Elem>
-            </preprocessorList>
-          </ccTool>
         </makeTool>
         <preBuild>
           <preBuildCommandWorkingDir>build/Debug</preBuildCommandWorkingDir>
@@ -3243,358 +3252,376 @@ Contributor(s):
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/bigint/bigint_kernel_1.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/bigint/bigint_kernel_2.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/bit_stream/bit_stream_kernel_1.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/bsp/bsp.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/data_io/image_dataset_metadata.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/data_io/mnist.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/dir_nav/dir_nav_extensions.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/dir_nav/dir_nav_kernel_1.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/dir_nav/dir_nav_kernel_2.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/dnn/cpu_dlib.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/dnn/tensor_tools.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/entropy_decoder/entropy_decoder_kernel_1.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/entropy_decoder/entropy_decoder_kernel_2.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/entropy_encoder/entropy_encoder_kernel_1.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/entropy_encoder/entropy_encoder_kernel_2.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/gui_core/gui_core_kernel_1.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/gui_core/gui_core_kernel_2.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/gui_widgets/base_widgets.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/gui_widgets/canvas_drawing.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/gui_widgets/drawable.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/gui_widgets/fonts.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/gui_widgets/style.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/gui_widgets/widgets.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/image_loader/jpeg_loader.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/image_loader/png_loader.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/image_saver/save_jpeg.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/image_saver/save_png.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/linker/linker_kernel_1.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/logger/extra_logger_headers.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/logger/logger_config_file.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/logger/logger_kernel_1.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/md5/md5_kernel_1.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/misc_api/misc_api_kernel_1.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/misc_api/misc_api_kernel_2.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/server/server_http.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/server/server_iostream.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/server/server_kernel.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/sockets/sockets_extensions.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/sockets/sockets_kernel_1.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/sockets/sockets_kernel_2.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/sockstreambuf/sockstreambuf.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/sockstreambuf/sockstreambuf_unbuffered.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/stack_trace.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/threads/async.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/threads/multithreaded_object_extension.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/threads/thread_pool_extension.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/threads/threaded_object_extension.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/threads/threads_kernel_1.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/threads/threads_kernel_2.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/threads/threads_kernel_shared.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/timer/timer.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/tokenizer/tokenizer_kernel_1.cpp"
             ex="false"
             tool="1"
             flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <item path="ext/dlib/dlib/unicode/unicode.cpp" ex="false" tool="1" flavor2="8">
-        <ccTool flags="1">
+        <ccTool flags="2">
         </ccTool>
       </item>
       <folder path="0/ext">
         <ccTool>
           <incDir>
+            <pElem>ext/dlib</pElem>
             <pElem>build/Debug/dlib_build</pElem>
           </incDir>
+          <preprocessorList>
+            <Elem>DLIB_JPEG_SUPPORT</Elem>
+            <Elem>DLIB_PNG_SUPPORT</Elem>
+            <Elem>NDEBUG</Elem>
+          </preprocessorList>
+        </ccTool>
+      </folder>
+      <folder path="0/src">
+        <ccTool>
+          <incDir>
+            <pElem>ext/dlib</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>DLIB_JPEG_SUPPORT</Elem>
+            <Elem>DLIB_PNG_SUPPORT</Elem>
+            <Elem>NDEBUG</Elem>
+          </preprocessorList>
         </ccTool>
       </folder>
       <item path="src/FaceDetector.cc" ex="false" tool="1" flavor2="8">
@@ -3659,6 +3686,121 @@ Contributor(s):
           </incDir>
         </ccTool>
       </item>
+      <item path="stringless-maya/build/Debug/moc_StringlessMayaDevice.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+        <ccTool flags="3">
+          <incDir>
+            <pElem>stringless-maya/src</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtCore</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtGui</pElem>
+            <pElem>/usr/autodesk/maya2016.5/include/maya</pElem>
+            <pElem>src</pElem>
+            <pElem>stringless-maya/build/Debug</pElem>
+            <pElem>stringless-maya</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include</pElem>
+            <pElem>/usr/autodesk/maya2016.5/include</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="stringless-maya/build/Debug/moc_StringlessWindow.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+        <ccTool flags="3">
+          <incDir>
+            <pElem>stringless-maya/src</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtCore</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtGui</pElem>
+            <pElem>/usr/autodesk/maya2016.5/include/maya</pElem>
+            <pElem>src</pElem>
+            <pElem>stringless-maya/build/Debug</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include</pElem>
+            <pElem>/usr/autodesk/maya2016.5/include</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="stringless-maya/build/Debug/moc_stringless.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+        <ccTool flags="3">
+          <incDir>
+            <pElem>stringless-maya/src</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtCore</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtGui</pElem>
+            <pElem>/usr/autodesk/maya2016.5/include/maya</pElem>
+            <pElem>stringless-maya/build/Debug</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include</pElem>
+            <pElem>/usr/autodesk/maya2016.5/include</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="stringless-maya/build/Debug/qrc_stringless.cpp"
+            ex="false"
+            tool="1"
+            flavor2="11">
+        <ccTool flags="3">
+          <incDir>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtCore</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include</pElem>
+            <pElem>stringless-maya/build/Debug</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="stringless-maya/src/StringlessMayaCmd.cc"
+            ex="false"
+            tool="1"
+            flavor2="11">
+        <ccTool flags="3">
+          <incDir>
+            <pElem>stringless-maya/src</pElem>
+            <pElem>/usr/autodesk/maya2016.5/include/maya</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtCore</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtGui</pElem>
+            <pElem>src</pElem>
+            <pElem>/usr/autodesk/maya2016.5/include</pElem>
+            <pElem>stringless-maya/build/Debug</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="stringless-maya/src/StringlessMayaDevice.cc"
+            ex="false"
+            tool="1"
+            flavor2="11">
+        <ccTool flags="3">
+          <incDir>
+            <pElem>/usr/include/QtDesigner</pElem>
+            <pElem>stringless-maya/src</pElem>
+            <pElem>/usr/autodesk/maya2016.5/include/maya</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtCore</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtGui</pElem>
+            <pElem>src</pElem>
+            <pElem>/usr/include/X11</pElem>
+            <pElem>/usr/autodesk/maya2016.5/include</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include</pElem>
+            <pElem>stringless-maya</pElem>
+            <pElem>stringless-maya/build/Debug</pElem>
+          </incDir>
+        </ccTool>
+      </item>
+      <item path="stringless-maya/src/StringlessMayaMain.cc"
+            ex="false"
+            tool="1"
+            flavor2="11">
+        <ccTool flags="3">
+          <incDir>
+            <pElem>stringless-maya/src</pElem>
+            <pElem>/usr/autodesk/maya2016.5/include/maya</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtCore</pElem>
+            <pElem>/usr/local/Trolltech/Qt-4.8.6/include/QtGui</pElem>
+            <pElem>src</pElem>
+            <pElem>/usr/autodesk/maya2016.5/include</pElem>
+            <pElem>stringless-maya/build/Debug</pElem>
+          </incDir>
+        </ccTool>
+      </item>
     </conf>
     <conf name="Reader" type="0">
       <toolsSet>
@@ -3693,6 +3835,8 @@ Contributor(s):
           <preBuildCommand>${CMAKE} -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_COMPILER=${IDE_CC} -DCMAKE_CXX_COMPILER=${IDE_CXX} -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ../..</preBuildCommand>
         </preBuild>
       </makefileType>
+      <item path="ext/api_macros.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="ext/dlib/dlib/base64/base64_kernel_1.cpp"
             ex="false"
             tool="1"

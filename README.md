@@ -44,6 +44,12 @@ To initiate the server process using the default camera (camera 0):
 
 Use the `-cn=<arg>` flag to specify a different camera.
 
+To start up the Maya plug-in:
+
+1. Load up the Stringless plug-in, copy the MEL script
+2. Enter `source StringlessMaya` into the MEL command line
+3. Enter `createStringlessCap "<name>"` into the MEL command line
+
 ### Optimizing performance
 
 Use the `-d`/`--dsr` flag to specify a downsample ratio. This scales down the captured image frames, speeding up face detection greatly.

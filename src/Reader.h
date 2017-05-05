@@ -23,11 +23,12 @@ namespace Stringless {
 
 class Reader {
 public:
+    Reader();
     Reader(FrameData *data_address);
     Reader(const Reader& orig);
     virtual ~Reader();
     
-    FrameData const * const read();
+    FrameData * read();
 private:
     FrameData *data_address;
     Mutex mutex;

@@ -25,6 +25,7 @@ struct PointPair {
 struct FrameData {
     PointPair points[68];
     int fps;
+    int frame_number;
 };
 
 } // namespace Stringless
