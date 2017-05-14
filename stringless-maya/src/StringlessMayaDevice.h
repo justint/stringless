@@ -37,9 +37,10 @@ class StringlessMayaDevice : public MPxThreadedDeviceNode {
         virtual void    threadHandler() override;
         virtual void    threadShutdownHandler() override;
         
+        void            calibrateNeutralFace();         
+        
         static void*    creator();
         static MStatus  initialize();
-        
         
         
         static MObject      inputRecord;
@@ -49,13 +50,23 @@ class StringlessMayaDevice : public MPxThreadedDeviceNode {
         static MSpinLock    spinLock;
         static MTypeId      id;
         
+        static MObject      anchorLocally; 
+        static MObject      amplifyAmount;
         
-    private:
+        static MObject      neutralFace;
+        
         static Stringless::MemoryManager    memoryManager;
         static Stringless::Reader           reader;
+        
+    private:
+        const static int                    DATA_POINTS = 68;
+        
         static Stringless::FrameData*       curFrameData;
         static bool                         bRecord;
         static bool                         bLive;
+        
+        static MDoubleArray                 frameDataToDoubleArray(Stringless::FrameData* fd);
+        static Stringless::FrameData        doubleArrayToFrameData(MDoubleArray array);
     
 };
 

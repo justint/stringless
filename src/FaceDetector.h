@@ -21,19 +21,19 @@ namespace Stringless {
 
 class FaceDetector {
 public:
-    FaceDetector(int camera_number, 
-                 int downsample_ratio, 
-                 int sample_rate, 
-                 char *face_landmarks_location);
+    FaceDetector(int    camera_number, 
+                 double downsample_ratio, 
+                 int    sample_rate, 
+                 char   *face_landmarks_location);
     FaceDetector(const FaceDetector& orig);
     virtual ~FaceDetector();
     
     int start(Writer &writer);
 private:
-    int     camera_number;
-    int     downsample_ratio;
-    int     sample_rate;
-    char    *face_landmarks_location;
+    int         camera_number;
+    double      downsample_ratio;
+    int         sample_rate;
+    char        *face_landmarks_location;
 
 };
 

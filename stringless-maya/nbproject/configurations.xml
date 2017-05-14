@@ -75,9 +75,6 @@ Contributor(s):
       <itemPath>CMakeLists.txt</itemPath>
       <itemPath>build/Debug/Makefile</itemPath>
     </logicalFolder>
-    <itemPath>stringless.pro</itemPath>
-    <itemPath>stringless.qrc</itemPath>
-    <itemPath>userconfig</itemPath>
   </logicalFolder>
   <sourceFolderFilter>^(nbproject|build)$</sourceFolderFilter>
   <sourceRootList>
@@ -286,12 +283,6 @@ Contributor(s):
       <item path="src/StringlessMayaDevice.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/StringlessMayaMain.cc" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="stringless.pro" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="stringless.qrc" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="userconfig" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

@@ -61,7 +61,7 @@ struct Arg: public option::Arg
   static option::ArgStatus Numeric(const option::Option& option, bool msg)
   {
     char* endptr = 0;
-    if (option.arg != 0 && strtol(option.arg, &endptr, 10)){};
+    if (option.arg != 0 && strtod(option.arg, &endptr) == 0){};
     if (endptr != option.arg && *endptr == 0)
       return option::ARG_OK;
 
@@ -124,7 +124,7 @@ int main(int argc, char** argv) {
     // Select default camera 0 for frame capturing
     int camera_number = 0;
     // Set downsample ratio default to 1
-    int downsample_ratio = 1;
+    double downsample_ratio = 1;
     // Set sample rate default to 1
     int sample_rate = 1;
 
@@ -185,7 +185,7 @@ int main(int argc, char** argv) {
                             "greater. Exiting..." << std::endl;
                     return 1;
                 }
-                downsample_ratio = std::stoi(opt.arg);
+                downsample_ratio = std::stod(opt.arg);
                 break;
             case SAMPLE_RATE:
                 if (std::stoi(opt.arg) <= 0) {

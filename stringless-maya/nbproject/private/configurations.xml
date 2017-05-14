@@ -43,14 +43,6 @@ Contributor(s):
     <df root="." name="0">
       <df name="build">
         <df name="Debug">
-          <in>FrameData.cc</in>
-          <in>FrameData.h</in>
-          <in>MemoryManager.cc</in>
-          <in>MemoryManager.h</in>
-          <in>Mutex.cc</in>
-          <in>Mutex.h</in>
-          <in>Reader.cc</in>
-          <in>Reader.h</in>
           <in>moc_StringlessMayaDevice.cpp</in>
           <in>moc_StringlessWindow.cpp</in>
           <in>moc_stringless.cpp</in>
@@ -68,9 +60,6 @@ Contributor(s):
       </df>
       <in>CMakeLists.txt</in>
     </df>
-    <itemPath>stringless.pro</itemPath>
-    <itemPath>stringless.qrc</itemPath>
-    <itemPath>userconfig</itemPath>
   </logicalFolder>
   <projectmakefile>build/Debug/Makefile</projectmakefile>
   <confs>

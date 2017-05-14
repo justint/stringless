@@ -68,23 +68,12 @@ MStatus StringlessMayaCmd::doIt(const MArgList& args) {
         MGlobal::displayError("Please create your device first.");
         return status;
     }
-    MFnDependencyNode fnDevice(deviceObj);
-    //MString ip = fnDevice.findPlug("inputIp", &status).asString();
     
     if(mStart) {
         /*
-         * 
-         *  do the thing
-         * 
          */
-        
-        
-        
     } else {
         /*
-         * 
-         * stop the thing
-         * 
          */
     }
     

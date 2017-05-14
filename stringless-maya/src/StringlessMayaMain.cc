@@ -33,7 +33,7 @@ MStatus initializePlugin( MObject obj )
         status.perror("registerCommand");
         return status;
     }
-
+    
     return status;
 }
 
@@ -52,6 +52,6 @@ MStatus uninitializePlugin( MObject obj)
     status = plugin.deregisterNode( StringlessMayaDevice::id );
     if( !status ) {
         status.perror("failed to deregisterNode StringlessMayaCmd");
-    }
+    }    
     return status;
 }

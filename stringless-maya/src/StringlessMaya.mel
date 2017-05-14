@@ -1,17 +1,424 @@
 global proc createStringlessCap(string $faceNodeName) {
-    string $deviceName = $faceNodeName+"_Device";
-    createStringlessRig($faceNodeName);
-    createStringlessDevice($deviceName);
-    createUnitConversions($faceNodeName);
-    connectNodes($faceNodeName, $deviceName);
-    StringlessMayaCmd -s true -dn $deviceName;
+    if (!catch(`createNode StringlessMayaDevice`)) {
+        string $deviceName = $faceNodeName+"_Device";
+        createStringlessRig($faceNodeName);
+        createStringlessDevice($deviceName);
+        createUnitConversions($faceNodeName);
+        connectNodes($faceNodeName, $deviceName);
+        StringlessMayaCmd -s true -dn $deviceName;
+    } else {
+        error("Error in initializing Stringless device. Is the Stringless plug-in loaded?");
+    }
 }
 
 global proc createStringlessRig(string $faceNodeName) {
     createNode transform -n ($faceNodeName + "_Face");
             setAttr ".s" -type "double3" 0.1 0.1 0.1 ;
-    createNode joint -n ($faceNodeName + "_LeftCheek") -p ($faceNodeName + "_Face");
-            setAttr ".t" -type "double3" 0 -7.8499999046325684 17.850000381469727 ;
+    // point 0
+    createNode joint -n ($faceNodeName + "_LeftCheekUpper") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 1
+    createNode joint -n ($faceNodeName + "_LeftCheekMidUpper") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 2
+    createNode joint -n ($faceNodeName + "_LeftCheekMid") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 3
+    createNode joint -n ($faceNodeName + "_LeftCheekMidLower") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 4
+    createNode joint -n ($faceNodeName + "_LeftCheekLower") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 5
+    createNode joint -n ($faceNodeName + "_ChinLeft3") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 6
+    createNode joint -n ($faceNodeName + "_ChinLeft2") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 7
+    createNode joint -n ($faceNodeName + "_ChinLeft1") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 8
+    createNode joint -n ($faceNodeName + "_ChinCenter") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 9
+    createNode joint -n ($faceNodeName + "_ChinRight1") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 10
+    createNode joint -n ($faceNodeName + "_ChinRight2") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 11
+    createNode joint -n ($faceNodeName + "_ChinRight3") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 12
+    createNode joint -n ($faceNodeName + "_RightCheekLower") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 13
+    createNode joint -n ($faceNodeName + "_RightCheekMidLower") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 14
+    createNode joint -n ($faceNodeName + "_RightCheekMid") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 15
+    createNode joint -n ($faceNodeName + "_RightCheekMidUpper") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 16
+    createNode joint -n ($faceNodeName + "_RightCheekUpper") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 17
+    createNode joint -n ($faceNodeName + "_LeftBrow1") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 18
+    createNode joint -n ($faceNodeName + "_LeftBrow2") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 19
+    createNode joint -n ($faceNodeName + "_LeftBrow3") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 20
+    createNode joint -n ($faceNodeName + "_LeftBrow4") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 21
+    createNode joint -n ($faceNodeName + "_LeftBrow5") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 22
+    createNode joint -n ($faceNodeName + "_RightBrow1") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 23
+    createNode joint -n ($faceNodeName + "_RightBrow2") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 24
+    createNode joint -n ($faceNodeName + "_RightBrow3") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 25
+    createNode joint -n ($faceNodeName + "_RightBrow4") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 26
+    createNode joint -n ($faceNodeName + "_RightBrow5") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 27
+    createNode joint -n ($faceNodeName + "_NoseBridge1") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 28
+    createNode joint -n ($faceNodeName + "_NoseBridge2") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 29
+    createNode joint -n ($faceNodeName + "_NoseBridge3") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 30
+    createNode joint -n ($faceNodeName + "_NoseBridge4") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 31
+    createNode joint -n ($faceNodeName + "_NoseAla1") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 32
+    createNode joint -n ($faceNodeName + "_NoseAla2") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 33
+    createNode joint -n ($faceNodeName + "_NoseAla3") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 34
+    createNode joint -n ($faceNodeName + "_NoseAla4") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 35
+    createNode joint -n ($faceNodeName + "_NoseAla5") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 36
+    createNode joint -n ($faceNodeName + "_LeftEyeLeftCorner") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 37
+    createNode joint -n ($faceNodeName + "_LeftEyeTop1") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 38
+    createNode joint -n ($faceNodeName + "_LeftEyeTop2") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 39
+    createNode joint -n ($faceNodeName + "_LeftEyeRightCorner") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 40
+    createNode joint -n ($faceNodeName + "_LeftEyeBottom2") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 41
+    createNode joint -n ($faceNodeName + "_LeftEyeBottom1") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 42
+    createNode joint -n ($faceNodeName + "_RightEyeLeftCorner") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 43
+    createNode joint -n ($faceNodeName + "_RightEyeTop1") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 44
+    createNode joint -n ($faceNodeName + "_RightEyeTop2") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 45
+    createNode joint -n ($faceNodeName + "_RightEyeRightCorner") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 46
+    createNode joint -n ($faceNodeName + "_RightEyeBottom2") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 47
+    createNode joint -n ($faceNodeName + "_RightEyeBottom1") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 48
+    createNode joint -n ($faceNodeName + "_LipLeftCornerOuter") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 49
+    createNode joint -n ($faceNodeName + "_LipUpperOuter1") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 50
+    createNode joint -n ($faceNodeName + "_LipUpperOuter2") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 51
+    createNode joint -n ($faceNodeName + "_LipUpperOuter3") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 52
+    createNode joint -n ($faceNodeName + "_LipUpperOuter4") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 53
+    createNode joint -n ($faceNodeName + "_LipUpperOuter") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 54
+    createNode joint -n ($faceNodeName + "_LipRightCornerOuter") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 55
+    createNode joint -n ($faceNodeName + "_LipLowerOuter5") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 56
+    createNode joint -n ($faceNodeName + "_LipLowerOuter4") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 57
+    createNode joint -n ($faceNodeName + "_LipLowerOuter3") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 58
+    createNode joint -n ($faceNodeName + "_LipLowerOuter2") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 59
+    createNode joint -n ($faceNodeName + "_LipLowerOuter1") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 60
+    createNode joint -n ($faceNodeName + "_LipLeftCornerInner") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 61
+    createNode joint -n ($faceNodeName + "_LipUpperInner1") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 62
+    createNode joint -n ($faceNodeName + "_LipUpperInner2") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 63
+    createNode joint -n ($faceNodeName + "_LipUpperInner3") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 64
+    createNode joint -n ($faceNodeName + "_LipRightCornerInner") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 65
+    createNode joint -n ($faceNodeName + "_LipLowerInner3") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 66
+    createNode joint -n ($faceNodeName + "_LipLowerInner2") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
+            addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
+            setAttr ".ro" 2;
+            setAttr ".typ" 1;
+    // point 67
+    createNode joint -n ($faceNodeName + "_LipLowerInner1") -p ($faceNodeName + "_Face");
+            setAttr ".t" -type "double3" 0 0 0 ;
             addAttr -s false -ci true -sn "ch" -ln "Face" -at "message";
             setAttr ".ro" 2;
             setAttr ".typ" 1;
@@ -19,9 +426,56 @@ global proc createStringlessRig(string $faceNodeName) {
 
 global proc createStringlessDevice(string $stringlessDeviceName) {
     createNode StringlessMayaDevice -n ($stringlessDeviceName);
-    setAttr ".fr" 1000;
-    setAttr ".ots[0]" -type "double3" -9.625 -1.2300000190734863 0 ;
-    setAttr ".ots[1]" -type "double3" -9.625 -1.2300000190734863 0 ;
+        setAttr ".fr" 30;
+        setAttr -lock on ".live";
+        int $i;
+        for ($i = 0; $i < 68; ++$i){
+            string $ots = ".ots[" + $i + "]";
+            setAttr $ots -type "double3" 0 0 0;
+        }
+        /*
+        string $window = `window -title "Stringless"`;
+        columnLayout;
+        button -label "Calibrate neutral face" -command ("calibrateNeutralFace "+$stringlessDeviceName);
+        showWindow $window;
+        
+        setAttr ".ots[0]" -type "double3" 0 0 0 ;
+        setAttr ".ots[1]" -type "double3" 0 0 0 ;
+        setAttr ".ots[2]" -type "double3" 0 0 0 ;
+        setAttr ".ots[3]" -type "double3" 0 0 0 ;
+        setAttr ".ots[4]" -type "double3" 0 0 0 ;
+        setAttr ".ots[5]" -type "double3" 0 0 0 ;
+        setAttr ".ots[6]" -type "double3" 0 0 0 ;
+        setAttr ".ots[7]" -type "double3" 0 0 0 ;
+        setAttr ".ots[8]" -type "double3" 0 0 0 ;
+        setAttr ".ots[9]" -type "double3" 0 0 0 ;
+        setAttr ".ots[10]" -type "double3" 0 0 0 ;
+        setAttr ".ots[11]" -type "double3" 0 0 0 ;
+        setAttr ".ots[12]" -type "double3" 0 0 0 ;
+        setAttr ".ots[13]" -type "double3" 0 0 0 ;
+        setAttr ".ots[14]" -type "double3" 0 0 0 ;
+        setAttr ".ots[15]" -type "double3" 0 0 0 ;
+        setAttr ".ots[16]" -type "double3" 0 0 0 ;
+        setAttr ".ots[17]" -type "double3" 0 0 0 ;
+        setAttr ".ots[18]" -type "double3" 0 0 0 ;
+        setAttr ".ots[19]" -type "double3" 0 0 0 ;
+        setAttr ".ots[20]" -type "double3" 0 0 0 ;
+        setAttr ".ots[21]" -type "double3" 0 0 0 ;
+        setAttr ".ots[22]" -type "double3" 0 0 0 ;
+        setAttr ".ots[23]" -type "double3" 0 0 0 ;
+        setAttr ".ots[24]" -type "double3" 0 0 0 ;
+        setAttr ".ots[25]" -type "double3" 0 0 0 ;
+        setAttr ".ots[26]" -type "double3" 0 0 0 ;
+        setAttr ".ots[27]" -type "double3" 0 0 0 ;
+        setAttr ".ots[28]" -type "double3" 0 0 0 ;
+        setAttr ".ots[29]" -type "double3" 0 0 0 ;
+        setAttr ".ots[30]" -type "double3" 0 0 0 ;
+        setAttr ".ots[31]" -type "double3" 0 0 0 ;
+        setAttr ".ots[32]" -type "double3" 0 0 0 ;
+        setAttr ".ots[33]" -type "double3" 0 0 0 ;
+        setAttr ".ots[34]" -type "double3" 0 0 0 ;
+        setAttr ".ots[35]" -type "double3" 0 0 0 ;
+        */
 }
 
 global proc createUnitConversions(string $faceNodeName) {
@@ -34,12 +488,56 @@ global proc createUnitConversions(string $faceNodeName) {
 
 global proc connectNodes(string $faceNodeName, string $stringlessDeviceName) {
     int $i;
-    string $StringlessFaceNames[] = {"Face", "LeftCheek"};
+    string $StringlessFaceNames[] = {
+    "Face",
+    "LeftCheekUpper","LeftCheekMidUpper","LeftCheekMid","LeftCheekMidLower","LeftCheekLower",
+    "ChinLeft3","ChinLeft2","ChinLeft1","ChinCenter","ChinRight1","ChinRight2","ChinRight3",
+    "RightCheekLower","RightCheekMidLower","RightCheekMid","RightCheekMidUpper","RightCheekUpper",
+    "LeftBrow1","LeftBrow2","LeftBrow3","LeftBrow4","LeftBrow5",
+    "RightBrow1","RightBrow2","RightBrow3","RightBrow4","RightBrow5",
+    "NoseBridge1","NoseBridge2","NoseBridge3","NoseBridge4",
+    "NoseAla1","NoseAla2","NoseAla3","NoseAla4","NoseAla5",
+    "LeftEyeLeftCorner","LeftEyeTop1","LeftEyeTop2","LeftEyeRightCorner","LeftEyeBottom2","LeftEyeBottom1",
+    "RightEyeLeftCorner","RightEyeTop1","RightEyeTop2","RightEyeRightCorner","RightEyeBottom2","RightEyeBottom1",
+    "LipLeftCornerOuter","LipUpperOuter1","LipUpperOuter2","LipUpperOuter3","LipUpperOuter4","LipUpperOuter","LipRightCornerOuter","LipLowerOuter5","LipLowerOuter4","LipLowerOuter3","LipLowerOuter2","LipLowerOuter1","LipLeftCornerInner","LipUpperInner1","LipUpperInner2","LipUpperInner3","LipRightCornerInner","LipLowerInner3","LipLowerInner2","LipLowerInner1"
+    };
 
-    for ($i = 0; $i < 1; ++$i)
+    for ($i = 0; $i < 68; ++$i)
     {
         connectAttr ($stringlessDeviceName + ".ots[" + $i + "]") ($faceNodeName + "_" + $StringlessFaceNames[$i] + ".t");
         connectAttr ($stringlessDeviceName + ".ors[" + $i + "]") ($faceNodeName + "_unitConversion" + $i + ".i");
         connectAttr ($faceNodeName + "_unitConversion" + $i + ".o") ($faceNodeName + "_" + $StringlessFaceNames[$i] + ".r");
     }
+}
+
+global proc calibrateNeutralFace(string $deviceName) {
+
+    setAttr ($deviceName + ".al") off;
+    while(`getAttr ($deviceName + ".al")` == on) { }
+
+    catchQuiet( `setAttr ($deviceName + ".live") off` );
+    while(`getAttr ($deviceName + ".live")` == on) { }
+
+    int $amplify = `getAttr ($deviceName + ".aa")`;
+
+    int $i;
+    for ($i = 0; $i < 68; ++$i)
+    {
+        float $point[] = `getAttr ($deviceName + ".ots[" + $i + "]")`;
+        setAttr ($deviceName + ".nf[" + $i + "]") ($point[0]/$amplify) ($point[1]/$amplify) ($point[2]/$amplify);
+        //setAttr ($deviceName + ".nf[" + $i + "]") -type "double3" `getAttr ($deviceName + ".ots[" + $i + "]")`;
+    }
+
+    /*
+    string $currentFaceString = $deviceName + ".ots";
+    float $currentFace[] = `getAttr $currentFaceString`;
+    int $i;
+    for ($i = 0; $i < 68*2; ++$i)
+    {
+        setAttr ($deviceName + ".nf[" + $i + "]") $currentFace[$i];
+    }
+    */
+
+    setAttr -lock off ($deviceName + ".live");
+    setAttr ($deviceName + ".al") on;
 }
