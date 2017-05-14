@@ -34,16 +34,19 @@ namespace Stringless {
 FaceDetector::FaceDetector(int camera_number, 
                  double downsample_ratio, 
                  int sample_rate, 
+                 int landmark_sample_per_frame,
                  char *face_landmarks_location)
                         : camera_number(camera_number),
                           downsample_ratio(downsample_ratio),
                           sample_rate(sample_rate),
+                          landmark_sample_per_frame(landmark_sample_per_frame),
                           face_landmarks_location(face_landmarks_location) { }
 
 FaceDetector::FaceDetector(const FaceDetector& orig) {
     camera_number = orig.camera_number;
     downsample_ratio = orig.downsample_ratio;
     sample_rate = orig.sample_rate;
+    landmark_sample_per_frame = orig.landmark_sample_per_frame;
     face_landmarks_location = orig.face_landmarks_location;
 }
 
@@ -80,9 +83,10 @@ int FaceDetector::start(Writer &writer) {
     camera.set(CV_CAP_PROP_FRAME_HEIGHT, 
                camera.get(CV_CAP_PROP_FRAME_HEIGHT) * (1.0 / downsample_ratio));
     
-    std::cout << "Camera output width: " 
-            << camera.get(CV_CAP_PROP_FRAME_WIDTH) 
-            << " Camera output height: " << camera.get(CV_CAP_PROP_FRAME_HEIGHT) 
+    //std::cout << "Downsample ratio: " << downsample_ratio << std::endl;
+    
+    std::cout << "Camera output: " << camera.get(CV_CAP_PROP_FRAME_WIDTH) 
+            << "x" << camera.get(CV_CAP_PROP_FRAME_HEIGHT) 
             << std::endl;
     
     std::cout << "Camera max fps: " << camera.get(CV_CAP_PROP_FPS) << std::endl;
@@ -95,6 +99,7 @@ int FaceDetector::start(Writer &writer) {
     dlib::deserialize(face_landmarks_location) >> sp;
     std::vector<dlib::rectangle> faces;
     dlib::full_object_detection shape;
+    std::vector<dlib::full_object_detection> shapes;
     dlib::rectangle main_face;
     int face_not_found = 0;
 
@@ -141,19 +146,15 @@ int FaceDetector::start(Writer &writer) {
         // Take image from camera
         cv::Mat frame;
         camera >> frame;
-
-        /*
-        cv::Mat resized_frame;
         
-        cv::resize(frame, 
-                   resized_frame, 
-                   cv::Size(), 
-                   1.0/downsample_ratio, 
-                   1.0/downsample_ratio);
+        /*
+        cv::Mat denoise_frame;
+        cv::fastNlMeansDenoisingColored(frame, denoise_frame, 10, 10, 7, 5);
+        dlib::gaussian_blur(c, cimg, 2);
         */
         
-        dlib::cv_image<dlib::bgr_pixel> cimg(frame);
-
+        dlib::cv_image<dlib::bgr_pixel> cimg(frame);        
+        
         // Detect the faces
 	if (frame_count % sample_rate == 0) {
 		faces = detector(cimg);
@@ -172,14 +173,42 @@ int FaceDetector::start(Writer &writer) {
         }
 
         if (face_not_found < 5) {
-            // Find the pose of face
-            shape = sp(cimg, main_face);
+            
+            if (landmark_sample_per_frame > 1) {
+                std::vector<dlib::point> avg;
+                shapes.clear();
+                for (int i = 0; i < landmark_sample_per_frame; ++i) {
+                    shapes.push_back(sp(cimg, main_face));
+                }
+            
+                for (int i = 0; i < points; ++i) {
+                    long avg_x = 0, avg_y = 0;
+                    for (dlib::full_object_detection s : shapes) {
+                        avg_x += s.part(i).x();
+                        avg_y += s.part(i).y();
+                    }
+                    
+                    avg_x /= shapes.size();
+                    avg_y /= shapes.size();
+                    avg.push_back( dlib::point(avg_x, avg_y) );
+                }
+                
+                shape = dlib::full_object_detection(main_face, avg);
+                
+            } else {
+                // Find the pose of face
+                shape = sp(cimg, main_face);
+            }
+            
             // Push data points into frame data
             for(int i = 0; i < points; ++i) {
                 frame_data.points[i].x = (double)shape.part(i).x() / (double)cimg.nr();
                 frame_data.points[i].y = (double)shape.part(i).y() / (double)cimg.nc();
             }
-        } else shape = dlib::full_object_detection();
+            
+        } else {
+            shape = dlib::full_object_detection();
+        }
         frame_data.fps = frames_per_second;
         frame_data.frame_number = frame_count;
         

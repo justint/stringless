@@ -76,38 +76,47 @@ enum optionIndex { UNKNOWN,
                    CAMERA_NUM, 
                    FACE_LANDMARKS_PATH,
                    DOWNSAMPLE_RATIO,
-                   SAMPLE_RATE };
+                   SAMPLE_RATE,
+                   LANDMARK_SAMPLE_PER_FRAME };
 
 const option::Descriptor usage[] = {
     {UNKNOWN, 0, "", "", Arg::Unknown, 
             "Usage: stringless [options]\n\n"
-            "Where options include:" },
+            "Where options include:"},
     {HELP, 0, "h", "help", Arg::None, 
             "--help, -h   \t"
-            "Print usage and exit." },
+            "Print usage and exit."},
     {CLEAR, 0, "c", "clear", Arg::None, 
             "--clear, -c   \t"
             "Clears stringless memory allocation"},
     {CAMERA_NUM, 0, "", "cn", Arg::Numeric, 
             "--cn=<arg>  \t"
-            "Specify camera number to use for capture (0 default)."},
+            "Specify a positive integer camera number to use for capture (0 "
+            "default)."},
     {FACE_LANDMARKS_PATH, 0, "f", "flp", Arg::Flp, 
             "--flp=<arg>, -f <arg> \t"
             "Path to dlib face landmarks. (required)"},
     {DOWNSAMPLE_RATIO, 0, "d", "dsr", Arg::Numeric,
             "--dsr=<arg>, -d <arg> \t"
-            "Specify a downsample ratio (1/<arg>) for captured frames; default"
-            " is 1 (no downsampling), higher numbers = higher downsampling."},
+            "Specify a positive floating point downsample ratio (1/<arg>) >= 1 for "
+            "captured frames; default is 1 (no downsampling), higher numbers = "
+            "higher downsampling."},
     {SAMPLE_RATE, 0, "s", "sr", Arg::Numeric,
             "--sr=<arg>, -s <arg>  \t"
-            "Specify a sampling rate for face detection on captured frames; "
-            "default is 1 (every frame is sampled), higher numbers means more "
-            "frames skipped between each sampling." },
+            "Specify a positive integer sampling rate >= 1 for face detection on "
+            "captured frames; default is 1 (every frame is sampled), higher "
+            "numbers means more frames skipped between each sampling."},
+    {LANDMARK_SAMPLE_PER_FRAME, 0, "", "lspf", Arg::Numeric,
+            "--lspf=<arg>  \t"
+            "Specify a positive integer >=1 for how many times stringless "
+            "should sample for landmarks and create an average from per frame; "
+            "intended for smoother output (1 default)."},
     {UNKNOWN, 0, "", "", Arg::None, 
             "\nExamples:\n"
             "  stringless -f path/to/flp \n"
             "  stringless -f path/to/flp -d 2 -s 3 \n"    
             "  stringless --flp=path/to/flp --cn=1 \n"
+            "  stringless --flp=path/to/flp --lspf=2 \n"
             "  stringless --clear \n"
             "  stringless -c \n"
             },
@@ -127,6 +136,8 @@ int main(int argc, char** argv) {
     double downsample_ratio = 1;
     // Set sample rate default to 1
     int sample_rate = 1;
+    // Set landmark sample per frame default to 1
+    int landmark_sample_per_frame = 1;
 
     
     argc-=(argc>0); argv+=(argc>0); // skip program name argv[0] if present
@@ -195,6 +206,13 @@ int main(int argc, char** argv) {
                 }
                 sample_rate = std::stoi(opt.arg);
                 break;
+            case LANDMARK_SAMPLE_PER_FRAME:
+                if (std::stoi(opt.arg) <= 0) {
+                    std::cout << "Invalid sample per frame; input must be 1 or "
+                            "greater. Exiting..." << std::endl;
+                    return 1;
+                }
+                landmark_sample_per_frame = std::stoi(opt.arg);
             case UNKNOWN:
                 // Not possible, but I'll acknowledge the option anyways
                 break;
@@ -219,6 +237,7 @@ int main(int argc, char** argv) {
     Stringless::FaceDetector face_detector(camera_number, 
                                            downsample_ratio,
                                            sample_rate,
+                                           landmark_sample_per_frame,
                                            face_landmarks_path);
 
     face_detector.start(writer);

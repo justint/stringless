@@ -24,6 +24,7 @@ public:
     FaceDetector(int    camera_number, 
                  double downsample_ratio, 
                  int    sample_rate, 
+                 int landmark_sample_per_frame,
                  char   *face_landmarks_location);
     FaceDetector(const FaceDetector& orig);
     virtual ~FaceDetector();
@@ -33,6 +34,7 @@ private:
     int         camera_number;
     double      downsample_ratio;
     int         sample_rate;
+    int         landmark_sample_per_frame;
     char        *face_landmarks_location;
 
 };
