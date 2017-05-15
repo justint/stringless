@@ -24,9 +24,9 @@
 #include <maya/MPxCommand.h>
 #include <maya/MPxThreadedDeviceNode.h>
 
-#include <stringless/FrameData.h>
-#include <stringless/MemoryManager.h>
-#include <stringless/Reader.h>
+#include "../src/FrameData.h"
+#include "../src/MemoryManager.h"
+#include "../src/Reader.h"
 
 class StringlessMayaDevice : public MPxThreadedDeviceNode {
     public:

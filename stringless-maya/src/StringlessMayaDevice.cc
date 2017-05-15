@@ -29,10 +29,6 @@
 #include "StringlessMayaCmd.h"
 #include "FrameData.h"
 
-namespace Stringless {
-MemoryManager::MemoryManager() {};
-}
-
 Stringless::FrameData*       StringlessMayaDevice::curFrameData;
 Stringless::MemoryManager    StringlessMayaDevice::memoryManager;
 Stringless::Reader           StringlessMayaDevice::reader;

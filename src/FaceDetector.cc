@@ -31,23 +31,32 @@
 
 namespace Stringless {
 
-FaceDetector::FaceDetector(int camera_number, 
+FaceDetector::FaceDetector(int camera_number,
+                 int width,
+                 int height,
+                 int fps,
                  double downsample_ratio, 
                  int sample_rate, 
                  int landmark_sample_per_frame,
                  char *face_landmarks_location)
                         : camera_number(camera_number),
+                          width(width),
+                          height(height),
+                          fps(fps),
                           downsample_ratio(downsample_ratio),
                           sample_rate(sample_rate),
                           landmark_sample_per_frame(landmark_sample_per_frame),
                           face_landmarks_location(face_landmarks_location) { }
 
 FaceDetector::FaceDetector(const FaceDetector& orig) {
-    camera_number = orig.camera_number;
-    downsample_ratio = orig.downsample_ratio;
-    sample_rate = orig.sample_rate;
-    landmark_sample_per_frame = orig.landmark_sample_per_frame;
-    face_landmarks_location = orig.face_landmarks_location;
+    camera_number               = orig.camera_number;
+    width                       = orig.width;
+    height                      = orig.width;
+    fps                         = orig.fps;
+    downsample_ratio            = orig.downsample_ratio;
+    sample_rate                 = orig.sample_rate;
+    landmark_sample_per_frame   = orig.landmark_sample_per_frame;
+    face_landmarks_location     = orig.face_landmarks_location;
 }
 
 FaceDetector::~FaceDetector() { }
@@ -78,13 +87,28 @@ int FaceDetector::start(Writer &writer) {
         return -1;
     }
     
-    camera.set(CV_CAP_PROP_FRAME_WIDTH, 
-               camera.get(CV_CAP_PROP_FRAME_WIDTH) * (1.0 / downsample_ratio));
-    camera.set(CV_CAP_PROP_FRAME_HEIGHT, 
-               camera.get(CV_CAP_PROP_FRAME_HEIGHT) * (1.0 / downsample_ratio));
+    if (fps) {
+        camera.set(CV_CAP_PROP_FPS, fps);
+    }
     
-    //std::cout << "Downsample ratio: " << downsample_ratio << std::endl;
+    if (width) {
+        camera.set(CV_CAP_PROP_FRAME_WIDTH, 
+                   width * (1.0 / downsample_ratio));
+    } else {
+        camera.set(CV_CAP_PROP_FRAME_WIDTH, 
+                   camera.get(CV_CAP_PROP_FRAME_WIDTH) * 
+                             (1.0 / downsample_ratio));
+    }
     
+    if (height) {
+        camera.set(CV_CAP_PROP_FRAME_HEIGHT, 
+                   height * (1.0 / downsample_ratio));
+    } else {
+        camera.set(CV_CAP_PROP_FRAME_HEIGHT, 
+                   camera.get(CV_CAP_PROP_FRAME_HEIGHT) * 
+                             (1.0 / downsample_ratio));
+    }
+        
     std::cout << "Camera output: " << camera.get(CV_CAP_PROP_FRAME_WIDTH) 
             << "x" << camera.get(CV_CAP_PROP_FRAME_HEIGHT) 
             << std::endl;
@@ -106,19 +130,19 @@ int FaceDetector::start(Writer &writer) {
     
     /* dlib graphical window context */
     dlib::image_window win;
-    /*
-    win.set_size(600, 400);
-    dlib::button test(win);
-    dlib::menu_bar test2(win);
     
+    win.set_size(600, 400);
+    win.set_background_color(0, 0, 0);
+    //dlib::button test(win);
+    dlib::menu_bar test2(win);
+    /*
     test2.set_number_of_menus(1);
     test2.set_menu_name(0,"Menu",'M');
-    test2.menu(0).add_menu_item(dlib::menu_item_text("Hello!", &test_funct, 0));
-    
-    test.set_pos(10,300);
-    test.set_name("button");
-    win.set_title("Stringless");
     */
+    //test.set_pos(10,300);
+    //test.set_name("button");
+    win.set_title("Stringless");
+    
     
     /* FrameData variable, to be passed into the writer */
     FrameData frame_data;
@@ -233,7 +257,7 @@ int FaceDetector::start(Writer &writer) {
         ++frame_count;
         
         win.clear_overlay();
-        win.set_image(cimg);
+        //win.set_image(cimg);
         win.add_overlay(render_faces(shape));
         
         // Pass frame data to writer

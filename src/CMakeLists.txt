@@ -1,9 +1,19 @@
 # Stringless classes
+add_library (MemoryManagerObj OBJECT MemoryManager.cc)
 add_library (MemoryManager SHARED MemoryManager.cc)
+
+add_library (FaceDetectorObj OBJECT FaceDetector.cc)
 add_library (FaceDetector STATIC FaceDetector.cc)
+
 add_library (Writer STATIC Writer.cc)
+
+add_library (FrameDataObj OBJECT FrameData.cc)
 add_library (FrameData SHARED FrameData.cc)
+
+add_library (MutexObj OBJECT Mutex.cc)
 add_library (Mutex SHARED Mutex.cc)
+
+add_library (ReaderObj OBJECT Reader.cc)
 add_library (Reader SHARED Reader.cc)
 
 add_executable (Stringless Stringless.cc)

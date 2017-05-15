@@ -74,6 +74,9 @@ enum optionIndex { UNKNOWN,
                    HELP, 
                    CLEAR, 
                    CAMERA_NUM, 
+                   WIDTH,
+                   HEIGHT,
+                   FPS,
                    FACE_LANDMARKS_PATH,
                    DOWNSAMPLE_RATIO,
                    SAMPLE_RATE,
@@ -93,7 +96,19 @@ const option::Descriptor usage[] = {
             "--cn=<arg>  \t"
             "Specify a positive integer camera number to use for capture (0 "
             "default)."},
-    {FACE_LANDMARKS_PATH, 0, "f", "flp", Arg::Flp, 
+    {WIDTH, 0, "w", "width", Arg::Numeric,
+            "--width=<arg>, -w <arg>\t"
+            "Specify input video frame width. Defaults to webcam's given frame "
+            "width."},
+    {HEIGHT, 0, "h", "height", Arg::Numeric,
+            "--height=<arg>, -h <arg>\t"
+            "Specify input video frame height. Defaults to webcam's given frame"
+            " width."},
+    {FPS, 0, "f", "fps", Arg::Numeric,
+            "--fps=<arg>, -f <arg> \t"
+            "Specify input video max frames per second. Defaults to webcam's "
+            "given frames per second."},
+    {FACE_LANDMARKS_PATH, 0, "p", "flp", Arg::Flp, 
             "--flp=<arg>, -f <arg> \t"
             "Path to dlib face landmarks. (required)"},
     {DOWNSAMPLE_RATIO, 0, "d", "dsr", Arg::Numeric,
@@ -138,6 +153,9 @@ int main(int argc, char** argv) {
     int sample_rate = 1;
     // Set landmark sample per frame default to 1
     int landmark_sample_per_frame = 1;
+    
+    // Defaults are defined within FaceDetector, but set temporarily to 0
+    int width = 0, height = 0, fps = 0; 
 
     
     argc-=(argc>0); argv+=(argc>0); // skip program name argv[0] if present
@@ -180,11 +198,37 @@ int main(int argc, char** argv) {
                 return 0;
             case CAMERA_NUM:
                 if (std::stoi(opt.arg) < 0) {
-                    std::cout << "Invalid camera number, exiting..." 
+                    std::cout << "Invalid camera number argument, exiting..." 
                             << std::endl;
                     return 1;
                 }
                 camera_number = std::stoi(opt.arg);
+                break;
+            case WIDTH:
+                if (std::stoi(opt.arg) < 0) {
+                    std::cout << "Invalid width argument, exiting..." 
+                            << std::endl;
+                    return 1;
+                }
+                width = std::stoi(opt.arg);
+                break;
+            case HEIGHT:
+                if (std::stoi(opt.arg) < 0) {
+                    std::cout << "Invalid height argument, exiting..." 
+                            << std::endl;
+                    return 1;
+                }
+                height = std::stoi(opt.arg);
+                break;
+                break;
+            case FPS:
+                if (std::stoi(opt.arg) < 0) {
+                    std::cout << "Invalid frames per second argument, exiting..." 
+                            << std::endl;
+                    return 1;
+                }
+                fps = std::stoi(opt.arg);
+                break;
                 break;
             case FACE_LANDMARKS_PATH:
                 face_landmarks_option = true;
@@ -192,24 +236,24 @@ int main(int argc, char** argv) {
                 break;
             case DOWNSAMPLE_RATIO:
                 if (std::stoi(opt.arg) <= 0) {
-                    std::cout << "Invalid downsample ratio; input must be 1 or "
-                            "greater. Exiting..." << std::endl;
+                    std::cout << "Invalid downsample ratio argument; input must "
+                            "be 1 or greater. Exiting..." << std::endl;
                     return 1;
                 }
                 downsample_ratio = std::stod(opt.arg);
                 break;
             case SAMPLE_RATE:
                 if (std::stoi(opt.arg) <= 0) {
-                    std::cout << "Invalid sample rate; input must be 1 or "
-                            "greater. Exiting..." << std::endl;
+                    std::cout << "Invalid sample rate argument; input must be 1"
+                            " or greater. Exiting..." << std::endl;
                     return 1;
                 }
                 sample_rate = std::stoi(opt.arg);
                 break;
             case LANDMARK_SAMPLE_PER_FRAME:
                 if (std::stoi(opt.arg) <= 0) {
-                    std::cout << "Invalid sample per frame; input must be 1 or "
-                            "greater. Exiting..." << std::endl;
+                    std::cout << "Invalid sample per frame argument; input must"
+                            " be 1 or greater. Exiting..." << std::endl;
                     return 1;
                 }
                 landmark_sample_per_frame = std::stoi(opt.arg);
@@ -234,7 +278,10 @@ int main(int argc, char** argv) {
     }
     
     Stringless::Writer writer(memory_manager.address());
-    Stringless::FaceDetector face_detector(camera_number, 
+    Stringless::FaceDetector face_detector(camera_number,
+                                           width,
+                                           height,
+                                           fps,
                                            downsample_ratio,
                                            sample_rate,
                                            landmark_sample_per_frame,
