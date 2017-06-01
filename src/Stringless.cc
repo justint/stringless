@@ -109,7 +109,7 @@ const option::Descriptor usage[] = {
             "Specify input video max frames per second. Defaults to webcam's "
             "given frames per second."},
     {FACE_LANDMARKS_PATH, 0, "p", "flp", Arg::Flp, 
-            "--flp=<arg>, -f <arg> \t"
+            "--flp=<arg>, -p <arg> \t"
             "Path to dlib face landmarks. (required)"},
     {DOWNSAMPLE_RATIO, 0, "d", "dsr", Arg::Numeric,
             "--dsr=<arg>, -d <arg> \t"

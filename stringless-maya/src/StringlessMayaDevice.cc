@@ -267,6 +267,20 @@ MStatus StringlessMayaDevice::compute(const MPlug& plug, MDataBlock& block) {
  
             MArrayDataBuilder rotationsBuilder = rotationsHandle.builder( &status );
             MCHECKERROR(status, "Error in rotationsBuilder = rotationsHandle.builder.\n");
+            
+            double3 normalizeAmount;
+            
+            if (anchorLocallyBool) {
+                // Normalize neutral face location with eye corners
+                double3& neutral36 = neutralBuilder.addElement(36, &status).asDouble3();
+                double3& neutral39 = neutralBuilder.addElement(39, &status).asDouble3();
+                double3& neutral42 = neutralBuilder.addElement(42, &status).asDouble3();
+                double3& neutral45 = neutralBuilder.addElement(45, &status).asDouble3();
+                
+                normalizeAmount[0] = ((curData->points[36].x - neutral36[0]) + (curData->points[39].x - neutral39[0]) + (curData->points[42].x - neutral42[0]) + (curData->points[45].x - neutral45[0])) / 4.0;
+                normalizeAmount[1] = ((curData->points[36].y - neutral36[1]) + (curData->points[39].y - neutral39[1]) + (curData->points[42].y - neutral42[1]) + (curData->points[45].y - neutral45[1])) / 4.0;
+                normalizeAmount[2] = 0;
+            }
  
             for(unsigned int i = 0; i< StringlessMayaDevice::DATA_POINTS; ++i )
             {
@@ -276,20 +290,10 @@ MStatus StringlessMayaDevice::compute(const MPlug& plug, MDataBlock& block) {
                 double3& translate = translationsBuilder.addElement(i, &status).asDouble3();
                 MCHECKERROR(status, "ERROR in translate = translationsBuilder.addElement.\n");
                 if (anchorLocallyBool) {
-                    /*
-                    double avgX = (curData->points[0].x + curData->points[1].x
-                        + curData->points[2].x + curData->points[14].x 
-                        + curData->points[15].x + curData->points[16].x
-                        + curData->points[27].x + curData->points[28].x
-                        + curData->points[29].x + curData->points[30].x) / 10;
-                    double avgY = (curData->points[0].y + curData->points[1].y
-                        + curData->points[2].y + curData->points[14].y 
-                        + curData->points[15].y + curData->points[16].y
-                        + curData->points[27].y + curData->points[28].y
-                        + curData->points[29].y + curData->points[30].y) / 10;  
-                    */
-                    translate[0] = amplifyLevelFloat*(neutral[0] - curData->points[i].x);
-                    translate[1] = amplifyLevelFloat*(neutral[1] - curData->points[i].y);
+                    double neutralX = neutral[0] + normalizeAmount[0];
+                    double neutralY = neutral[1] + normalizeAmount[1];
+                    translate[0] = amplifyLevelFloat*(neutralX - curData->points[i].x);
+                    translate[1] = amplifyLevelFloat*(neutralY - curData->points[i].y);
                 } else {
                     translate[0] = amplifyLevelFloat*curData->points[i].x;
                     translate[1] = amplifyLevelFloat*(curData->points[i].y);

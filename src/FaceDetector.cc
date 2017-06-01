@@ -87,27 +87,14 @@ int FaceDetector::start(Writer &writer) {
         return -1;
     }
     
-    if (fps) {
-        camera.set(CV_CAP_PROP_FPS, fps);
-    }
+    if (!fps) fps = camera.get(CV_CAP_PROP_FPS); 
+    camera.set(CV_CAP_PROP_FPS, fps);    
     
-    if (width) {
-        camera.set(CV_CAP_PROP_FRAME_WIDTH, 
-                   width * (1.0 / downsample_ratio));
-    } else {
-        camera.set(CV_CAP_PROP_FRAME_WIDTH, 
-                   camera.get(CV_CAP_PROP_FRAME_WIDTH) * 
-                             (1.0 / downsample_ratio));
-    }
+    if (!width) width = camera.get(CV_CAP_PROP_FRAME_WIDTH);
+    camera.set(CV_CAP_PROP_FRAME_WIDTH, width * (1.0 / downsample_ratio));
     
-    if (height) {
-        camera.set(CV_CAP_PROP_FRAME_HEIGHT, 
-                   height * (1.0 / downsample_ratio));
-    } else {
-        camera.set(CV_CAP_PROP_FRAME_HEIGHT, 
-                   camera.get(CV_CAP_PROP_FRAME_HEIGHT) * 
-                             (1.0 / downsample_ratio));
-    }
+    if (!height) height = camera.get(CV_CAP_PROP_FRAME_HEIGHT);
+    camera.set(CV_CAP_PROP_FRAME_HEIGHT, height * (1.0 / downsample_ratio));
         
     std::cout << "Camera output: " << camera.get(CV_CAP_PROP_FRAME_WIDTH) 
             << "x" << camera.get(CV_CAP_PROP_FRAME_HEIGHT) 
@@ -131,7 +118,7 @@ int FaceDetector::start(Writer &writer) {
     /* dlib graphical window context */
     dlib::image_window win;
     
-    win.set_size(600, 400);
+    win.set_size(width, height);
     win.set_background_color(0, 0, 0);
     //dlib::button test(win);
     dlib::menu_bar test2(win);
