@@ -3656,10 +3656,13 @@ Contributor(s):
         </ccTool>
       </folder>
       <item path="src/FaceDetector.cc" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="3">
           <incDir>
             <pElem>build/Debug/src</pElem>
           </incDir>
+          <preprocessorList>
+            <Elem>DLIB_USE_CUDA</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
       <item path="src/FrameData.cc" ex="false" tool="1" flavor2="8">
@@ -3691,11 +3694,15 @@ Contributor(s):
         </ccTool>
       </item>
       <item path="src/Stringless.cc" ex="false" tool="1" flavor2="8">
-        <ccTool flags="0">
+        <ccTool flags="3">
           <incDir>
-            <pElem>/usr/include/opencv</pElem>
+            <pElem>/usr/local/include</pElem>
+            <pElem>/usr/local/include/opencv</pElem>
             <pElem>build/Debug/src</pElem>
           </incDir>
+          <preprocessorList>
+            <Elem>DLIB_USE_CUDA</Elem>
+          </preprocessorList>
         </ccTool>
       </item>
       <item path="src/Writer.cc" ex="false" tool="1" flavor2="8">

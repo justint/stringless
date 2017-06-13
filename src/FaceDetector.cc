@@ -46,7 +46,10 @@ FaceDetector::FaceDetector(int camera_number,
                           downsample_ratio(downsample_ratio),
                           sample_rate(sample_rate),
                           landmark_sample_per_frame(landmark_sample_per_frame),
-                          face_landmarks_location(face_landmarks_location) { }
+                          face_landmarks_location(face_landmarks_location),
+                          show_camera_image(false),
+                          neutral_face_flag(0),
+                          win() { }
 
 FaceDetector::FaceDetector(const FaceDetector& orig) {
     camera_number               = orig.camera_number;
@@ -57,6 +60,7 @@ FaceDetector::FaceDetector(const FaceDetector& orig) {
     sample_rate                 = orig.sample_rate;
     landmark_sample_per_frame   = orig.landmark_sample_per_frame;
     face_landmarks_location     = orig.face_landmarks_location;
+    show_camera_image           = orig.show_camera_image;
 }
 
 FaceDetector::~FaceDetector() { }
@@ -76,6 +80,36 @@ std::vector<dlib::image_window::overlay_circle> render_faces (
     }
     return points;
 }
+
+std::vector<dlib::image_window::overlay_line> render_deltas (
+        const dlib::full_object_detection face_origin,
+        const dlib::full_object_detection face_dest,
+        const dlib::rgb_pixel color = dlib::rgb_pixel(0,0,255)
+    )
+{
+    std::vector<dlib::image_window::overlay_line> lines;
+    
+    for (unsigned long i = 0; i < face_origin.num_parts(); ++i)
+    {
+        dlib::image_window::overlay_line l(face_origin.part(i), face_dest.part(i), color);
+        lines.push_back(l);
+    }
+    return lines;
+}
+
+void FaceDetector::toggle_camera_image() {
+    if (show_camera_image) {
+        win.set_image(dlib::array2d<dlib::rgb_pixel>(0, 0));
+        win.set_size(width, height);
+    }
+    show_camera_image = !show_camera_image;
+}
+
+void FaceDetector::capture_neutral_face() { neutral_face_flag = CAPTURE_NEUTRAL_FACE; }
+
+void FaceDetector::show_neutral_deltas() { neutral_face_flag = SHOW_NEUTRAL_DELTAS; }
+
+void FaceDetector::reset_neutral_face() { neutral_face_flag = RESET_NEUTRAL_FACE; }
 
 int FaceDetector::start(Writer &writer) {
     
@@ -109,23 +143,28 @@ int FaceDetector::start(Writer &writer) {
     dlib::shape_predictor sp;
     dlib::deserialize(face_landmarks_location) >> sp;
     std::vector<dlib::rectangle> faces;
-    dlib::full_object_detection shape;
+    dlib::full_object_detection shape, neutral_shape;
     std::vector<dlib::full_object_detection> shapes;
     dlib::rectangle main_face;
     int face_not_found = 0;
 
     
     /* dlib graphical window context */
-    dlib::image_window win;
-    
     win.set_size(width, height);
     win.set_background_color(0, 0, 0);
     //dlib::button test(win);
-    dlib::menu_bar test2(win);
-    /*
-    test2.set_number_of_menus(1);
-    test2.set_menu_name(0,"Menu",'M');
-    */
+    dlib::menu_bar mbar(win);
+    mbar.set_number_of_menus(2);
+    mbar.set_menu_name(0,"Settings",'S');
+    mbar.set_menu_name(1, "Neutral Face", 'N');
+    
+    mbar.menu(0).add_menu_item(dlib::menu_item_text("Show/Hide Camera Image",*this,&FaceDetector::toggle_camera_image,'T'));
+    
+    mbar.menu(1).add_menu_item(dlib::menu_item_text("Capture Neutral Face",*this,&FaceDetector::capture_neutral_face,'C'));
+    mbar.menu(1).add_menu_item(dlib::menu_item_text("Show Deltas",*this,&FaceDetector::show_neutral_deltas,'D'));
+    mbar.menu(1).add_menu_item(dlib::menu_item_text("Clear",*this,&FaceDetector::reset_neutral_face,'C'));
+
+
     //test.set_pos(10,300);
     //test.set_name("button");
     win.set_title("Stringless");
@@ -176,7 +215,7 @@ int FaceDetector::start(Writer &writer) {
                 else face_not_found++;
 	}
  
-        // Set main face to be the largest
+        // Set largest face to be the main/selected face
         for (dlib::rectangle r : faces) {
             if (!main_face.is_empty() && r.area() > main_face.area()) {
                 main_face = r;
@@ -211,6 +250,9 @@ int FaceDetector::start(Writer &writer) {
                 shape = sp(cimg, main_face);
             }
             
+            if (neutral_face_flag == CAPTURE_NEUTRAL_FACE)
+                neutral_shape = shape;
+            
             // Push data points into frame data
             for(int i = 0; i < points; ++i) {
                 frame_data.points[i].x = (double)shape.part(i).x() / (double)cimg.nr();
@@ -223,29 +265,27 @@ int FaceDetector::start(Writer &writer) {
         frame_data.fps = frames_per_second;
         frame_data.frame_number = frame_count;
         
-        /*
-        for (unsigned long i = 0; i < faces.size(); ++i) {            
-            dlib::full_object_detection shape = sp(cimg, faces[i]);
-            
-            // Push data points into frame data
-            for(int i = 0; i < points; ++i) {
-                frame_data.points[i].x = (double)shape.part(i).x() / (double)cimg.nr();
-                frame_data.points[i].y = (double)shape.part(i).y() / (double)cimg.nc();
-            }
-            frame_data.fps = frames_per_second;
-            frame_data.frame_number = frame_count;
-            
-            shapes.push_back(shape);
-        }
-        */
         
         std::cout << " Frame rate: " << frames_per_second << " Frame count: " 
                 << frame_count << "      \r";
         ++frame_count;
         
         win.clear_overlay();
-        //win.set_image(cimg);
+        if (show_camera_image) {
+            win.set_image(cimg);
+        }
         win.add_overlay(render_faces(shape));
+        if (neutral_face_flag >= SHOW_NEUTRAL_FACE) 
+            win.add_overlay(render_faces(neutral_shape, dlib::rgb_pixel(255,0,0)));
+        else neutral_shape = dlib::full_object_detection(); // Reset neutral face
+        if (neutral_face_flag == SHOW_NEUTRAL_DELTAS) {
+            // Don't render deltas if no current face is found
+            if (shape.num_parts() > 0) win.add_overlay(render_deltas(neutral_shape, shape));
+        }
+
+        
+        if (neutral_face_flag == CAPTURE_NEUTRAL_FACE)
+            neutral_face_flag = SHOW_NEUTRAL_FACE; // Neutral face is captured, now only display
         
         // Pass frame data to writer
         writer.write(frame_data);

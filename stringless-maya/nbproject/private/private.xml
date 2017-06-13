@@ -7,8 +7,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/jtennant/NetBeansProjects/stringless/stringless-maya/src/StringlessMaya.mel</file>
-            <file>file:/home/jtennant/NetBeansProjects/stringless/stringless-maya/qtconfig</file>
+            <file>file:/home/justin/Documents/stringless/stringless-maya/src/StringlessMayaCmd.cc</file>
+            <file>file:/home/justin/Documents/stringless/stringless-maya/src/StringlessMaya.mel</file>
+            <file>file:/home/justin/Documents/stringless/stringless-maya/src/StringlessMayaDevice.h</file>
+            <file>file:/home/justin/Documents/stringless/stringless-maya/src/StringlessMayaDevice.cc</file>
         </group>
     </open-files>
     <preferences xmlns="http://www.netbeans.org/ns/auxiliary-configuration-preferences/1">
