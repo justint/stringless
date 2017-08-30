@@ -1,5 +1,7 @@
 # Stringless
 
+![Stringless demo](stringless.gif)
+
 Stringless is a real-time, markerless, single-camera facial motion capture system. By using [dlib](http://dlib.net/) facial landmark detection, Stringless captures facial motion data and sends it to an Autodesk Maya plug-in, where a user can map the motion capture data to a rigged face model.
 
 Currently Stringless is still a work in progress. I accept pull requests, and issues for bugs + feature requests are welcome.
