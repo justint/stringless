@@ -2,11 +2,11 @@
 
 ![Stringless demo](stringless.gif)
 
-Stringless is a real-time, markerless, single-camera facial motion capture system. By using [dlib](http://dlib.net/) facial landmark detection, Stringless captures facial motion data and sends it to an Autodesk Maya plug-in, where a user can map the motion capture data to a rigged face model.
+Stringless is a real-time, markerless, single-camera facial motion capture system. By using [dlib](http://dlib.net/) facial landmark detection, Stringless captures facial motion data as a collection of data points and sends it to an Autodesk Maya plug-in, where a user can map the motion capture data to a rigged face model. It was originally built as a pseudo-thesis project for my CS undergraduate degree at SJSU, but is now a continual work in progress with updates and added features.
 
-Currently Stringless is still a work in progress. I accept pull requests, and issues for bugs + feature requests are welcome.
+For an overview of the system's design, operation flow, and current issues, please see [this presentation](http://justintennant.me/Stringless_NASA_Presentation.pdf), which was given live at the NASA Ames Research Center in June 2017.
 
-While this project's initial prototype is still in development, all commits are to the master branch. Once I finish the initial prototype, I will switch into a more standard develop/patch/master branch style of version control.
+I accept pull requests, and issues for bugs + feature requests are welcome.
 
 ## Build instructions
 
@@ -34,21 +34,19 @@ Stringless server requires [OpenCV](http://opencv.org/) and [dlib](http://dlib.n
 
 ### Maya plug-in
 
-The Maya plug-in requires the Maya API and a custom instance of Qt for Maya, both dependent on your version of Maya. Versions before 2016 have the custom Qt for Maya included in the installation, 2016 and above have it in separate dev-kits available for download, either on [GitHub](https://github.com/autodesk-adn/Maya-devkit) (version 2016) or on the [Autodesk App Store](https://apps.autodesk.com/) (versions 2016.5 and above).
-
-Build instructions will be added in time - the dependencies have been fluctuating and the plug-in is too instable at this time.
+The Maya plug-in requires the Maya API unique to your version of Maya. I built it using Maya 2016.5, if you run into issues compiling with other versions [please let me know](https://github.com/justint/stringless/issues)!
 
 ## Running Stringless
 
 To initiate the server process using the default camera (camera 0):
 
-`$ src/Stringless -f ../ext/dlib/shape_predictor_68_face_landmarks.dat`
+`$ src/Stringless -p ../ext/dlib/shape_predictor_68_face_landmarks.dat`
 
 Use the `-cn=<arg>` flag to specify a different camera.
 
 To start up the Maya plug-in:
 
-1. Load up the Stringless plug-in, copy the MEL script
+1. Load up the Stringless plug-in, copy the MEL script into your Maya scripts directory
 2. Enter `source StringlessMaya` into the MEL command line
 3. Enter `createStringlessCap "<name>"` into the MEL command line
 
@@ -73,7 +71,7 @@ When compiling Stringless, it is important to use the `-DUSE_AVX_INSTRUCTIONS=ON
 
 /src                Stringless server source
 
-/stringless-maya    Stringless Maya plug-in (unstable)
+/stringless-maya    Stringless Maya plug-in
 ```
 
 ## Licensing
@@ -82,4 +80,4 @@ Stringless is released under the Boost Software License; its dependency licenses
 
 ## Author
 
-[Justin Tennant](http://justintennant.me)
+[Justin Tennant](http://justintennant.me), 2017
