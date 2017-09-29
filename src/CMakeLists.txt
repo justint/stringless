@@ -13,17 +13,14 @@ add_library (FrameData SHARED FrameData.cc)
 add_library (MutexObj OBJECT Mutex.cc)
 add_library (Mutex SHARED Mutex.cc)
 
-add_library (ReaderObj OBJECT Reader.cc)
-add_library (Reader SHARED Reader.cc)
-
 add_executable (Stringless Stringless.cc)
 
-add_definitions(-fPIC)
-
-target_link_libraries(Stringless MemoryManager FaceDetector Writer FrameData Mutex ${OpenCV_LIBS} dlib rt pthread)
+if (APPLE)
+    target_link_libraries(Stringless MemoryManager FaceDetector Writer FrameData Mutex ${OpenCV_LIBS} dlib pthread)
+else()
+    target_link_libraries(Stringless MemoryManager FaceDetector Writer FrameData Mutex ${OpenCV_LIBS} dlib rt pthread)
+endif()
 
 install(TARGETS Stringless RUNTIME DESTINATION bin)
-install(TARGETS MemoryManager FrameData Mutex Reader 
-        ARCHIVE DESTINATION lib
-        LIBRARY DESTINATION lib
-        COMPONENT library)
+install(TARGETS MemoryManager FrameData Mutex LIBRARY DESTINATION lib)
+>>>>>>> 72473b36c24f85d07b7b769abbd6f91e2c89f64a

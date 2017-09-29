@@ -7,22 +7,12 @@
 
 /* 
  * File:   Reader.cc
- * Author: jtennant
+ * Author: Justin Tennant <justin.tennant@sjsu.edu>
  * 
  * Created on February 2, 2017, 12:22 PM
  */
 
 #include "Reader.h"
-
-#include <chrono>
-#include <iostream>
-#include <thread>
-
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
-
-#include "MemoryManager.h"
 
 namespace Stringless {
     

@@ -39,3 +39,10 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+
+# CLion
+cmake-build-debug/
+.idea/
+
+# Apple
+.DS_Store

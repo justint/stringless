@@ -288,6 +288,7 @@ int main(int argc, char** argv) {
                                            face_landmarks_path);
 
     face_detector.start(writer);
+    memory_manager.remove();
     return 0;
 }
 
