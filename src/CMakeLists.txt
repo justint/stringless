@@ -23,4 +23,3 @@ endif()
 
 install(TARGETS Stringless RUNTIME DESTINATION bin)
 install(TARGETS MemoryManager FrameData Mutex LIBRARY DESTINATION lib)
->>>>>>> 72473b36c24f85d07b7b769abbd6f91e2c89f64a

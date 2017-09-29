@@ -128,8 +128,8 @@ const option::Descriptor usage[] = {
             "intended for smoother output (1 default)."},
     {UNKNOWN, 0, "", "", Arg::None, 
             "\nExamples:\n"
-            "  stringless -f path/to/flp \n"
-            "  stringless -f path/to/flp -d 2 -s 3 \n"    
+            "  stringless -p path/to/flp \n"
+            "  stringless -p path/to/flp -f 60 -s 3 \n"    
             "  stringless --flp=path/to/flp --cn=1 \n"
             "  stringless --flp=path/to/flp --lspf=2 \n"
             "  stringless --clear \n"
