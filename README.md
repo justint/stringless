@@ -34,7 +34,7 @@ Stringless server requires [OpenCV](http://opencv.org/) and [dlib](http://dlib.n
 
 ### Maya plug-in
 
-The Maya plug-in requires the Maya API unique to your version of Maya. I built it using Maya 2016.5, if you run into issues compiling with other versions [please let me know](https://github.com/justint/stringless/issues)!
+The Maya plug-in requires the Maya API unique to your version of Maya. I built it using Maya 2016.5 if you run into issues compiling with other versions [please let me know](https://github.com/justint/stringless/issues)!
 
 ## Running Stringless
 
@@ -60,7 +60,7 @@ Use the `-s`/`--sr` flag to specify a sampling rate for face detection. By defau
 
 *Example*: `./Stringless ... -s 3` will look for faces every three frames, and will use the face location data from the previously sampled frame to define the facial landmark detection region.
 
-When compiling Stringless, it is important to use the `-DUSE_AVX_INSTRUCTIONS=ON` flag with cmake - this instructs your compiler to use especially optimized [Advanced Vector Extension](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions) instructions, which came about in early 2011. If you're using a pre-2011 CPU, use the `-DUSE_SSE4_INSTRUCTIONS=ON` flag instead (the next best optimal instructions).
+When compiling Stringless, it is important to use the `-DUSE_AVX_INSTRUCTIONS=ON` flag with cmake - this instructs your compiler to use specially optimized [Advanced Vector Extension](https://en.wikipedia.org/wiki/Advanced_Vector_Extensions) instructions, which came about in early 2011. If you're using a pre-2011 CPU, use the `-DUSE_SSE4_INSTRUCTIONS=ON` flag instead (the next best optimal instructions).
 
 ## Contents
 
