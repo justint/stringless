@@ -1,4 +1,5 @@
 # Stringless
+[![Build Status](https://travis-ci.org/justint/stringless.svg?branch=master)](https://travis-ci.org/justint/stringless)
 
 ![Stringless demo](stringless.gif)
 
