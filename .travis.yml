@@ -43,7 +43,6 @@ before_script:
   - cd ../../
   
 script:
-  - cd stringless
   - mkdir build
   - cd build
   - cmake .. -DUSE_AVX_INSTRUCTIONS=ON
