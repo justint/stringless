@@ -15,11 +15,6 @@
 #ifndef STRINGLESS_H
 #define STRINGLESS_H
 
-#include <QtCore/QPointer>
-#include <QtGui/QPushButton>
-#include <QtGui/QDialog>
-#include <QtGui/QLabel>
-
 #include <maya/MSpinLock.h>
 #include <maya/MPxCommand.h>
 #include <maya/MPxThreadedDeviceNode.h>

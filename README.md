@@ -11,9 +11,7 @@ I accept pull requests, and issues for bugs + feature requests are welcome.
 
 ## Build instructions
 
-### Server
-
-Stringless server requires [OpenCV](http://opencv.org/) and [dlib](http://dlib.net).
+Stringless server requires [OpenCV](http://opencv.org/) and [dlib](http://dlib.net), and the Maya plug-in requires Autodesk Maya.
 
 1. Clone a copy of Stringless:
 
@@ -28,14 +26,12 @@ Stringless server requires [OpenCV](http://opencv.org/) and [dlib](http://dlib.n
 
     $ cd build
 
-    $ cmake .. -DUSE_AVX_INSTRUCTIONS=ON
+    $ cmake .. -DUSE_AVX_INSTRUCTIONS=ON -DMAYA_VERSION=2017
 
     $ make
     ```
 
-### Maya plug-in
-
-The Maya plug-in requires the Maya API unique to your version of Maya. I built it using Maya 2016.5, if you run into issues compiling with other versions [please let me know](https://github.com/justint/stringless/issues)!
+    Change the `DMAYA_VERSION` arg to whichever version of Maya you're compiling for. To compile the server alone (no Maya plug-in, run `cmake .. -DUSE_AVX_INSTRUCTIONS=ON -DBUILD_MAYA=OFF`
 
 ## Running Stringless
 
@@ -47,9 +43,13 @@ Use the `-cn=<arg>` flag to specify a different camera.
 
 To start up the Maya plug-in:
 
-1. Load up the Stringless plug-in, copy the MEL script into your Maya scripts directory
-2. Enter `source StringlessMaya` into the MEL command line
-3. Enter `createStringlessCap "<name>"` into the MEL command line
+1. Load up the stringless-maya plug-in, copy the [StringlessMaya.mel](https://github.com/justint/stringless/blob/master/stringless-maya/src/StringlessMaya.mel) script into your Maya scripts directory
+2. Enter `source StringlessMaya` into the Maya MEL command line
+3. Enter `createStringlessCap "<name>"` into the Maya MEL command line, where `<name>` is your preferred capture node name
+
+Once the capture device node is constructed, the node requires a neutral face pose to be defined before reading capture data. While the Stringless server is running, hold the actor's face still and enter `calibrateNeutralFace("<name>_Device")` into the MEL command line. The `<name>_Device` node's Live button will now be enabled. You can now read live capture data by enabling the Live checkmark.
+
+To use the capture data on a rig, you can use the `Constrain > Parent` tool to parent the Stringless rig joints (found within the `<name>_Face` node in the Outliner) to your own rig.
 
 ### Optimizing performance
 
@@ -67,8 +67,6 @@ When compiling Stringless, it is important to use the `-DUSE_AVX_INSTRUCTIONS=ON
 
 ```
 /ext                3rd-party libraries and dependencies
-
-/nbproject          Netbeans project files
 
 /src                Stringless server source
 
