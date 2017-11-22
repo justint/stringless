@@ -45,5 +45,5 @@ before_script:
 script:
   - mkdir build
   - cd build
-  - cmake .. -DUSE_AVX_INSTRUCTIONS=ON
+  - cmake .. -DUSE_AVX_INSTRUCTIONS=ON -DBUILD_MAYA=OFF
   - make -j4
