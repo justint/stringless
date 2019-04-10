@@ -15,7 +15,7 @@ Stringless server requires [OpenCV](http://opencv.org/) and [dlib](http://dlib.n
 
 1. Clone a copy of Stringless:
 
-    `$ git clone https://github.com/octop1/stringless.git`
+    `$ git clone https://github.com/justint/stringless.git`
 
 2. Make a build directory and compile:
 
