@@ -1,5 +1,5 @@
 # Stringless
-[![Build Status](https://travis-ci.org/justint/stringless.svg?branch=master)](https://travis-ci.org/justint/stringless)
+[![Build Status](https://travis-ci.org/justint/stringless.svg?branch=main)](https://travis-ci.org/justint/stringless)
 
 ![Stringless demo](stringless.gif)
 
@@ -43,7 +43,7 @@ Use the `-cn=<arg>` flag to specify a different camera.
 
 To start up the Maya plug-in:
 
-1. Load up the stringless-maya plug-in, copy the [StringlessMaya.mel](https://github.com/justint/stringless/blob/master/stringless-maya/src/StringlessMaya.mel) script into your Maya scripts directory
+1. Load up the stringless-maya plug-in, copy the [StringlessMaya.mel](https://github.com/justint/stringless/blob/main/stringless-maya/src/StringlessMaya.mel) script into your Maya scripts directory
 2. Enter `source StringlessMaya` into the Maya MEL command line
 3. Enter `createStringlessCap "<name>"` into the Maya MEL command line, where `<name>` is your preferred capture node name
 
